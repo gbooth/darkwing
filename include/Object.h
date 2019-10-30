@@ -5,10 +5,12 @@
 class Object
 {
   public:
-    Object();
+    Object(Identifier i) :id{i};
     virtual ~Object();
 
   protected:
+    string description;
+    Identifier id;
 
   private:
 };
