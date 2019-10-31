@@ -6,7 +6,8 @@
 #include "gtest/gtest.h"
 
 TEST(TestObject, ctorTest) {
-  FAIL();
+  Object a(Object::jzargo);
+  EXPECT_EQ(Object::jzargo, a.id);
 }
 
 
