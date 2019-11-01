@@ -1,0 +1,32 @@
+goldenChest:a large chest with golden filigry about the handle
+Chest:a boring old chest but the treasure inside…
+goldenSword:a super duper nice sword with gold all around it
+sword:its a sword...kinda sharp...the pointy end goes away from you
+goldenDagger:a super duper nice dagger...kinda like the super duper nice sword
+dagger:"meh...its a dagger what more can you ask for"
+goblin1:a really ugly fat and slightly dangerous goblin
+goblin2:"not so ugly, kind of strapping actually, but he will kill you. PS his name is Phill"
+goblin3:quite small and not very smart. A dullard you might but still a spear is in his hand
+goblin4:could he look any more pathetic? Yup he most certainly once you defeat him
+duckDragon:a great Duck the size of your house (hopefully a tiny house for your sake).  He is exquisitely peaved
+jzargo:a man with a weezy voice who you don’t quite trust
+serana:A turse woman who doesn’t trust anyone but you just really want to become friends with
+lydia:a stout woman very strong and willing to carry almost anything for you
+greyBeard:this man has a really long black beard...his name doesn’t quite match but he’s just ready for the future
+jackSparrow:his real name is Leonard but everyone calls him Jack
+billTurner:A man down on his luck drowning in debt
+dinkleBerg:he most certainly is a dink don’t trust this man as far as you can spit him
+kingOrlando:The bumbling king…yeeeahh…
+phyllis:a lovely lady loves to regale you with her adventure of the killer Crocs...not the animal the footwear
+healthPotion1:a pretty nice potion capable of healing 5hp
+healthPotion2:an ok health potion capable of healing 3ish hp
+blueLock:a blue lock...what else did you expect
+orangeLock,an orange lock but some might call it tangerine...who ever named this must be colour blind
+blueKey:"a blue key...might match the blue lock...maybe"
+orangeKey:do you really need to know what to do with this? 
+lever1:its a lever
+lever4:wow another lever
+lever5:you pull this like a tree branch except it doesn’t break...and its not a tree
+lever6:its sword hilt sticking out of a wall...maybe you should pull it…
+lever2:a lever are you sure it is the right lever?
+lever3:a long and boney arm quite dead that looks like a lever
