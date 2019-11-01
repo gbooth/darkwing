@@ -53,8 +53,6 @@ class Object {
   *the Object description
   */
   std::string description = "";
-
- private:
 };
 
 #endif // OBJECT_H
