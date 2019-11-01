@@ -4,7 +4,6 @@
 #include<fstream>
 #include<map>
 #include<string>
-using namespace std;
 
 
 class Object {
@@ -23,7 +22,7 @@ class Object {
   /**
   *a map that links an identifier to a description
   */
-  static map<Identifier, string> ObjectMap;
+  static std::map<Identifier, std::string> ObjectMap;
 
   /**
   *set the objectMap
@@ -41,19 +40,19 @@ class Object {
   virtual ~Object();
 
   /**
-  * @return description
+  * @return id as a string
   */
-  string getDesc();
+  std::string getID();
 
   /**
   *the Object Identifier
   */
-  const string id;
+  const Identifier id;
 
   /**
   *the Object description
   */
-  string description = "";
+  std::string description = "";
 
  private:
 };
