@@ -1,8 +1,11 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include<fstream>
 #include<map>
 #include<string>
+using namespace std;
+
 
 class Object {
  public:
@@ -16,10 +19,21 @@ class Object {
                    healthPotion2, blueLock, orangeLock, blueKey, orangeKey, lever1, lever2,
                    lever3, lever4, lever5, lever6
                   };
+
+  /**
+  *a map that links an identifier to a description
+  */
+  static map<Identifier, string> ObjectMap;
+
+  /**
+  *set the objectMap
+  */
+  static void setMap();
+
   /**
   *constructor
   */
-  Object(Identifier a = sword) :id{a}, description{ObjectMap[a]} {};
+  Object(Identifier a) :id{a}, description{ObjectMap[a]} {}
 
   /**
   *virtual destructor
@@ -27,23 +41,19 @@ class Object {
   virtual ~Object();
 
   /**
-  *a map that links an identifier to a description
-  */
-  std::map<Identifier, std::string> ObjectMap;
-
-  /**
   * @return description
   */
-  std::string getDesc();
+  string getDesc();
 
   /**
   *the Object Identifier
   */
-  const Identifier id;
+  const string id;
 
-
- protected:
-  std::string description;
+  /**
+  *the Object description
+  */
+  string description = "";
 
  private:
 };
