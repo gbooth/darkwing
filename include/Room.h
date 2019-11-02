@@ -5,13 +5,11 @@
 #include <map>
 #include <list>
 
-
 class Room : public Object {
  public:
   Room(int, int);
   virtual ~Room();
   bool getHasEnemy();
-  enum Direction {north, south, east, west};
  private:
   std::list<Identifier> npcInRoom;
   std::list<Identifier> objectsInRooms;
