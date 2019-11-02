@@ -1,6 +1,6 @@
 #include "Hero.h"
 
-Hero::Hero()
+/*Hero::Hero()
 {
   //ctor
 }
@@ -9,3 +9,4 @@ Hero::~Hero()
 {
   //dtor
 }
+*/

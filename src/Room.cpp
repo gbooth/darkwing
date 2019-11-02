@@ -1,6 +1,6 @@
 #include "Room.h"
 
-Room::Room()
+/*Room::Room()
 {
   //ctor
 }
@@ -9,3 +9,4 @@ Room::~Room()
 {
   //dtor
 }
+*/
