@@ -12,7 +12,7 @@
 1012:duckThrone:finally the layer of the duck
 1013:desert:a really dry and sunny desert
 1014:waterfall:a large cavern with a high water fall splashing on to the ground
-1015:stalactite:wide cave with stalactites hanging frome the ceiling (they sure look sharp)
+1015:stalactite:wide cave with stalactites hanging from the ceiling (they sure look sharp)
 1016:quartzRoom:a giant crystal cave filled with quartz
 1017:livingQuarters:looks like the duck's minions live here
 1018:undergroundRiver:a giant river capable of drowning a mouse and perhaps a person?
@@ -24,12 +24,15 @@
 1024:void:void
 1025:void:void
 2201:orangeLock:its an orange lock kind of like other orange locks you've seen
-2301:orangeKey:a key that might go with the orange lock
 2202:blueLock:a blue lock so pretty and blue
-2302:bluekey:similar to the orange key but its blue
 2203:brownLock:the way is barred you shall not pass
-2303:brownKey:you know the way
-3301:goblin1:a really ugly fat and slightly dangerous goblin
+2301:lever1:its a lever
+2302:lever2:a lever are you sure it is the right lever?
+2303:lever3:a long and boney arm quite dead that looks like a lever
+2304:lever4:wow another lever
+2305:lever5:you pull this like a tree branch except it doesn't break...and its not a tree
+2306:lever6:its sword hilt sticking out of a wall...maybe you should pull it?
+3301:goblin1:lever2:a lever are you sure it is the right lever?
 3302:goblin2:not so ugly, kind of strapping actually, but he will kill you. PS his name is Phill.
 3303:goblin3:quite small and not very smart. A dullard you might but still a spear is in his hand
 3304:goblin4:could he look any more pathetic? Yup he most certainly can once you defeat him.
@@ -41,5 +44,16 @@
 3205:jackSparrow:his real name is Leonard but everyone calls him Jack
 3206:billTurner:A man down on his luck drowning in debt
 3207:dinkleBerg:he most certainly is a dink don't trust this man as far as you can spit him
-3208:kingOrlando:The bumbling king?yeeeahh?
+3208:kingOrlando:The bumbling king? Yeeeahh?
 3209:phyllis:a lovely lady loves to regale you with her adventure of the killer Crocs...not the animal the footwear
+4301:orangeKey:a key that might go with the orange lock
+4302:bluekey:similar to the orange key but its blue
+4303:brownKey:you know the way
+4101:healthPotion1:a pretty nice potion capable of healing 5hp
+4102:healthPotion2:an ok health potion capable of healing 3ish hp
+2101:goldenChest:a large chest with golden filigry about the handle
+2102:chest:a boring old chest but perhaps there's treasure inside
+4201:sword:its a sword...kinda sharp..the pointy end goes away from you
+4202:goldenSword:its  super duper nice sword with gold all around it
+4203:dagger:meh...its a dagger what more can you ask for?
+4204:goldenDagger:a super duper nice dagger...kinda like a super duper nice sword
