@@ -2,6 +2,8 @@
 #define ROOM_H
 
 #include "Object.h"
+#include <map>
+#include <list>
 
 
 class Room : public Object {
@@ -11,11 +13,11 @@ class Room : public Object {
   bool getHasEnemy();
   enum Direction {north, south, east, west};
  private:
-  list<Identifiers> npcInRoom;
-  list<Identifiers> objectsInRooms;
-  map<Direction, pair<bool, pair<int, int>>> adjoiningRooms;
+  std::list<Identifier> npcInRoom;
+  std::list<Identifier> objectsInRooms;
+  std::map<Direction, std::pair<bool, std::pair<int, int>>> adjoiningRooms;
   bool hasEnemy;
-  list<Identifiers> changedObjects;
+  std::list<Identifier> changedObjects;
 };
 
 #endif // ROOM_H
