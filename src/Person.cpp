@@ -1,6 +1,6 @@
 #include "Person.h"
 
-Person::Person()
+/*Person::Person()
 {
   //ctor
 }
@@ -9,3 +9,4 @@ Person::~Person()
 {
   //dtor
 }
+*/

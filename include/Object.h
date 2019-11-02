@@ -32,7 +32,7 @@ class Object {
   /**
   *constructor
   */
-  Object(Identifier a) :id{a}, description{ObjectMap[a]} {}
+  Object(Identifier a) :id{a}, description{ObjectMap[a]} {};
 
   /**
   *virtual destructor
