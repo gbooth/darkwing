@@ -15,14 +15,14 @@ class Object {
                    dagger, goblin1, goblin2, goblin3, goblin4, duckDragon,
                    jzargo, serana, lydia, greyBeard, jackSparrow, billTurner,
                    dinkleBerg, kingOrlando, phyllis, healthPotion1,
-                   healthPotion2, blueLock, orangeLock, blueKey, orangeKey, lever1, lever2,
+                   healthPotion2, blueLock, orangeLock, blueKey, orangeKey, brownLock, brownKey, lever1, lever2,
                    lever3, lever4, lever5, lever6
                   };
 
   /**
-  *a map that links an identifier to a description
+  *a map that links an identifier to a name and description
   */
-  static std::map<Identifier, std::string> ObjectMap;
+  static std::map<int, std::pair<std::string, std::string> ObjectMap;
 
   /**
   *set the objectMap
@@ -30,9 +30,15 @@ class Object {
   static void setMap();
 
   /**
+  *set the pairs of names and descriptions to be used by ObjectMap
+  */
+  static void setPairs();
+
+
+  /**
   *constructor
   */
-  Object(Identifier a) :id{a}, description{ObjectMap[a]} {}
+  Object(int a) :id{a}, description{ObjectMap[a]} {}
 
   /**
   *virtual destructor
@@ -47,12 +53,12 @@ class Object {
   /**
   *the Object Identifier
   */
-  const Identifier id;
+  const int id;
 
   /**
   *the Object description
   */
-  std::string description = "";
+  std::string description;
 };
 
 #endif // OBJECT_H
