@@ -2,26 +2,16 @@
 #define OBJECT_H
 
 #include<fstream>
-#include<map>
 #include<string>
 
 
 class Object {
  public:
   /**
-  *a map that links an identifier to a name and description
-  */
-  static std::map<int, std::pair<std::string, std::string> ObjectMap;
-
-  /**
-  *set the objectMap
-  */
-  static void setMap();
-
-  /**
   *constructor
+  *@throws error if invalid id is passed in
   */
-  Object(int a) :id{a}, description{ObjectMap[a]} {}
+  Object(int);
 
   /**
   *virtual destructor
@@ -29,18 +19,23 @@ class Object {
   virtual ~Object();
 
   /**
-  * @return id as a string
+  * @return id
   */
-  std::string getID();
+  int getID();
 
   /**
-  *the Object Identifier
+  * @return description
   */
-  const int id;
+  std::string getDesc();
 
   /**
-  *the Object description
+  * @return name
   */
+  std::string getName();
+
+ protected:
+  int id;
+  std::string name;
   std::string description;
 };
 

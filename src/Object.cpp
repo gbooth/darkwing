@@ -3,42 +3,39 @@
 #include<iostream>
 #include<fstream>
 #include<string>
-#include<map>
-#include<typeinfo>
-#include<utility>
 
-Object::~Object() {}
-
-void Object::setMap() {
-  int colon = 0;
-  int semicolon = 0;
-  int ident;
-  int nameSize;
+Object::Object(int ident) {
+  id = ident;
   std::string line;
-  std::string name;
-  std::string desc;
+  std::string idStr = std::to_string(ident);
   std::ifstream objData;
   objData.open("identifierMap.csv");
   if (objData.is_open()) {
     while (!objData.eof()) {
-      std::getline(objData, line, ':');
-      ident = std::stoi(line, nullptr, 10);
-      std::getline(objData, line, ':');
-      name = line;
-      std::getline(objData, line);
-      desc = line;
-      auto p = make_pair(name, desc);
-      objectMap[ident] = p;
-      objData.ignore(1000,'\n');
+      getline(objData, line, ':');
+      if (line == idStr) {
+        getline(objData, line, ':');
+        name = line;
+        getline(objData, line);
+        description = line;
+        break;
+      } else {
+        objData.ignore(1000, '\n');
+      }
+      if(line != idStr && objData.eof())
+        throw not_an_identifier_error("ERROR: invalid ID");
     }
     objData.close();
   }
-
 }
+Object::~Object() {}
 
-
-
-std::string Object::getID() {
-  return "left";
+int Object::getID() {
+  return id;
 }
-
+std::string Object::getDesc() {
+  return description;
+}
+std::string Object::getName() {
+  return name;
+}
