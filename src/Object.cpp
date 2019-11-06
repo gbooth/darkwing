@@ -23,9 +23,12 @@ Object::Object(int ident) {
         objData.ignore(1000, '\n');
       }
       if(line != idStr && objData.eof())
-        throw not_an_identifier_error("ERROR: invalid ID");
+        throw invalid_id("ERROR: the ID specified is not on file");
     }
     objData.close();
+  }
+  else{
+    throw missing_file("ERROR: file you are trying to open is missing");
   }
 }
 Object::~Object() {}

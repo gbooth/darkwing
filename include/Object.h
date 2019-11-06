@@ -9,7 +9,7 @@ class Object {
  public:
   /**
   *constructor
-  *@throws error if invalid id is passed in
+  *@throws invalid_id error if invalid id is passed in or if file is missing
   */
   Object(int);
 
