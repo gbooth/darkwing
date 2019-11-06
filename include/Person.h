@@ -22,7 +22,7 @@ class Person : public Object {
   /** The constructor behavior is to create a Person ,in this case because the class is abstract, we can not intanciate a Person object.g
    *@parameters for identification and position of the Person .
   */
-  Person(Identifier a, int damageVal, std::pair<int, int> pos = std::make_pair(0,0) , int hp = 10);
+  Person(int, int damageVal, std::pair<int, int> pos , int hp = 10);
 
   /**
    *  Attack is a pure virtual method to be used for the Enemies and the Hero.
