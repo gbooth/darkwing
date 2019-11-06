@@ -1,25 +1,25 @@
-1001,wizardsRoom,0*0,|,0*1*true,1*0*true,|,|,|,FALSE
-1002,throne,1*0,|,1*1*true,|,0*0*true,NPC1*NPC2*NPC3,|,FALSE
-1003,lake,2*0,|,2*1*true,|,|,|,|,FALSE
-1004,cavernEntrance,3*0,|,|,4*0*true,4*1*true,|,|,TRUE
-1005,undergroundLake,4*0,2*3*true,3*2*true,1*4*false,3*0*true,|,lever1,TRUE
-1006,market,0*1,0*0*true,|,1*1*true,|,NPC4*NPC5*NPC6,|,FALSE
-1007,common,1*1,1*0*true,|,2*1*true,0*1*true,NPC7,|,FALSE
-1008,field,2*1,2*0*true,2*2*true,3*1*true,1*1*true,|,|,FALSE
-1009,forest,3*1,|,|,4*1*false,2*1*true,|,brownLock,FALSE
-1010,mountains,4*1,|,|,3*0*true,3*1*true,|,|,FALSE
-1011,duckAnteChamber,0*2,|,|,1*2*false,1*4*true,|,orangeLock,TRUE
-1012,duckThrone,1*2,|,|,|,0*2*true,|,|,TRUE
-1013,desert,2*2,2*1*true,|,|,|,|,|,FALSE
-1014,waterfall,3*2,4*0*true,|,4*2*true,|,|,chest1,FALSE
-1015,stalactite,4*2,|,1*3*true,0*3*true,3*2*true,|,|,TRUE
-1016,quartzRoom,0*3,|,|,|,4*2*true,|,lever6*chest2,FALSE
-1017,livingQuarters,1*3,4*2*true,|,|,|,|,lever2,FALSE
-1018,undergroundRiver,2*3,3*3*false,4*0*true,|,|,|,lever3,FALSE
-1019,stalagmite,3*3,|,2*3*true,4*3*true,0*4*true,|,|,FALSE
-1020,jail,4*3,|,|,|,3*3*true,|,lever4,FALSE
-1021,columnRoom,0*4,|,|,3*3*true,|,|,lever5,FALSE
-1022,bridge,1*4,|,|,0*2*false,4*0*true,|,|,FALSE
-1023,currentlyUnused,2*4,|,|,|,|,|,|,FALSE
-1024,currentlyUnused,3*4,|,|,|,|,|,|,FALSE
-1025,currentlyUnused,4*4,|,|,|,|,|,|,FALSE
+1001,Wizard’s Tower,|,01t,10t,|,|,|,f
+1002,Throne Room,|,11t,|,00t,320132023203,|,f
+1003,Lake Nutquacker County,|,21t,|,|,3208,|,f
+1004,Mouth of the Cave,|,|,40t,41t,|,|,t
+1005,cave. There is a large lake in front of you and a raised draw bridge.,23t,32t,14f,30t,|,2301,t
+1006,Castle Market,00t,|,11t,|,320434053206,|,f
+1007,Courtyard,10t,|,21t,01t,3207,|,f
+1008,field in front of the Castle,20t,22t,31t,11t,|,|,f
+1009,forest,|,|,41f,21t,|,2203,f
+1010,mountains,|,|,30t,31t,|,|,f
+1011,cave. There is a large ominous door in front of you. Perhaps it leads to the Duck.,|,|,12f,14t,|,2201,t
+1012,duckThrone,|,|,|,02t,|,|,t
+1013,desert,21t,|,|,|,3209,|,f
+1014,waterfall,40t,|,42t,|,|,2101,f
+1015,stalactite,|,13t,03t,32t,|,|,t
+1016,quartzRoom,|,|,|,42t,|,23062102,f
+1017,livingQuarters,42t,|,|,|,|,2302,f
+1018,undergroundRiver,33f,40t,|,|,|,23032202,f
+1019,stalagmite,|,23t,43t,04t,|,|,f
+1020,jail,|,|,|,33t,|,2304,f
+1021,columnRoom,|,|,33t,|,|,2305,f
+1022,bridge,|,|,02f,40t,|,|,f
+1023,currentlyUnused,|,|,|,|,|,|,f
+1024,currentlyUnused,|,|,|,|,|,|,f
+1025,currentlyUnused,|,|,|,|,|,|,f

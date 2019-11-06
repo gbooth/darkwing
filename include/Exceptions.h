@@ -9,22 +9,9 @@
 #include <stdexcept>
 
 /**
-* Exception for when an Identifier is not given in the constructor
+* Exception for when an ID doesn't match the expected ID type
 */
-class not_an_identifier_error: public std::runtime_error {
- public:
-  /**
-  * @param errMessage An error message.
-  */
-  explicit not_an_identifier_error(const char* errMessage) :
-    std::runtime_error(errMessage) {
-  }
-};
-
-/**
-* Exception for when an operation on a widget fails.
-*/
-class widget_operation_failed_error: public std::runtime_error {
+class invalid_id: public std::runtime_error {
  public:
   /**
   * @param errMessage An error message.
@@ -35,9 +22,9 @@ class widget_operation_failed_error: public std::runtime_error {
 };
 
 /**
-* Exception for when there is a problem with a widget.
+* Exception for when a required reference file is missing
 */
-class widget_error: public std::runtime_error {
+class missing_file: public std::runtime_error {
  public:
   /**
   * @param errMessage An error message.
