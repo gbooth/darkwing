@@ -16,7 +16,7 @@ class invalid_id: public std::runtime_error {
   /**
   * @param errMessage An error message.
   */
-  explicit widget_operation_failed_error(const char* errMessage) :
+  explicit invalid_id(const char* errMessage) :
     std::runtime_error(errMessage) {
   }
 };
@@ -29,7 +29,7 @@ class missing_file: public std::runtime_error {
   /**
   * @param errMessage An error message.
   */
-  explicit widget_error(const char* errMessage) :
+  explicit missing_file(const char* errMessage) :
     std::runtime_error(errMessage) {
   }
 };
