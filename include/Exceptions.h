@@ -24,12 +24,12 @@ class invalid_id: public std::runtime_error {
 /**
 * Exception for when a required reference file is missing
 */
-class missing_file: public std::runtime_error {
+class file_error: public std::runtime_error {
  public:
   /**
   * @param errMessage An error message.
   */
-  explicit missing_file(const char* errMessage) :
+  explicit file_error(const char* errMessage) :
     std::runtime_error(errMessage) {
   }
 };
