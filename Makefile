@@ -27,7 +27,7 @@ STYLE_CHECK = cpplint.py
 #DOXY_DIR = docs/code
 
 .PHONY: all
-all: tests memory coverage docs static style
+all: test memory coverage docs static style
 
 # default rule for compiling .cc to .o
 %.o: %.cpp
