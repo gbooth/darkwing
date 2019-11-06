@@ -6,7 +6,7 @@
 #ifndef ROOMOBJECT_H
 #define ROOMOBJECT_H
 
-#include <Object.h>
+#include "Object.h"
 
 
 class RoomObject : public Object
@@ -14,9 +14,9 @@ class RoomObject : public Object
   public:
     /**
     *constructor
-    *@throw invalid_id error if id is not on file
+    *@throw invalid_id error if id is not on file and id is not correct type
     */
-    RoomObject(int id, bool state = false): Object{id}, state{state};
+    RoomObject(int id, bool state = false);
 
     virtual ~RoomObject();
 
