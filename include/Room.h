@@ -5,7 +5,9 @@
 #include <map>
 #include <list>
 #include "Direction.h"
-#include "directionState.h"
+#include "Chest.h"
+#include "Lock.h"
+#include "Lever.h"
 
 class Room : public Object {
  public:
@@ -28,13 +30,13 @@ class Room : public Object {
   std::map<int, RoomObject> objInRoom;
 
   std::map<Direction, std::pair<bool, std::pair<int, int>>> adjRooms;
-  bool checkDirection(Direction);
 
   bool hasEnemy;
 
   std::list<int> changedObj;
   std::string roomMessage;
 
+  bool checkDirection(Direction);
   &Person getNPC(int);
   &RoomObject getObj(int);
 };
