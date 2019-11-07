@@ -2,58 +2,32 @@
 #include <fstream>
 #include <string>
 #include <Exceptions.h>
+#include <fstream>
+#include <string>
 
 Item::Item(int id): Object{id} {
-  if (id/1000 == 4) {
-    if (id/100 %10 == 3) {
-      switch (id) {
-      case 4301:
-        itemValue = -1;
+  std::string line;
+  std::string idStr = std::to_string(id);
+  std::fstream itemData;
+  itemData.open("Items.csv");
+  if (itemData.is_open()) {
+    while (!itemData.eof()) {
+      getline(itemData, line, ',');
+      if(line == idStr){
+        getline(itemData,line);
+        itemValue = std::stoi(line);
         break;
-      case 4302:
-        itemValue = -2;
-        break;
-      case 4303:
-        itemValue = -3;
-        break;
-      default:
-        itemValue = -4;
       }
-    }
-    if (id/100%10 == 2) {
-      switch (id) {
-      case 4201:
-        itemValue = 4;
-        break;
-      case 4202:
-        itemValue = 8;
-        break;
-      case 4203:
-        itemValue = 3;
-        break;
-      case 4204:
-        itemValue = 7;
-        break;
-      default:
-        itemValue = 2;
+      else{
+        itemData.ignore(1000, '\n');
       }
+      if(line != idStr && itemData.eof())
+        throw invalid_id("ERROR: the ID specified is not on file");
     }
-    if (id/100%10 == 1) {
-      switch (id) {
-      case 4101:
-        itemValue = 5;
-        break;
-      case 4102:
-        itemValue = 3;
-        break;
-      default:
-        itemValue = 1;
-      }
-    }
+    itemData.close();
   }
-
-  else {
-    throw invalid_id("This is not a key, potion or weapon");
+  else{
+    throw file_error("ERROR: the file you are trying to open is missing");
   }
 }
 
