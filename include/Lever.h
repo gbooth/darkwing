@@ -10,11 +10,12 @@ class Lever : public RoomObject {
   *constructor
   *@param ident the identifier of the lever
   *@param mode the state of the switch on/off
+  *@throw if ident doesn't describe a lever
   */
-  Lever(int ident, bool mode);
+  Lever(int ident, bool mode = false);
 
   /**
-  *Destructor
+  *destructor
   */
   virtual ~Lever();
 

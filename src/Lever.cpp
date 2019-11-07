@@ -3,7 +3,7 @@
 
 Lever::Lever(int ident, bool mode)
   : RoomObject{ident, mode} {
-  if ((ident / 100) % 10 == 3 || ident < 2300 || ident > 2399)
+  if ((ident / 100) % 10 != 3 || ident < 2301 || ident > 2399)
     throw invalid_id("ERROR: ID does not define a lever");
 }
 
