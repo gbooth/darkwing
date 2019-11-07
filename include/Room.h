@@ -5,9 +5,10 @@
 #include <map>
 #include <list>
 #include "Direction.h"
-#include "Chest.h"
-#include "Lock.h"
+//#include "Chest.h"
+//#include "Lock.h"
 #include "Lever.h"
+#include "DoorMood.h"
 
 class Room : public Object {
  public:
@@ -29,7 +30,7 @@ class Room : public Object {
   std::map<int, Person> npcInRoom;
   std::map<int, RoomObject> objInRoom;
 
-  std::map<Direction, std::pair<bool, std::pair<int, int>>> adjRooms;
+  std::map<Direction, std::pair<DoorMood, std::pair<int, int>>> adjRooms;
 
   bool hasEnemy;
 
