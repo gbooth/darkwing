@@ -16,4 +16,5 @@ Item p(4101);
  EXPECT_EQ(-3,k.getItemValue());
  EXPECT_EQ(8, w.getItemValue());
  EXPECT_EQ(5, p.getItemValue());
+ EXPECT_NE(0, p.getItemValue());
  }
