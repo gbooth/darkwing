@@ -28,7 +28,7 @@ Object::Object(int ident) {
     objData.close();
   }
   else{
-    throw missing_file("ERROR: file you are trying to open is missing");
+    throw file_error("ERROR: file you are trying to open is missing");
   }
 }
 Object::~Object() {}
