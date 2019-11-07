@@ -55,7 +55,6 @@ compile: $(PROGRAM_GAME)
 
 test: $(PROGRAM_TEST)
 	$(PROGRAM_TEST)
-	#diff -s $(TEST_DIR)/$(TEST_OUTPUT_FILE) $(TEST_DIR)/output/displayDottedFaces-expected.txt
 
 memory: $(PROGRAM_TEST)
 	valgrind --tool=memcheck --leak-check=yes $(PROGRAM_TEST)
