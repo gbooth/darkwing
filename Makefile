@@ -24,7 +24,7 @@ STATIC_ANALYSIS = cppcheck
 
 STYLE_CHECK = cpplint.py
 
-#DOXY_DIR = docs/code
+DOXY_DIR = docs/code
 
 .PHONY: all
 all: test memory coverage docs static style
