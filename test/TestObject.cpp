@@ -4,11 +4,15 @@
 */
 #include "Object.h"
 #include "gtest/gtest.h"
+#include "Exceptions.h"
+TEST(TestObject, ctorTest){
+  EXPECT_THROW(Object a(1000), invalid_id);
+  EXPECT_NO_THROW(Object a(1018));
+}
 
 TEST(TestObject, getIDTest) {
-  Object a(1001);
-  EXPECT_EQ(1001, a.getID());
-
+  Object a(4301);
+  EXPECT_EQ(4301, a.getID());
 }
 
 TEST(TestObject, getNameTest) {
