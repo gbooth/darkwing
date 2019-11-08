@@ -3,7 +3,7 @@
  */
 
 #include "Person.h"
-#include "utility"
+#include <utility>
 #include "Exceptions.h"
 
 Person::Person(int id, int damageVal, std::pair<int, int>pos, int hp)

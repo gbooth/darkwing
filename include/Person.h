@@ -4,6 +4,7 @@
 */
 #ifndef PERSON_H
 #define PERSON_H
+
 #include "Object.h"
 #include <utility>
 
@@ -26,14 +27,14 @@ class Person : public Object {
   virtual ~Person();
 
   /**
-  *  Attack is a pure virtual method to be used for the Enemies and the Hero.
+  * Attack is a pure virtual method to be used for the Enemies and the Hero.
   */
-  virtual int Attack ()=0;
+  virtual void Attack (Person*)=0;
+
   /**
   *set position of the person
   * @param pos the new position
   */
-
   void setPosition(std::pair<int, int> pos);
 
   /**
