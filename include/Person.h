@@ -19,7 +19,7 @@ class Person : public Object {
   * @param hp the health of the person
   * @throw throw an error if id doesn't match a person
   */
-  Person(int id, int damageVal, std::pair<int, int> pos, int hp = 10);
+  Person(int id, int damageVal, std::pair<uint, uint> pos, int hp = 10);
 
   /**
   *default Destructor
@@ -27,20 +27,20 @@ class Person : public Object {
   virtual ~Person();
 
   /**
-  * Attack is a pure virtual method to be used for the Enemies and the Hero.
+  *  Attack is a pure virtual method to be used for the Enemies and the Hero.
   */
-  virtual void Attack (Person*)=0;
+  virtual void attack (Person* npc) = 0;
 
   /**
   *set position of the person
   * @param pos the new position
   */
-  void setPosition(std::pair<int, int> pos);
+  void setPosition(std::pair<uint, uint> pos);
 
   /**
   *@return the position
   */
-  std::pair<int, int> getPos();
+  std::pair<uint, uint> getPos();
 
   /**
   *set health of character
@@ -63,7 +63,7 @@ class Person : public Object {
   int getDamage()const;
 
  protected:
-  std::pair<int, int>position;
+  std::pair<uint, uint>position;
   int health;
   int damageValue;
 };

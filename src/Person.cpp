@@ -6,7 +6,7 @@
 #include <utility>
 #include "Exceptions.h"
 
-Person::Person(int id, int damageVal, std::pair<int, int>pos, int hp)
+Person::Person(int id, int damageVal, std::pair<uint, uint>pos, int hp)
 : Object{id}, damageValue{damageVal}, position{pos}, health{hp} {
   if(id /1000 != 3 || id < 3000 || id > 3399)
     throw invalid_id("ERROR: this ID does not describe a person");
@@ -14,11 +14,13 @@ Person::Person(int id, int damageVal, std::pair<int, int>pos, int hp)
 
 Person::~Person() {}
 
-void Person::setPosition (std::pair<int, int> pos) {
+void Person::setPosition (std::pair<uint, uint> pos) {
+  if(pos.first > 4  || pos.second > 4)
+    throw invalid_pos("ERROR: position out of bounds");
   position = pos;
 }
 
-std::pair<int, int> Person::getPos() {
+std::pair<uint, uint> Person::getPos() {
   return position;
 }
 
