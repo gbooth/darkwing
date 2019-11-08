@@ -8,7 +8,7 @@
 
 Person::Person(int id, int damageVal, std::pair<int, int>pos, int hp)
 : Object{id}, damageValue{damageVal}, position{pos}, health{hp} {
-  if(id /1000 != 3 || id < 3000 || id > 3300)
+  if(id /1000 != 3 || id < 3000 || id > 3399)
     throw invalid_id("ERROR: this ID does not describe a person");
 }
 
