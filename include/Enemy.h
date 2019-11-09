@@ -16,7 +16,7 @@ class Enemy : public Person {
   * @param hp the health
   * @throw if id is not of enemy type
   */
-  Enemy(int id, int dmg = 2, std::pair<int, int>pos = std::make_pair(0,0), int hp = 10);
+  Enemy(int id, int dmg = 2, std::pair<int, int>pos = std::make_pair(3,3), int hp = 10);
 
   /**
   * destructor
