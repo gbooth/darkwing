@@ -2,8 +2,8 @@
 #include "Exceptions.h"
 #include <iostream>
 
-Enemy::Enemy(int id, int dmg, std::pair<int, int>pos, int hp)
-  :Person{id, dmg, pos, hp} {
+Enemy::Enemy(int id)
+  :Person{id} {
   if(id/100%10 != 3 || id < 3301)
     throw invalid_id("ERROR: id does not describe an enemy");
 }
