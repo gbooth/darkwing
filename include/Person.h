@@ -32,17 +32,6 @@ class Person : public Object {
   virtual void attack (Person* npc) = 0;
 
   /**
-  * set position of the person
-  * @param pos the new position
-  */
-  void setPosition(std::pair<uint, uint> pos);
-
-  /**
-  *@return the position
-  */
-  std::pair<uint, uint> getPos();
-
-  /**
   *set health of character
   */
   void setHealth(int);
