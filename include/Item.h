@@ -4,12 +4,12 @@
 #include <Object.h>
 
 class Item : public Object {
-public:
+ public:
   Item(int);
-  virtual ~Item(){};
+  virtual ~Item() {};
   int getItemValue();
 
-private:
+ private:
   int itemValue;
 };
 

@@ -8,8 +8,8 @@
 #include "Exceptions.h"
 
 Person::Person(int ident)
-: Object{ident} {
-  if(id /1000 != 3 || id < 3000 || id > 3399)
+  : Object{ident} {
+  if (id /1000 != 3 || id < 3000 || id > 3399)
     throw invalid_id("ERROR: this ID does not describe a person");
   std::string line;
   std::string idStr = std::to_string(ident);
@@ -27,12 +27,11 @@ Person::Person(int ident)
       } else {
         objData.ignore(1000, '\n');
       }
-      if(line != idStr && objData.eof())
+      if (line != idStr && objData.eof())
         throw invalid_id("ERROR: the ID specified is not on file");
     }
     objData.close();
-  }
-  else{
+  } else {
     throw file_error("ERROR: file you are trying to open is missing");
   }
 }

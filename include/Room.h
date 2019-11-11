@@ -6,8 +6,8 @@
 #include <list>
 #include "Direction.h"
 #include "Person.h"
-//#include "Chest.h"
-//#include "Lock.h"
+#include "Chest.h"
+#include "Lock.h"
 #include "Lever.h"
 #include "DoorMood.h"
 

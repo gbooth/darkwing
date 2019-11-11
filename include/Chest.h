@@ -4,13 +4,13 @@
 #include <RoomObject.h>
 #include <Item.h>
 
-class Chest: public RoomObject{
+class Chest: public RoomObject {
 
-public:
-  Chest(int, bool);
+ public:
+  Chest(int);
   Item getContents();
 
-private:
+ private:
   Item contents = 4101;
 
 };

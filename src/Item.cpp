@@ -12,20 +12,18 @@ Item::Item(int id): Object{id} {
   if (itemData.is_open()) {
     while (!itemData.eof()) {
       getline(itemData, line, ',');
-      if(line == idStr){
-        getline(itemData,line);
+      if (line == idStr) {
+        getline(itemData, line);
         itemValue = std::stoi(line);
         break;
-      }
-      else{
+      } else {
         itemData.ignore(1000, '\n');
       }
-      if(line != idStr && itemData.eof())
+      if (line != idStr && itemData.eof())
         throw invalid_id("ERROR: the ID specified is not on file");
     }
     itemData.close();
-  }
-  else{
+  } else {
     throw file_error("ERROR: the file you are trying to open is missing");
   }
 }

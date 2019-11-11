@@ -4,13 +4,13 @@
 
 Enemy::Enemy(int id)
   :Person{id} {
-  if(id/100%10 != 3 || id < 3301)
+  if (id/100%10 != 3 || id < 3301)
     throw invalid_id("ERROR: id does not describe an enemy");
 }
 
 Enemy::~Enemy() {}
 
-void Enemy::attack(Person* hero){
+void Enemy::attack(Person* hero) {
   std::cout << "I'll crush you Duck Norris" << std::endl;
   int heroHp = hero->getHealth() - this->damageValue;
   hero->setHealth(heroHp);

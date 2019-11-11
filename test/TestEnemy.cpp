@@ -10,7 +10,7 @@ TEST(TestEnemy, ctorTest) {
 }
 
 TEST(TestEnemy, attackTest) {
-  Hero a(3101);
+  Hero a(3101, std::make_pair(0, 0));
   EXPECT_EQ(10, a.getHealth());
   Enemy e(3301);
   e.attack(&a);

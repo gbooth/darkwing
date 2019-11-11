@@ -9,25 +9,24 @@
 #include "Object.h"
 
 
-class RoomObject : public Object
-{
-  public:
-    /**
-    *constructor
-    *@throw invalid_id error if id is not on file and id is not correct type
-    */
-    RoomObject(int id, bool state = false);
+class RoomObject : public Object {
+ public:
+  /**
+  *constructor
+  *@throw invalid_id error if id is not on file and id is not correct type
+  */
+  RoomObject(int id, bool state = false);
 
-    virtual ~RoomObject();
+  virtual ~RoomObject();
 
-    /**
-    *@return the state of the room object
-    */
-    bool getState();
+  /**
+  *@return the state of the room object
+  */
+  bool getState();
 
-  protected:
-    bool state;
-  private:
+ protected:
+  bool state;
+ private:
 };
 
 #endif // ROOMOBJECT_H

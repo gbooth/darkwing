@@ -1,7 +1,7 @@
 #include <Chest.h>
 #include <Exceptions.h>
 
-Chest::Chest(int id, bool st): RoomObject{id, st}{
+Chest::Chest(int id): RoomObject{id} {
   std::string line;
   std::string idStr = std::to_string(id);
   std::fstream chestData;
@@ -9,25 +9,23 @@ Chest::Chest(int id, bool st): RoomObject{id, st}{
   if (chestData.is_open()) {
     while (!chestData.eof()) {
       getline(chestData, line, ',');
-      if(line == idStr){
-        getline(chestData,line);
+      if (line == idStr) {
+        getline(chestData, line);
         contents = std::stoi(line);
         break;
-      }
-      else{
+      } else {
         chestData.ignore(1000, '\n');
       }
-      if(line != idStr && chestData.eof())
+      if (line != idStr && chestData.eof())
         throw invalid_id("ERROR: the ID specified is not on file");
     }
     chestData.close();
-  }
-  else{
+  } else {
     throw file_error("ERROR: the file you are trying to open is missing");
   }
 }
 
-Item Chest::getContents(){
+Item Chest::getContents() {
   state = true;
-return contents;
+  return contents;
 }

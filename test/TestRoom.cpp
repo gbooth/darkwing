@@ -64,18 +64,18 @@ TEST(TestRoom, getDir) {
   EXPECT_EQ(std::make_pair(-1, -1), forest.getDirection(dir));
   EXPECT_EQ(std::make_pair(0, -2), undergroundRiver.getDirection(dir));
 
-  dir + 1;
+  dir = static_cast<Direction>(dir + 1);
   EXPECT_EQ(std::make_pair(2, 2), field.getDirection(dir));
   EXPECT_EQ(std::make_pair(-1, -1), forest.getDirection(dir));
   EXPECT_EQ(std::make_pair(4, 0), undergroundRiver.getDirection(dir));
 
-  dir + 1;
+  dir = static_cast<Direction>(dir + 1);
   EXPECT_EQ(std::make_pair(3, 1), field.getDirection(dir));
   EXPECT_EQ(std::make_pair(0, -2), forest.getDirection(dir));
   EXPECT_EQ(std::make_pair(-1, -1), undergroundRiver.getDirection(dir));
   EXPECT_EQ(std::make_pair(0, -1), bridge.getDirection(dir));
 
-  dir + 1;
+  dir = static_cast<Direction>(dir + 1);
   EXPECT_EQ(std::make_pair(1, 1), field.getDirection(dir));
   EXPECT_EQ(std::make_pair(2, 1), forest.getDirection(dir));
   EXPECT_EQ(std::make_pair(-1, -1), undergroundRiver.getDirection(dir));
@@ -138,5 +138,5 @@ TEST(TestRoom, objToSave) {
   savingObjB.push_back(2202);
   savingObjB.push_back(2303);
 
-  EXPECT_EQ(savingObjB, quartz.objToSave());
+  EXPECT_EQ(savingObjB, undergroundRiver.objToSave());
 }

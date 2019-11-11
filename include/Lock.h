@@ -16,27 +16,26 @@
 */
 
 
-class Lock : public RoomObject
-{
-public:
-/** the constructor verify the key identifier.
-*@Parameter Identifier id. which send us to the Identifier list verification.
-*@Parameter State stat which give us the state of the lock.
-*@Parameter lockValue which give the verification for the lock.
-*/
+class Lock : public RoomObject {
+ public:
+  /** the constructor verify the key identifier.
+  *@Parameter Identifier id. which send us to the Identifier list verification.
+  *@Parameter State stat which give us the state of the lock.
+  *@Parameter lockValue which give the verification for the lock.
+  */
 
-   Lock (int, bool);
-   virtual ~Lock();
+  Lock (int);
+  virtual ~Lock();
 
-/** This function verify if the player is using the right key.
- */
-bool checkKey(Item key);
-int getLockValue();
+  /** This function verify if the player is using the right key.
+   */
+  bool checkKey(Item key);
+  int getLockValue();
 
-private:
-/** This private variable is  the key to have the right value for the player to open the specific object.
- */
+ private:
+  /** This private variable is  the key to have the right value for the player to open the specific object.
+   */
 
-int lockValue;
+  int lockValue;
 };
 #endif

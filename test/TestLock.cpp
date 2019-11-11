@@ -9,11 +9,11 @@
 
 TEST(TestLock, TestConstructor) {
 
-  EXPECT_THROW(Lock a (3001, false), invalid_id);
+  EXPECT_THROW(Lock a (3001), invalid_id);
 }
 
 TEST(TestLock, TestCheckkey) {
-  Lock a(2202, false);
+  Lock a(2202);
   a.checkKey(4301);
   EXPECT_EQ(a.checkKey(4301), false);
 }

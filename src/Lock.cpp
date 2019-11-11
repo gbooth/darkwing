@@ -14,8 +14,7 @@
 /** This class is implemented as a derived class of Room Objects and the purpouse is
 * to give access to different objects to access during the game.
 */
-Lock::Lock(int id, bool st)
-  : RoomObject{id, st} {
+Lock::Lock(int id) : RoomObject{id} {
   std::string line;
   std:: string idStr=std::to_string(id);
   std::fstream lockData;

@@ -1,11 +1,15 @@
 #include "Room.h"
 #include "Direction.h"
 #include "Exceptions.h"
-//#include "Villager.h"
-//#include "Enemy.h"
+#include "Villager.h"
+#include "Enemy.h"
+#include "Chest.h"
+#include "Lock.h"
+#include "Lever.h"
 #include<string>
 #include<map>
 #include<list>
+#include<cassert>
 #include<utility>
 #include<iostream>
 #include<fstream>
@@ -24,21 +28,22 @@ Room::Room(int id) : Object{id} {
 
   if (in.is_open()) {
     //find the appropriate line in the reference file that corresponds to the id
-    for (std::getline(in, readIn, ','); id != std::stoi(readIn, nullptr, 10);
-         in.ignore(1000, '\n'), std::getline(in, readIn, ','));
+    for (std::getline(in, readIn, ':'); id != std::stoi(readIn, nullptr, 10);
+         in.ignore(1000, '\n'), std::getline(in, readIn, ':'));
 
-    std::getline(in, readIn, ',');
+    std::getline(in, readIn, ':');
     roomMessage = readIn;
 
     //map directions
-    std::getline(in, readIn, ',');
+    std::getline(in, readIn, ':');
     Direction tempDir = north;
-    for (int i = 0; i < 4; std::getline(in, readIn, ','), i++, tempDir + 1) {
+    for (int i = 0; i < 4;
+         std::getline(in, readIn, ':'), i++, tempDir = static_cast<Direction>(i)) {
       if (readIn == "|")
         continue;
       tempX = readIn[0] - '0';
       tempY = readIn[1] - '0';
-      switch(readIn[2]){
+      switch (readIn[2]) {
       case 't':
         tempDoor = open;
         break;
@@ -49,81 +54,85 @@ Room::Room(int id) : Object{id} {
         tempDoor = blocked;
         break;
       default:
-        throw file_error("file has incorrect data");
+        throw file_error("file has incorrect data - 1");
       }
       adjRooms[tempDir] = std::make_pair(tempDoor, std::make_pair(tempX, tempY));
     }
 
     //create and map NPCs
-    std::getline(in, readIn, ',');
-    for (int i = 0; i < readIn.length()/4; i++) {
+    for (uint i = 0; i < readIn.length()/4; i++) {
       for (int j = 0; j < 4; j++)
         switch (j) {
         case 0:
-          tempID += 1000 * readIn[i*4 + j] - '0';
+          tempID += 1000 * (readIn[(i*4) + j] - '0');
           break;
         case 1:
-          tempID += 100 * readIn[i*4 + j] - '0';
+          tempID += 100 * (readIn[i*4 + j] - '0');
           break;
         case 2:
-          tempID += 10 * readIn[i*4 + j] - '0';
+          tempID += 10 * (readIn[i*4 + j] - '0');
           break;
         case 3:
-          tempID += readIn[i*4 + j] - '0';
+          tempID += (readIn[i*4 + j] - '0');
           break;
         }
       switch (tempID/100%10) {
-      case 2:
+      case 2: {
         Villager* temp = new Villager(tempID);
         npcInRoom[tempID] = temp;
         break;
-      case 3:
+      }
+      case 3: {
         Enemy* temp = new Enemy(tempID);
         npcInRoom[tempID] = temp;
         break;
+      }
       default:
-        throw file_error("file has incorrect data");
+        throw file_error("file has incorrect data - 2");
         break;
       }
       tempID = 0;
     }
 
     //create and map Room Objects
-    std::getline(in, readIn, ',');
-    for (int i = 0; i < readIn.length()/4; i++) {
+    std::getline(in, readIn, ':');
+    for (uint i = 0; i < readIn.length()/4; i++) {
       for (int j = 0; j < 4; j++)
         switch (j) {
         case 0:
-          tempID += 1000 * readIn[i*4 + j] - '0';
+          tempID += 1000 * (readIn[i*4 + j] - '0');
           break;
         case 1:
-          tempID += 100 * readIn[i*4 + j] - '0';
+          tempID += 100 * (readIn[i*4 + j] - '0');
           break;
         case 2:
-          tempID += 10 * readIn[i*4 + j] - '0';
+          tempID += 10 * (readIn[i*4 + j] - '0');
           break;
         case 3:
-          tempID += readIn[i*4 + j] - '0';
+          tempID += (readIn[i*4 + j] - '0');
           break;
         default:
-          throw file_error("file has incorrect data");
+          throw file_error("file has incorrect data  - 3");
           break;
         }
       switch (tempID/100%10) {
-      case 1:
+      case 1: {
         Chest* temp = new Chest(tempID);
         objInRoom[tempID] = temp;
         break;
-      case 2:
+      }
+      case 2: {
         Lock* temp = new Lock(tempID);
         objInRoom[tempID] = temp;
         break;
-      case 3:
+      }
+      case 3: {
         Lever* temp = new Lever(tempID);
         objInRoom[tempID] = temp;
         break;
+      }
       default:
-        throw file_error("file has incorrect data");
+        throw file_error("file has incorrect data - 4");
         break;
       }
       tempID = 0;
@@ -139,10 +148,10 @@ Room::Room(int id) : Object{id} {
   }
 }
 
-Room::~Room(){
-  for(auto it = objInRoom.begin(); it != objInRoom.end(); ++it)
+Room::~Room() {
+  for (auto it = objInRoom.begin(); it != objInRoom.end(); ++it)
     delete it->second;
-  for(auto it = npcInRoom.begin(); it != npcInRoom.end(); ++it)
+  for (auto it = npcInRoom.begin(); it != npcInRoom.end(); ++it)
     delete it->second;
 }
 
@@ -179,15 +188,14 @@ bool Room::checkDirection(Direction d) {
 
 std::pair<int, int> Room::getDirection(Direction d) {
   if (this->checkDirection(d))
-    switch(adjRooms[d].first){
+    switch (adjRooms[d].first) {
     case open:
       return adjRooms[d].second;
     case blocked:
       return std::make_pair(0, -1);
     case locked:
       return std::make_pair(0, -2);
-  }
-  else{
+    } else {
     return std::make_pair(-1, -1);
   }
 }
@@ -209,12 +217,12 @@ std::list<int> Room::objToSave() {
   return changedObj;
 }
 
-&Person Room::getNPC(int id) {
+Person* Room::getNPC(int id) {
   assert(this->checkForNPC(id));
   return npcInRoom[id];
 }
 
-&RoomObject Room::getObj(int id) {
+RoomObject* Room::getObj(int id) {
   assert(this->checkForObj(id));
   return objInRoom[id];
 }
