@@ -8,6 +8,7 @@ class Chest: public RoomObject {
 
  public:
   Chest(int);
+  virtual~Chest();
   Item getContents();
 
  private:
