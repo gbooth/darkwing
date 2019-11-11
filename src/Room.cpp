@@ -1,7 +1,8 @@
 #include "Room.h"
 #include "Direction.h"
-#include "Villager.h"
-#include "Enemy.h"
+#include "Exceptions.h"
+//#include "Villager.h"
+//#include "Enemy.h"
 #include<string>
 #include<map>
 #include<list>
@@ -73,11 +74,11 @@ Room::Room(int id) : Object{id} {
         }
       switch (tempID/100%10) {
       case 2:
-        Villager temp(tempID);
+        Villager* temp = new Villager(tempID);
         npcInRoom[tempID] = temp;
         break;
       case 3:
-        Enemy temp(tempID);
+        Enemy* temp = new Enemy(tempID);
         npcInRoom[tempID] = temp;
         break;
       default:
@@ -110,15 +111,15 @@ Room::Room(int id) : Object{id} {
         }
       switch (tempID/100%10) {
       case 1:
-        Chest temp(tempID);
+        Chest* temp = new Chest(tempID);
         objInRoom[tempID] = temp;
         break;
       case 2:
-        Lock temp(tempID);
+        Lock* temp = new Lock(tempID);
         objInRoom[tempID] = temp;
         break;
       case 3:
-        Lever temp(tempID);
+        Lever* temp = new Lever(tempID);
         objInRoom[tempID] = temp;
         break;
       default:
@@ -136,6 +137,13 @@ Room::Room(int id) : Object{id} {
   } else {
     throw file_error("room file not present");
   }
+}
+
+Room::~Room(){
+  for(auto it = objInRoom.begin(); it != objInRoom.end(); ++it)
+    delete it->second;
+  for(auto it = npcInRoom.begin(); it != npcInRoom.end(); ++it)
+    delete it->second;
 }
 
 bool Room::checkForEnemy() {

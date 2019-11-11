@@ -50,7 +50,7 @@ TEST(TestRoom, checkObj) {
 
   EXPECT_FALSE(field.checkForObj(2301));
   EXPECT_FALSE(field.checkForObj(2306));
-  EXPECT_THROW(field.checkForObj(1006),invalid_id);
+  EXPECT_THROW(field.checkForObj(1006), invalid_id);
 }
 
 TEST(TestRoom, getDir) {

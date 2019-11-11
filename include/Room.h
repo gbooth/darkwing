@@ -5,6 +5,7 @@
 #include <map>
 #include <list>
 #include "Direction.h"
+#include "Person.h"
 //#include "Chest.h"
 //#include "Lock.h"
 #include "Lever.h"
@@ -12,8 +13,19 @@
 
 class Room : public Object {
  public:
+  /**
+  *constructor
+  *@param int for the identifier that corresponds to the room
+  *@throw if id doesnt describe a room
+  *@throw if file data is not formatted correctly to be read
+  *@throw if room file cannot be opened
+  */
   Room(int);
-  virtual ~Room() {};
+
+  /**
+  *destructor
+  */
+  virtual ~Room();
 
   bool checkForEnemy();
   bool checkForNPC(int);
@@ -27,8 +39,8 @@ class Room : public Object {
   std::list<int> objToSave();
 
  private:
-  std::map<int, Person> npcInRoom;
-  std::map<int, RoomObject> objInRoom;
+  std::map<int, Person*> npcInRoom;
+  std::map<int, RoomObject*> objInRoom;
 
   std::map<Direction, std::pair<DoorMood, std::pair<int, int>>> adjRooms;
 
@@ -38,8 +50,8 @@ class Room : public Object {
   std::string roomMessage;
 
   bool checkDirection(Direction);
-  &Person getNPC(int);
-  &RoomObject getObj(int);
+  Person* getNPC(int);
+  RoomObject* getObj(int);
 };
 
 #endif // ROOM_H
