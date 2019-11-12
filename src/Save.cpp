@@ -1,7 +1,7 @@
 #include "Save.h"
 #include "Exceptions.h"
 
-Save::Save(Hero* h, Room** r) {
+Save::Save(const Hero* h, const Room** r) {
   std::string fname;
   std::string out;
   std::cout << "Enter file name you wish to save as (no need for extension): " <<
@@ -15,26 +15,31 @@ Save::Save(Hero* h, Room** r) {
     invStr += it->first + it->second + ",";
   }
 
+  //all the attributes of a hero
   heroSaveMap[HP] = std::to_string(h->getHealth());
   heroSaveMap[pos] = posit;
   heroSaveMap[inv] = invStr;
   heroSaveMap[equipWep] = h->getWeapon().getName();
 
-  for(int i = 0; i < 5; i++){
-    for(int j = 0; j < 5; j++){
+  //all the attributes of a room and its objects
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
       out = "";
       list<int> objSave = r[i][j].objToSave();
-      for(auto it: objSave){
-        if(it/1000 == 2){
+      for (auto it: objSave) {
+        if (it/1000 == 2) {
           out += it;
-          if(r[i][j].getObj(it).getState())
-            out += '1';
+          if (r[i][j].getObj(it).getState())
+            out += '1' + ',';
           else
-            out += '0';
-        }else{
+            out += '0'+ ',';
+        } else {
           out += it;
-          out += std::to_string(r[i][j].getNPC(it).getHealth());
-        }
+          if (std::to_string(r[i][j].getNPC(it)->getHealth()).length() < 2)
+            out += '0' + std::to_string(r[i][j].getNPC(it)->getHealth());
+          else
+            std::to_string(r[i][j].getNPC(it)->getHealth())
+          }
       }
       roomObj[r[i][j].getID()] = out;
     }
@@ -43,16 +48,39 @@ Save::Save(Hero* h, Room** r) {
 
 Save::~Save() {}
 
-void Save::saveHero(Hero* h) {
-
-  for (auto it : heroSaveMap) {
-    saveFile << it.first << ": " << it.second << std::endl;
-
+void Save::saveGame() {
+  saveFile.open(fileName, std::ios_base::app);
+  if(saveFile.is_open()){
+    saveHero();
+    saveGame();
+    saveFile.close();
+  } else {
+    throw file_error("ERROR: save file not open");
   }
-
 }
 
-void Save::saveRoom(Room* r) {
+void Save::saveHero() {
+  for (auto it : heroSaveMap) {
+    switch (it.first) {
+    case HP:
+      saveFile << "HP:" << it.second << std::endl;
+      break;
+    case pos:
+      saveFile << "pos:" << it.second << std::endl;
+      break;
+    case equipWep:
+      saveFile << "equipWep:"<< it.second << std::endl;
+      break;
+    case inv:
+      saveFile << "inv:" << it.second << std::endl;
+      break;
+    }
+  }
+}
 
+void Save::saveRoom() {
+  for (auto it: roomObj) {
+    saveFile << it.first << ":" << it.second << std::endl;
+  }
 }
 
