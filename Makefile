@@ -27,7 +27,7 @@ STYLE_CHECK = cpplint.py
 DOXY_DIR = docs/code
 
 .PHONY: all
-all: test memory coverage docs static style
+all: tests memory coverage docs static style
 
 # default rule for compiling .cc to .o
 %.o: %.cpp
@@ -53,7 +53,7 @@ $(PROGRAM_GAME): $(GAME_SRC_DIR) $(SRC_DIR)
 compile: $(PROGRAM_GAME)
 	$(PROGRAM_GAME)
 
-test: $(PROGRAM_TEST)
+tests: $(PROGRAM_TEST)
 	$(PROGRAM_TEST)
 
 memory: $(PROGRAM_TEST)
