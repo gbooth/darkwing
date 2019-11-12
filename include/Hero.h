@@ -19,7 +19,7 @@ class Hero : public Person {
   void mv(Direction, Room**);
   void setPosition(std::pair<unsigned int, unsigned int>);
   std::pair<unsigned int, unsigned int> getPos();
-
+  std::list<std::pair<int, int>> invSave();
  private:
   std::map<Item, int>  inventory;
   Item weaponOfChoice = 4205;

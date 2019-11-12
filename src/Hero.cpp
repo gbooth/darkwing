@@ -74,3 +74,13 @@ void Hero::attack(Person* npc) {
     }*/
 }
 
+std::list<std::pair<int,int>> invSave(){
+  list<std::pair<int,int>> l;
+  std::pair<int, int> stuff;
+  for(auto it = inventory.begin(); it != inventory.end(); it++){
+    stuff = std::make_pair(it->first, it->second)
+    l.push_back(stuff);
+  }
+  return l;
+}
+
