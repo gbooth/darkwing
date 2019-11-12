@@ -1,12 +1,13 @@
 #ifndef HERO_H
 #define HERO_H
 
-#include <Person.h>
+#include "Person.h"
 #include <string>
-#include <Room.h>
-#include <Item.h>
+#include "Room.h"
+#include "Item.h"
 #include <map>
-#include <Direction.h>
+#include "Direction.h"
+#include <list>
 
 class Hero : public Person {
  public:
