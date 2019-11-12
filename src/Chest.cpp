@@ -1,3 +1,8 @@
+/**
+ *@author Wesley Waldern / Gavin Booth
+ *@date 2019-11
+ */
+
 #include <Chest.h>
 #include <Exceptions.h>
 
