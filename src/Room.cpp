@@ -214,9 +214,9 @@ void Room::objChanged(int id) {
       else
         throw invalid_id("NPC not in this room");
     else
-      throw invalid_id("ID not for enemy")
+      throw invalid_id("ID not for enemy");
   default:
-    throw invalid_id("ID not for RoomObject or NPC")
+    throw invalid_id("ID not for RoomObject or NPC");
   }
 }
 
