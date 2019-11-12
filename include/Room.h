@@ -16,7 +16,7 @@ class Room : public Object {
   /**
   *constructor
   *@param int for the identifier that corresponds to the room
-  *@throw if id doesnt describe a room
+  *@throw if ID doesnt describe a room
   *@throw if file data is not formatted correctly to be read
   *@throw if room file cannot be opened
   */
@@ -38,6 +38,8 @@ class Room : public Object {
 
   std::list<int> objToSave();
 
+  Person* getNPC(int);
+  RoomObject* getObj(int);
  private:
   std::map<int, Person*> npcInRoom;
   std::map<int, RoomObject*> objInRoom;
@@ -50,8 +52,6 @@ class Room : public Object {
   std::string roomMessage;
 
   bool checkDirection(Direction);
-  Person* getNPC(int);
-  RoomObject* getObj(int);
 };
 
 #endif // ROOM_H

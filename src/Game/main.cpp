@@ -1,42 +1,42 @@
 #include "Room.h"
-//#include "Chest.h"
-//#include "Lock.h"
-#include "Lever.h"
 #include "Hero.h"
-#include "Enemy.h"
-//#include "Villager.h"
-#include "Item.h"
-//#include "Load.h"
-//#include "Save.h"
-#include<stdlib.h>
-#include<string>
-#include <map>
+#include "Load.h"
+#include <stdlib.h>
+#include <string>
 #include <fstream>
 #include <iostream>
 
 int titleScreen();
 void clearScreen();
 void newGame(Hero*, Room**);
-void loadGame(Hero*, Room**);
+void loadGame(const Hero*, const Room**);
 void exitGame();
 
 int main() {
   std::string inStr;
-  Hero* h = null;
-  Room** world = null;
+  Hero* h = nullptr;
+  Room** world = nullptr;
 
   while (true) {
     if (titleScreen() == 1) {
       newGame(h, world);
+      std::cout << "It's a pleasant spring day in Anates Terra, a province in Avemland. Each province in Avemland is ruled over by a king, and Anates Terra is no different. Our story begins in Castle Anates, in the resident wizard's tower, where an eager young apprentice named Duck Norris is assisting with the concoction of a new potion."
     }
     else {
       newGame(h, world);
       loadGame(h, world);
     }
-    getline(std::cin, inStr, '\n');
-    while(inStr != "exit"){
-      h.command(inStr);
-      getline(std::cin, inStr, '\n'));
+    getline(std::cin, inStr);
+    while(true) {
+      if(inStr == "exit"){
+        delete h;
+        for(int i = 0; i < 5; i++)
+          delete [] world[i];
+        delete world;
+        break;
+      }
+      h->command(inStr, world);
+      getline(std::cin, inStr);
     }
   }
 }
@@ -83,12 +83,14 @@ void newGame(Hero* h, Room** world) {
   h = new Hero;
   world = new Room*[5];
   for(int i = 0; i < 5; i++)
-    world[i] = new Room[5] = {i*5 + 1001, i*5 + 1002, i*5 + 1003, i*5 + 1004, i*5 + 1005};
+    world[i] = new Room[5]{i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
 }
 
-void loadGame(Hero* h, Room** world) {
-
-
+void loadGame(const Hero* h, const Room** world) {
+   Load l;
+   l.loadGame(h, world);
 }
 
-
+void exitGame() {
+   exit(0);
+}

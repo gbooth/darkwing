@@ -16,7 +16,7 @@
 #include<algorithm>
 
 Room::Room(int id) : Object{id} {
-  if (id / 1000 != 1 || id > 1022)
+  if (id / 1000 != 1 || id > 1026)
     throw invalid_id("ID does not identify a room");
 
   std::ifstream in;
@@ -201,10 +201,23 @@ std::pair<int, int> Room::getDirection(Direction d) {
 }
 
 void Room::objChanged(int id) {
-  if (this->checkForObj(id))
-    changedObj.push_back(id);
-  else
-    throw invalid_id("obj not in this room");
+  switch(id/1000){
+  case 2:
+    if (this->checkForObj(id))
+      changedObj.push_back(id);
+    else
+      throw invalid_id("obj not in this room");
+  case 3:
+    if (id/100%10 == 3)
+      if (this->checkForNPC(id))
+        changedObj.push_back(id);
+      else
+        throw invalid_id("NPC not in this room");
+    else
+      throw invalid_id("ID not for enemy")
+  default:
+    throw invalid_id("ID not for RoomObject or NPC")
+  }
 }
 
 std::string Room::getMessage() {
@@ -218,11 +231,15 @@ std::list<int> Room::objToSave() {
 }
 
 Person* Room::getNPC(int id) {
-  assert(this->checkForNPC(id));
-  return npcInRoom[id];
+  if(this->checkForNPC(id))
+    return npcInRoom[id];
+  else
+    return nullptr;
 }
 
 RoomObject* Room::getObj(int id) {
-  assert(this->checkForObj(id));
-  return objInRoom[id];
+  if(this->checkForObj(id))
+    return objInRoom[id];
+  else
+    return nullptr;
 }
