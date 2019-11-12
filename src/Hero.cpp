@@ -3,6 +3,7 @@
 #include <utility>
 #include <Exceptions.h>
 #include <iostream>
+#include <iomanip>
 
 Hero::Hero(int id = 3101,
            std::pair<unsigned int, unsigned int> posi = std::make_pair(0, 0))
@@ -22,8 +23,8 @@ Item Hero::getWeapon() {
   return weaponOfChoice;
 }
 
-std::string Hero::inspect(Object a) {
-  return a.getDesc();
+std::string Hero::inspect(Object* a) {
+  return a->getDesc();
 }
 
 void Hero::mv(Direction a, Room** world) {
@@ -74,13 +75,42 @@ void Hero::attack(Person* npc) {
     }*/
 }
 
-std::list<std::pair<int,int>> invSave(){
-  list<std::pair<int,int>> l;
+/*std::list<std::pair<int,int>> invSave(){
+  std::list<std::pair<int,int>> l;
   std::pair<int, int> stuff;
   for(auto it = inventory.begin(); it != inventory.end(); it++){
     stuff = std::make_pair(it->first, it->second)
     l.push_back(stuff);
   }
   return l;
+}*/
+
+/*void Hero::command(std::string s, Room** world) {
+  std::string first, second, third;
+  first = s.substr(0, s.find(' '));
+  s.erase(first.begin(), first.end()+1);
+  if (s.find(' ')) {
+    second = s.substr(0, s.end());
+    second = s.substr(0, s.find(' '));
+    s.erase(second.begin(), second.end());
+    third = s.substr(0, s.end());
+  } else {
+    second = s.substr(0, s.end());
+  }
+  switch(first){
+    case "":
+  }
+}*/
+
+void Hero::getInventory() {
+  std::cout << "Items" << std::setw(25) << "Amount" << std::endl;
+  for (auto it: inventory)
+    std::cout << std::left << std::setw(15) << std::setfill('-') << it.first->getName() << std::setw(15) << std::setfill('-') << std::right << it.second << std::endl;
 }
 
+void Hero::addInventory(Item* a) {
+  if (inventory.find(a) == inventory.end())
+    inventory[a] = 1;
+  else
+    inventory[a]++;
+}

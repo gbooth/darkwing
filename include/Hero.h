@@ -12,9 +12,11 @@
 #include "Item.h"
 #include <map>
 #include "Direction.h"
+#include <list>
+#include "RoomObject.h"
 /**
  *This class will provide to the Hero or player, all the conditions that he is involve with ,during the whole game as: Weapons,Enemy identifier,position,
- *Directions ,inventory.
+ *Directionsgit ,inventory.
  */
 class Hero : public Person {
  public:
@@ -39,7 +41,7 @@ class Hero : public Person {
    *This function give the description of the object selected by the hero.
    * @return the description of the object.
    */
-  std:: string inspect(Object);
+  std:: string inspect(Object*);
 
   /**
    *This function gives the weapon identifier.
@@ -72,18 +74,17 @@ class Hero : public Person {
    * return the position of the player.
    */
   std::pair<unsigned int, unsigned int> getPos();
-<<<<<<< HEAD
 
   /**
    *@param map will associate the item with the identifier in the inventory.
    *@param weaponOfChoice provides the identifier of the weapons.
    *@param pos will give the coordinates of the position of the hero.
    */
-=======
   std::list<std::pair<int, int>> invSave();
->>>>>>> 379335f09e7721891c1cb86d35629fa4dca4729c
+  void getInventory();
+  void addInventory(Item*);
  private:
-  std::map<Item, int>  inventory;
+  std::map<Item*, int>  inventory;
   Item weaponOfChoice = 4205;
   std::pair<uint, uint> pos;
 };

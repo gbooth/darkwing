@@ -1,7 +1,39 @@
 #include "Hero.h"
 #include "gtest/gtest.h"
+#include "Exceptions.h"
 
-/*TEST(TestHero, Ctor){
-
+TEST(TestHero, ConstructorTest) {
+  EXPECT_NO_THROW(Hero h(3101, std::make_pair(0, 0)));
+  EXPECT_THROW(Hero g(3000, std::make_pair(0, 0)), invalid_id);
 }
-*/
+
+TEST(TestHero, inspectTest) {
+  Object a(4205);
+  Hero h(3101, std::make_pair(0, 0));
+  std::cout << h.inspect(&a) << std::endl;
+}
+
+TEST(TestHero, mvTest) {
+  Hero h(3101, std::make_pair(0, 0));
+  Room** world;
+  world = new Room*[5];
+  for (int i = 0; i<5; i++)
+    world[i] = new Room[5] {i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
+  h.mv(east, world);
+  EXPECT_EQ(1, h.getPos().first);
+  EXPECT_EQ(0, h.getPos().second);
+}
+
+TEST(TestHero, inventoryTest) {
+  Item a(4203);
+  Item b(4101);
+  Item c(4301);
+  Hero h(3101, std::make_pair(0, 0));
+  h.addInventory(&a);
+  h.addInventory(&b);
+  h.addInventory(&b);
+  h.addInventory(&b);
+  h.addInventory(&b);
+  h.addInventory(&c);
+  h.getInventory();
+}
