@@ -5,7 +5,7 @@
 #include <iostream>
 
 Hero::Hero(int id = 3101,
-           std::pair<unsigned int, unsigned int> pos = std::make_pair(0, 0))
+           std::pair<unsigned int, unsigned int> posi = std::make_pair(0, 0))
   : Person{id} {
   if (id / 100 % 10 != 1)
     throw invalid_id("ERROR: THIS ISNT DUCK NORRIS");
@@ -26,18 +26,40 @@ std::string Hero::inspect(Object a) {
   return a.getDesc();
 }
 
-void Hero::mv(Direction a) {
+void Hero::mv(Direction a, Room** world) {
+  int iPos = world[pos.first][pos.second].getDirection(a).second;
+  iPos += (world[pos.first][pos.second].getDirection(a).first * 10);
 
+  switch (iPos) {
+  case -1:
+    std::cout << "The Door wont open and there is no keyhole." <<std::endl;
+    break;
+  case -2:
+    if (pos.first == 3 && pos.second == 1) {
+      std::cout << "you're in the forest" <<std::endl;
+      break;
+    } else {
+      std::cout << "The Door is locked" << std::endl;
+      break;
+    }
+  case -11:
+    std::cout << "You can't go that way" << std::endl;
+    break;
+  default:
+    pos = world[pos.first][pos.second].getDirection(a);
+    std::cout << world[pos.first][pos.second].getMessage();
+    break;
+  }
 }
 
-void Hero::setPosition (std::pair<uint, uint> pos) {
+void Hero::setPosition (std::pair<uint, uint> posi) {
   if (pos.first > 4  || pos.second > 4)
     throw invalid_pos("ERROR: position out of bounds");
-  position = pos;
+  pos = posi;
 }
 
 std::pair<uint, uint> Hero::getPos() {
-  return position;
+  return pos;
 }
 
 

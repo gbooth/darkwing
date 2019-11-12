@@ -3,7 +3,7 @@
 
 #include <Person.h>
 #include <string>
-//#include <Room.h>
+#include <Room.h>
 #include <Item.h>
 #include <map>
 #include <Direction.h>
@@ -16,14 +16,14 @@ class Hero : public Person {
   std:: string inspect(Object);
   Item getWeapon();
   void setWeapon(Item);
-  void mv(Direction);
+  void mv(Direction, Room**);
   void setPosition(std::pair<unsigned int, unsigned int>);
   std::pair<unsigned int, unsigned int> getPos();
 
  private:
   std::map<Item, int>  inventory;
   Item weaponOfChoice = 4205;
-  std::pair<uint, uint>position;
+  std::pair<uint, uint> pos;
 };
 
 #endif // HERO_H
