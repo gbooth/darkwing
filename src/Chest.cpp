@@ -25,6 +25,8 @@ Chest::Chest(int id): RoomObject{id} {
   }
 }
 
+Chest::~Chest(){}
+
 Item Chest::getContents() {
   state = true;
   return contents;
