@@ -83,6 +83,7 @@ class Hero : public Person {
   std::list<std::pair<int, int>> invSave();
   void getInventory();
   void addInventory(Item*);
+  Item* searchInv(int id);
  private:
   std::map<Item*, int>  inventory;
   Item weaponOfChoice = 4205;
