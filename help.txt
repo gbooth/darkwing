@@ -9,3 +9,4 @@ attack                                                                         n
 flip                                                                         name of lever
 open                                                                         name of chest
 help                                                                            no operand
+*

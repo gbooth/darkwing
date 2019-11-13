@@ -227,3 +227,13 @@ void Hero::talk(Villager* v) {
   v->response();
 }
 
+void Hero::help() {
+  std::string output;
+  std::ifstream helpFile("help.txt");
+
+  if(helpFile.is_open())
+    getline(helpFile, output, '*');
+  else
+    throw file_error("help file missing");
+  std::cout << output;
+}

@@ -20,7 +20,29 @@ int main() {
   while (true) {
     if (titleScreen() == 1) {
       newGame(h, world);
-      "It is a pleasant spring day in Anates Terra, a province in Avemland.\nEach province in Avemland is ruled over by a king, and Anates Terra \nis no different. Our story begins in Castle Anates, in the resident\nwizard tower, where an eager young apprentice named Duck Norris is\nassisting with the concoction of a new potion. The wizard, brilliant\nas he is eccentric, still cannot determine why this potion does not\nmake pigs fly.\n\"Norris, bring me the wooden duck we must do some debugging.\"\ncried the wizard.  Duck Norris rushed to fetch the wooden duck and\nplaced it in front of the wizard.\"Your duck, master,\" murmured Norris.\nThe wizard took the duck without a second glance and proceeded to\nexplain the potion properties. Minutes go by and the Wizard grows\nincreasingly frustrated to the point of him throwing the duck into\nthe bubbling cauldron. Upon the duck touching the surface of the\npotion it comes alive and grows to the size of a dragon. \"You have\nused me for debugging for the last time wizard!\" thundered the giant\nduck. The duck swoops a wooden wing down and picks up the wizard\nand storms out of the castle leaving a giant duck-sized hole in the\nwall. As Duck Norris, you must save your master.\n";
+      std::cout << "It is a pleasant spring day in Anates Terra, a province in"
+                << " Avemland.\nEach province in Avemland is ruled over by a k"
+                << "ing, and Anates Terra \nis no different. Our story begins "
+                << "in Castle Anates, in the resident\nwizard tower, where an "
+                << "eager young apprentice named Duck Norris is\nassisting wit"
+                << "h the concoction of a new potion. The wizard, brilliant\na"
+                << "s he is eccentric, still cannot determine why this potion "
+                << "does not\nmake pigs fly.\n\"Norris, bring me the wooden du"
+                << "ck we must do some debugging.\"\ncried the wizard.  Duck N"
+                << "orris rushed to fetch the wooden duck and\nplaced it in fr"
+                << "ont of the wizard.\"Your duck, master,\" murmured Norris."
+                << "\nThe wizard took the duck without a second glance and pro"
+                << "ceeded to\nexplain the potion properties. Minutes go by an"
+                << "d the Wizard grows\nincreasingly frustrated to the point o"
+                << "f him throwing the duck into\nthe bubbling cauldron. Upon "
+                << "the duck touching the surface of the\npotion it comes aliv"
+                << "e and grows to the size of a dragon. \"You have\nused me f"
+                << "or debugging for the last time wizard!\" thundered the gia"
+                << "nt\nduck. The duck swoops a wooden wing down and picks up "
+                << "the wizard\nand storms out of the castle leaving a giant d"
+                << "uck-sized hole in the\nwall. As Duck Norris, you must save"
+                << " your master.\n";
+    }
       else {
         newGame(h, world);
         loadGame(h, world);
