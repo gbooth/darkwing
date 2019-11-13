@@ -235,6 +235,17 @@ void Hero::talk(Villager* v) {
   v->response();
 }
 
+void Hero::help() {
+  std::string output;
+  std::ifstream helpFile("help.txt");
+
+  if (helpFile.is_open())
+    getline(helpFile, output, '*');
+  else
+    throw file_error("help file missing");
+  std::cout << output;
+}
+
 void Hero::interact(RoomObject* r) {
   if (r->getID() / 100 % 10 == 3 && r->getID() / 1000 == 2) {
     r->setState(!r->getState());
@@ -244,6 +255,7 @@ void Hero::interact(RoomObject* r) {
       this->addInventory(static_cast<Chest*>(r)->getContents());
       std::cout << r->getName() << " has been added to your inventory" << std::endl;
     }
-  } else
+  } else {
     std::cout << "This is not a Chest, nor is it a Lever" << std::endl;
+  }
 }

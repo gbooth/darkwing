@@ -31,10 +31,13 @@ Chest::Chest(int id): RoomObject{id} {
 }
 
 Chest::~Chest() {
-  delete contents;
+  if(contents)
+    delete contents;
 }
 
 Item* Chest::getContents() {
   this->setState(true);
-  return contents;
+  Item* temp = contents;
+  contents = nullptr;
+  return temp;
 }
