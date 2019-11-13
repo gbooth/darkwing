@@ -1,0 +1,12 @@
+Command							                           Operand
+------------------------------------------------------------------------------------------
+move					                             north/south/east/west
+use							      name of potion or key to use
+inspect                            name of entity to inspect(room to inspect current room)
+inventory                                                                       no operand
+talk                                                                      name of villager
+attack                                                                         name of NPC
+flip                                                                         name of lever
+open                                                                         name of chest
+help                                                                            no operand
+*

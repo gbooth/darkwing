@@ -6,7 +6,7 @@
 class Item : public Object {
  public:
   Item(int);
-  virtual ~Item() {};
+  ~Item() {};
   int getItemValue();
 
  private:

@@ -5,22 +5,23 @@
 #include <iostream>
 #include <iomanip>
 
-Hero::Hero(int id = 3101,
-           std::pair<unsigned int, unsigned int> posi = std::make_pair(0, 0))
-  : Person{id} {
-  if (id / 100 % 10 != 1)
-    throw invalid_id("ERROR: THIS ISNT DUCK NORRIS");
+Hero::Hero(): Person{3101}, pos{std::make_pair(0, 0)} {}
   this->setRef();
-}
 
-Hero::~Hero() {}
+Hero::~Hero() {
+  for (auto it: inventory) {
+    delete it.second.first;
+  }
+}
 
 void Hero::setWeapon(Item* w) {
-  if (w->getID() / 100 % 10 == 2)
+  if (inventory.find(w->getID()) != inventory.end() && (w->getID()/100 % 10 == 2))
     weaponOfChoice = w;
+  else
+    std::cout << "You don't have this weapon" << std::endl;
 }
 
-Item Hero::getWeapon() {
+Item* Hero::getWeapon() {
   return weaponOfChoice;
 }
 
@@ -85,7 +86,7 @@ void Hero::attack(Person* npc) {
   }
   return l;
 }*/
-
+/*
 void Hero::command(std::string s, Room** world) {
   std::string cmd = "", op = "";
   int i = this->getPos().first;
@@ -245,20 +246,35 @@ void Hero::command(std::string s, Room** world) {
     break;
   }
 }
-
+*/
 void Hero::getInventory() {
-  std::cout << "Items" << std::setw(25) << "Amount" << std::endl;
+  std::cout << "Items" << std::setw(30) << "Amount" << std::endl;
   for (auto it: inventory)
-    std::cout << std::left << std::setw(15) << std::setfill('-') <<
-              it.first->getName() << std::setw(15) << std::setfill('-') << std::right <<
-              it.second << std::endl;
+    std::cout << std::left << std::setw(20) << std::setfill('-') <<
+              it.second.first->getName() << std::setw(15) << std::setfill('-') << std::right
+              <<
+              it.second.second << std::endl;
 }
 
 void Hero::addInventory(Item* a) {
-  if (inventory.find(a) == inventory.end())
-    inventory[a] = 1;
+  int itemID = a->getID();
+  if (inventory.find(itemID) == inventory.end())
+    inventory[itemID] = std::make_pair(a, 1);
   else
-    inventory[a]++;
+    inventory[itemID].second++;
+}
+
+void Hero::usePotion(Item* a) {
+  int potionID = a->getID();
+  if (health == 10) {
+    std::cout << "You are already at full health" << std::endl;
+  } else if (health + a->getItemValue() > 10) {
+    health = 10;
+    inventory[potionID].second--;
+  } else {
+    health += a->getItemValue();
+    inventory[potionID].second--;
+  }
 }
 
 void Hero::setRef() {
@@ -272,9 +288,41 @@ void Hero::setRef() {
       getline(file, line, ':');
       idVar = stoi(line);
       getline(file, line, ':');
-      name = line;
       refs[name] = idVar;
       file.ignore(1000, '\n');
     }
+  }
+}
+void Hero::useKey(Item* a, Lock* l) {
+  l->unlock(a->getID());
+}
+
+void Hero::talk(Villager* v) {
+  v->response();
+}
+
+void Hero::help() {
+  std::string output;
+  std::ifstream helpFile("help.txt");
+
+  if (helpFile.is_open())
+    getline(helpFile, output, '*');
+  else
+    throw file_error("help file missing");
+  std::cout << output;
+}
+
+void Hero::interact(RoomObject* r const) {
+  if (r->getID() / 100 % 10 == 3 && r->getID() / 1000 == 2) {
+    r->setState(!r->getState());
+    std::cout << "The Lever has been flipped" << std::endl;
+  } else if (r->getID() / 100 % 10 == 1 && r->getID() / 1000 == 2) {
+    if (!r->getState()) {
+        Item* a = static_cast<Chest*>(r)->getContents();
+          std::cout << a->getName() << " has been added to your inventory" << std::endl;
+      this->addInventory(a);
+    }
+  } else {
+    std::cout << "This is not a Chest, nor is it a Lever" << std::endl;
   }
 }

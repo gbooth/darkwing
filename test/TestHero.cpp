@@ -2,19 +2,14 @@
 #include "gtest/gtest.h"
 #include "Exceptions.h"
 
-TEST(TestHero, ConstructorTest) {
-  EXPECT_NO_THROW(Hero h(3101, std::make_pair(0, 0)));
-  EXPECT_THROW(Hero g(3000, std::make_pair(0, 0)), invalid_id);
-}
-
 TEST(TestHero, inspectTest) {
   Object a(4205);
-  Hero h(3101, std::make_pair(0, 0));
+  Hero h;
   std::cout << h.inspect(&a) << std::endl;
 }
 
 TEST(TestHero, mvTest) {
-  Hero h(3101, std::make_pair(0, 0));
+  Hero h;
   Room** world;
   world = new Room*[5];
   for (int i = 0; i<5; i++)
@@ -25,44 +20,61 @@ TEST(TestHero, mvTest) {
 }
 
 TEST(TestHero, inventoryTest) {
-  Item a(4203);
-  Item b(4101);
-  Item c(4301);
-  Hero h(3101, std::make_pair(0, 0));
-  h.addInventory(&a);
-  h.addInventory(&b);
-  h.addInventory(&b);
-  h.addInventory(&b);
-  h.addInventory(&b);
-  h.addInventory(&c);
+  Item* a = new Item(4203);
+  Item* b = new Item(4101);
+  Item* c = new Item(4301);
+  Hero h;
+  h.addInventory(a);
+  h.addInventory(b);
+  h.addInventory(b);
+  h.addInventory(b);
+  h.addInventory(b);
+  h.addInventory(c);
   h.getInventory();
 }
 
 TEST(TestHero, usePotionTest) {
-  Hero h(3101, std::make_pair(0, 0));
-  Item b(4101);
-  Item c(4102);
+  Hero h;
+  Item* b = new Item(4101);
+  Item* c = new Item(4102);
   h.setHealth(8);
-  h.usePotion(&b);
+  h.usePotion(b);
   std::cout << h.getHealth() << std::endl;
   h.setHealth(5);
-  h.usePotion(&c);
+  h.usePotion(c);
   std::cout << h.getHealth() << std::endl;
   h.setHealth(10);
-  h.usePotion(&c);
+  h.usePotion(c);
   std::cout << h.getHealth() << std::endl;
 }
 
 TEST(TestHero, weaponTest) {
-  Item a(4205);
-  Hero h(3101, std::make_pair(0, 0));
-  h.addInventory(&a);
-  h.setWeapon(&a);
+  Item* a = new Item(4205);
+  Hero h;
+  h.addInventory(a);
+  h.setWeapon(a);
   std::cout << h.getWeapon()->getName() << std::endl;
 }
 
 TEST(TestHero, talkTest){
-Hero h(3101, std::make_pair(0, 0));
+Hero h;
 Villager v(3207);
 h.talk(&v);
+}
+
+TEST(TestHero, useKeyTest){
+Hero h;
+Lock* l = new Lock(2201);
+Lock* m = new Lock(2202);
+Item* a = new Item(4301);
+h.useKey(a,l);
+h.useKey(a,m);
+}
+
+TEST(TestHero, interactTest){
+Hero h;
+RoomObject* r = new Lever(2302);
+RoomObject* s = new Chest(2101);
+h.interact(r);
+h.interact(s);
 }

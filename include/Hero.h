@@ -25,7 +25,7 @@ class Hero : public Person {
    *Default Constructor
    * @parameter identifier of the Hero and his position.
    */
-  Hero(int, std::pair<unsigned int, unsigned int>);
+  Hero();
 
   /**
   *Default destructor.
@@ -87,10 +87,12 @@ class Hero : public Person {
   void usePotion(Item*);
   void useKey(Item*, Lock*);
   void talk(Villager*);
-  void command(std::string s, Room** wld);
+  void command(std::string, Room**);
+  void interact(RoomObject* const);
+  void help();
  private:
   void setRef();
-  std::map<Item*, int>  inventory;
+  std::map<int, std::pair<Item*, int>>  inventory;
   Item* weaponOfChoice;
   std::pair<uint, uint> pos;
   std::map<std::string, int> refs;
