@@ -41,13 +41,13 @@ class Room : public Object {
   void setDoor(Room**);
   void upDoorMood(Direction, DoorMood);
 
-  const Person* getNPC(int);
-  const RoomObject* getObj(int);
+  Person* const getNPC(int);
+  RoomObject* const getObj(int);
  private:
   std::map<int, Person*> npcInRoom;
   std::map<int, RoomObject*> objInRoom;
 
-  std::map<Direction, std::tuple<DoorMood, RoomObject*, int, int> adjRooms;
+  std::map<Direction, std::tuple<DoorMood, RoomObject*, int, int>> adjRooms;
 
   bool hasEnemy;
 

@@ -2,6 +2,8 @@
 #define LOAD_H
 
 #include "HeroAtt.h"
+#include "Room.h"
+#include "Hero.h"
 #include<map>
 #include<fstream>
 #include<string>
@@ -10,7 +12,7 @@ class Load {
  public:
   Load();
   virtual ~Load();
-  void loadGame(const Hero*, const Room**);
+  void loadGame(Hero* const, Room** const);
 
  private:
   std::ifstream loadFile;
@@ -18,8 +20,8 @@ class Load {
   std::map<int, std::map<int, int>> roomLoadState;
   std::string filename;
 
-  void loadHero(const Hero*);
-  void loadRooms(const Room**);
+  void loadHero(Hero* const);
+  void loadRooms(Room** const);
 };
 
 #endif // LOAD_H

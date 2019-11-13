@@ -4,6 +4,7 @@
 */
 
 #include"Lock.h"
+#include"Room.h"
 #include<fstream>
 #include<string>
 #include"Exceptions.h"
@@ -42,17 +43,20 @@ Lock::Lock(int id) : RoomObject{id} {
 
 Lock::~Lock() {}
 
-void Lock::unlock(Item key, Room* r) {
+void Lock::unlock(Item key) {
   if(this->getID() == 2203) {
     if(this->checkKey(key))
       std::cout << "The map clearly shows the way out of the forest is east" << std::endl;
       this->setState(true);
   }
   else {
-    if(this->checkKey(key))
-      std::cout << "The key fits perfectly into the lock and unlocks" << std::endl;
-    else
+    if(this->checkKey(key)) {
+      std::cout << "The key fits perfectly into the lock and turns, unlocking the door" << std::endl;
+      this->setState(true);
+    }
+    else {
       std::cout << "The key fits into the lock but wont turn" << std::endl;
+    }
   }
 }
 

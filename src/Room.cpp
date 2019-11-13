@@ -192,19 +192,33 @@ void Room::setDoorMood(Direction d, DoorMood m) {
 }
 
 std::pair<int, int> Room::getDirection(Direction d) {
-  if (this->checkDirection(d))
+  if (this->checkDirection(d)) {
     switch (std::get<0>(adjRooms[d])) {
     case open:
       return std::make_pair(std::get<2>(adjRooms[d]), std::get<3>(adjRooms[d]));
     case blocked:
-      if(std::get<1>(adjRoom[d]))
-        if(std::get<1>(adjRoom[d])->getState())
+      if(std::get<1>(adjRooms[d])) {
+        if(std::get<1>(adjRooms[d])->getState()) {
           this->setDoorMood(d, open);
           return std::make_pair(std::get<2>(adjRooms[d]), std::get<3>(adjRooms[d]));
+        }
+        else {
           return std::make_pair(0, -1);
+        }
+      }
     case locked:
-      return std::make_pair(0, -2);
-    } else {
+      if(std::get<1>(adjRooms[d])){
+        if(std::get<1>(adjRooms[d])->getState()){
+          this->setDoorMood(d, open);
+          return std::make_pair(std::get<2>(adjRooms[d]), std::get<3>(adjRooms[d]));
+        }
+        else {
+         return std::make_pair(0, -2); 
+        }
+      }
+    } 
+  }
+  else {
     return std::make_pair(-1, -1);
   }
 }
@@ -268,14 +282,14 @@ void Room::setDoor(Room** world) {
   }
 }
 
-const Person* Room::getNPC(int id) {
+Person* const Room::getNPC(int id) {
   if(this->checkForNPC(id))
     return npcInRoom[id];
   else
     return nullptr;
 }
 
-const RoomObject* Room::getObj(int id) {
+RoomObject* const Room::getObj(int id) {
   if(this->checkForObj(id))
     return objInRoom[id];
   else

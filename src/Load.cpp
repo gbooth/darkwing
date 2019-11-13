@@ -1,4 +1,6 @@
 #include "Load.h"
+#include "Exceptions.h"
+#include<iostream>
 #include<string>
 #include<map>
 
@@ -7,7 +9,7 @@ Load::Load() {
   int roomID, objID, objState;
 
   while (true) {
-    cout << "Enter the save file name(without filetype)." << endl
+    std::cout << "Enter the save file name(without filetype)." << std::endl
          << "Enter \"exit\" to exit file loading --";
     getline(std::cin, filename);
     if(filename == "exit")
@@ -63,14 +65,14 @@ endLoad:
 
 Load::~Load() {}
 
-void Load::loadGame(const Hero* h, const Room** world) {
+void Load::loadGame(Hero* const h, Room** const world) {
    this->loadHero(h);
    this->loadRooms(world);
 }
 
-void Load::loadHero(const Hero* h) {
+void Load::loadHero(Hero* const h) {
   for(auto heroMap : heroLoadMap){
-    switch(heroMap.first)
+    switch(heroMap.first){
     case HP:
       h->setHealth(stoi(heroMap.second));
       break;
@@ -79,30 +81,33 @@ void Load::loadHero(const Hero* h) {
       break;
     case inv:
       for(int i = 0; i < heroMap.second.size()/5; i++){
+        Item* temp = new Item(stoi(heroMap.second.substr(0, 4)));
         for(int j = 0; j < heroMap.second[4] - '0'; j++)
-          h->addInv(new Item(stoi(heroMap.second.substr(0, 4))));
+          h->addInventory(temp);
         heroMap.second.erase(0, 5);
       }
       break;
     case equipWep:
       h->setWeapon(stoi(heroMap.second));
       break;
+    }
   }
 }
 
-void Load::loadRooms(const Room** world) {
+void Load::loadRooms(Room** const world) {
   for(int i = 0; i < 5; i++)
     for(int j = 0; j < 5; j++)
-      for(auto it : roomLoadState.second)
+      for(auto it : roomLoadState[world[i][j].getID()])
         switch(it.first/1000){
         case 2:
-          if(it.second != 0)
-            world[i][j].getObj(it).setState(true);
+          if(it.second != 0) {
+            world[i][j].getObj(it.first)->setState(true);
             break;
+          }
           else
             break;
         case 3:
-          world[i][j].getNPC(it).setHealth(it.second);
+          world[i][j].getNPC(it.first)->setHealth(it.second);
           break;
         default:
           throw file_error("Load file has corrupted or invalid data");
