@@ -12,8 +12,7 @@ TEST(TestLock, TestConstructor) {
   EXPECT_THROW(Lock a (3001), invalid_id);
 }
 
-TEST(TestLock, TestCheckkey) {
+TEST(TestLock, TestUnlock) {
   Lock a(2202);
-  a.checkKey(4301);
-  EXPECT_EQ(a.checkKey(4301), false);
+  a.unlock(4301);
 }
