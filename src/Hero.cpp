@@ -66,14 +66,13 @@ std::pair<uint, uint> Hero::getPos() {
 
 
 void Hero::attack(Person* npc) {
-  /*  Item temp(4203);
-    if (npc -> Villager) {
+    if (npc == Villager) {
       std::cout<<"You attacked a villager and they hauled you off to jail for a life time"<<endl;
       std::cout<<"You Lose"<<endl;
     }
     if(npc -> Enemy){
       enemy.sethealth(health - (dmg + ))
-    }*/
+    }
 }
 
 /*std::list<std::pair<int,int>> invSave(){
