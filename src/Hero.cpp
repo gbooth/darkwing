@@ -14,12 +14,14 @@ Hero::Hero(int id = 3101,
 
 Hero::~Hero() {}
 
-void Hero::setWeapon(Item w) {
-  if (w.getID() / 100 % 10 == 2)
+void Hero::setWeapon(Item* w) {
+  if (inventory.find(w) != inventory.end() && (w->getID()/100 % 10 == 2))
     weaponOfChoice = w;
+  else
+    std::cout << "You don't have this weapon" << std::endl;
 }
 
-Item Hero::getWeapon() {
+Item* Hero::getWeapon() {
   return weaponOfChoice;
 }
 
@@ -102,10 +104,14 @@ void Hero::attack(Person* npc) {
   }
 }*/
 
+
+
 void Hero::getInventory() {
   std::cout << "Items" << std::setw(25) << "Amount" << std::endl;
   for (auto it: inventory)
-    std::cout << std::left << std::setw(15) << std::setfill('-') << it.first->getName() << std::setw(15) << std::setfill('-') << std::right << it.second << std::endl;
+    std::cout << std::left << std::setw(15) << std::setfill('-') <<
+              it.first->getName() << std::setw(15) << std::setfill('-') << std::right <<
+              it.second << std::endl;
 }
 
 void Hero::addInventory(Item* a) {
@@ -114,3 +120,18 @@ void Hero::addInventory(Item* a) {
   else
     inventory[a]++;
 }
+
+void Hero::usePotion(Item* a) {
+  if (health == 10)
+    std::cout << "You are already at full health" << std::endl;
+  else if (health + a->getItemValue() > 10)
+    health = 10;
+  else
+    health += a->getItemValue();
+}
+
+void Hero::talk(Villager* v){
+  v->response();
+}
+
+
