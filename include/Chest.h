@@ -22,18 +22,17 @@ class Chest: public RoomObject {
   Chest(int);
 
   /**
-   * Default destructor.
+   * Default destructor to delete contents.
    */
   virtual~Chest();
 
   /**
-   *This function is in charge to access the identifier of the object.
-   *@return the identifier of the objects inside the chest.
+   *This function is in charge to access the contents in the Chests.
+   *@return the contents of the objects inside the chest.
    */
    Item* getContents();
    /**
-    *This variable contains the object identifier.
-    *The identifier 4101 ,is to have an at least one initial object at the beginning, means the chest is not empty.
+    *@parameter contents give the objects inside the specfic chest. 
     */
 
 
