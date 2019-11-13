@@ -1,6 +1,10 @@
+/**
+ *@autor Ben Hunt
+ *@date 2019-11
+ */
+
 #ifndef LEVER_H
 #define LEVER_H
-
 #include "RoomObject.h"
 
 
