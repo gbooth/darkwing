@@ -9,9 +9,9 @@
 #include <iostream>
 #include <iomanip>
 
-Hero::Hero(): Person{3101}, pos{std::make_pair(0, 0)} {}
+Hero::Hero(): Person{3101}, pos{std::make_pair(0, 0)} {
   this->setRef();
-
+}
 Hero::~Hero() {
   for (auto it: inventory) {
     delete it.second.first;
@@ -90,7 +90,7 @@ void Hero::attack(Person* npc) {
   }
   return l;
 }*/
-/*
+
 void Hero::command(std::string s, Room** world) {
   std::string cmd = "", op = "";
   int i = this->getPos().first;
@@ -101,13 +101,14 @@ void Hero::command(std::string s, Room** world) {
   case "use":
     auto it = refs.find(op);
     if (it != refs.end()) {
-      if (it.second/100 = 41) { //its a potion
+      if (it->second/100 = 41) { //its a potion
         auto itr = inventory.find(it.second);
         if (itr != inventory.end()) {
           this->usePotion(itr.second.first);
           break;
         }
       } else {
+
         switch (op) {
         case "orange key":
           auto it = refs.find(op);
@@ -250,7 +251,7 @@ void Hero::command(std::string s, Room** world) {
     break;
   }
 }
-*/
+
 void Hero::getInventory() {
   std::cout << "Items" << std::setw(30) << "Amount" << std::endl;
   for (auto it: inventory)
