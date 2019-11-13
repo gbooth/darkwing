@@ -81,26 +81,118 @@ void Hero::attack(Person* npc) {
   }
   return l;
 }*/
-
-/*void Hero::command(std::string s, Room** world) {
-  std::string first, second, third;
-  first = s.substr(0, s.find(' '));
-  s.erase(first.begin(), first.end()+1);
-  if (s.find(' ')) {
-    second = s.substr(0, s.end());
-    second = s.substr(0, s.find(' '));
-    s.erase(second.begin(), second.end());
-    third = s.substr(0, s.end());
-  } else {
-    second = s.substr(0, s.end());
+/*
+void Hero::command(std::string s, Room** world) {
+  std::string cmd = "", op = "";
+  cmd = s.substr(0, s.find(' '));
+  op = s.substr(s.find(' ')+1);
+  switch (cmd) {
+  case "use":
+    switch (op) {
+    case "major health potion":
+      //check that you have a healthpotion1
+      break;
+    case "minor health potion":
+      //check that you have healthpotion2
+      break;
+    case "orange key":
+      break;
+    case "blue key":
+      break;
+    case "brown key":
+      break;
+    default:
+      std::cout<<"not a useable item" << std::endl;
+    }
+    break;
+  case "flip":
+    switch (op) {
+    case "bone lever":
+      break;
+    case "gold lever":
+      break;
+    case "stone lever":
+      break;
+    case "mossy lever":
+      break;
+    case "wooden lever":
+      break;
+    case "flimsy lever":
+      break;
+    default:
+      std::cout << "that isn't a lever to flip" std::endl;
+      break;
+    }
+    break;
+  case "inspect":
+    std::ifstream file;
+    std::string line;
+    std::string name;
+    int idVar;
+    file.open("identifierMap.csv");
+    if (file.is_open()) {
+      while (!file.eof()) {
+        getline(file, line, ':');
+        idVar = line;
+        getline(file, line, ':');
+        name = line;
+        if (op == name) {
+          if (idVar/100 == 32) { //its a villager
+            Person* p = world[getPos().first][getPos().second].getNPC(idVar);
+            Object* o = p;
+            inspect(p);
+            //std::cout << p->getDesc() << std::endl;
+            delete p;
+            delete o;
+            p = o = nullptr;
+            break;
+          } else if (idVar/1000 == 1) { // its a room
+            std::cout << world[getPos().first][getPos().second].getDesc() std::endl;
+            break;
+          } else if (idVar/1000 = 2) { //its a roomobject
+            RoomObject* r = world[getPos().first][getPos().second].getObj(idVar);
+            Object* a = r;
+            inspect(r);
+            //std::cout << r->getDesc() << std::endl;
+            delete r;
+            delete a;
+            r = a = nullptr;
+            break;
+          } else { //its an item
+            for(auto it:inventory){
+              if(op == it.first->getName()){
+               Object* ptr = it.first;
+               inspect(ptr);
+               break;
+              }
+            }
+          }
+        } else {
+          file.ignore(1000, '\n');
+        }
+      }
+    }
+    break;
+  case "attack":
+    break;
+  case "move":
+    break;
+  case "talk":
+    break;
+  case "open":
+    break;
+  case "equip":
+    break;
+  case "help":
+    break;
+  case "inventory":
+    break;
+  default:
+    std::cout << "not a possible" << std::endl;
   }
-  switch(first){
-    case "":
-  }
-}*/
 
-
-
+}
+*/
 void Hero::getInventory() {
   std::cout << "Items" << std::setw(25) << "Amount" << std::endl;
   for (auto it: inventory)

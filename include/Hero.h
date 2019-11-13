@@ -87,6 +87,7 @@ class Hero : public Person {
   void usePotion(Item*);
   void useKey(Item*, Lock);
   void talk(Villager*);
+  void command(std::string, Room**);
  private:
   std::map<int, std::pair<Item*, int>>  inventory;
   Item* weaponOfChoice;
