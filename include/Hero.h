@@ -91,9 +91,11 @@ class Hero : public Person {
   void interact(RoomObject* const);
   void help();
  private:
+  void setRef();
   std::map<int, std::pair<Item*, int>>  inventory;
   Item* weaponOfChoice;
   std::pair<uint, uint> pos;
+  std::map<std::string, int> refs;
 };
 
 #endif // HERO_H
