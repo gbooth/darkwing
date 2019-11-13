@@ -1,7 +1,7 @@
-/*
-* CPSC 2720 Fall 2018
-* Copyright 2018 <Navi>
-*/
+/**
+ *@autor Ben Hunt
+ *@date 2019-11git a
+ */
 
 #ifndef EXCEPTIONS_H_INCLUDED
 #define EXCEPTIONS_H_INCLUDED

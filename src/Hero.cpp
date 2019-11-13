@@ -1,3 +1,7 @@
+/**
+ *@autor Wesley Waldern
+ *@date 2019-11
+ */
 #include <Hero.h>
 #include <string>
 #include <utility>
@@ -6,6 +10,7 @@
 #include <iomanip>
 
 Hero::Hero(): Person{3101}, pos{std::make_pair(0, 0)} {}
+  this->setRef();
 
 Hero::~Hero() {
   for (auto it: inventory) {
@@ -87,113 +92,162 @@ void Hero::attack(Person* npc) {
 /*
 void Hero::command(std::string s, Room** world) {
   std::string cmd = "", op = "";
+  int i = this->getPos().first;
+  int j = this->getPos().second;
   cmd = s.substr(0, s.find(' '));
   op = s.substr(s.find(' ')+1);
   switch (cmd) {
   case "use":
-    switch (op) {
-    case "major health potion":
-      //check that you have a healthpotion1
-      break;
-    case "minor health potion":
-      //check that you have healthpotion2
-      break;
-    case "orange key":
-      break;
-    case "blue key":
-      break;
-    case "brown key":
-      break;
-    default:
-      std::cout<<"not a useable item" << std::endl;
+    auto it = refs.find(op);
+    if (it != refs.end()) {
+      if (it.second/100 = 41) { //its a potion
+        auto itr = inventory.find(it.second);
+        if (itr != inventory.end()) {
+          this->usePotion(itr.second.first);
+          break;
+        }
+      } else {
+        switch (op) {
+        case "orange key":
+          auto it = refs.find(op);
+          if (it != refs.end() && world[i][j].checkForObj(2201)) {
+            RoomObject* lck = world[i][j].getObj(2201);
+            Lock* l = static_cast<Lock*>(lck);
+            auto itr = inventory.find(it.second);
+            if (itr != inventory.end()) {
+              this->useKey(itr.second.first, l);
+            }
+          }
+          break;
+        case "blue key":
+          auto it = refs.find(op);
+          if (it != refs.end()&& world[i][j].checkForObj(2202)) {
+            RoomObject* lck = world[i][j].getObj(2202);
+            Lock* l = static_cast<Lock*>(lck);
+            auto itr = inventory.find(it.second);
+            if (itr != inventory.end()) {
+              this->useKey(itr.second.first, l);
+            }
+          }
+          break;
+        case "brown key":
+          auto it = refs.find(op);
+          if (it != refs.end() && world[i][j].checkForObj(2203)) {
+            RoomObject* lck = world[i][j].getObj(2203);
+            Lock* l = static_cast<Lock*>(lck);
+            auto itr = inventory.find(it.second);
+            if (itr != inventory.end()) {
+              this->useKey(itr.second.first, l);
+            }
+          }
+          break;
+        default:
+          std::cout<<"not a usable item" << std::endl;
+        }
+        break;
+      }
     }
-    break;
+
   case "flip":
-    switch (op) {
-    case "bone lever":
-      break;
-    case "gold lever":
-      break;
-    case "stone lever":
-      break;
-    case "mossy lever":
-      break;
-    case "wooden lever":
-      break;
-    case "flimsy lever":
-      break;
-    default:
-      std::cout << "that isn't a lever to flip" std::endl;
-      break;
+    auto it = refs.find(op);
+    if(it != refs.end() && world[i][j].checkForObj(it.second)){
+      RoomObject* const robj = world[i][j].getObj();
+      this->interact(robj);
+    }else{
+      std::cout <<"you can't flip that" << std::endl;
     }
     break;
   case "inspect":
-    std::ifstream file;
-    std::string line;
-    std::string name;
-    int idVar;
-    file.open("identifierMap.csv");
-    if (file.is_open()) {
-      while (!file.eof()) {
-        getline(file, line, ':');
-        idVar = line;
-        getline(file, line, ':');
-        name = line;
-        if (op == name) {
-          if (idVar/100 == 32) { //its a villager
-            Person* p = world[getPos().first][getPos().second].getNPC(idVar);
-            Object* o = p;
-            inspect(p);
-            //std::cout << p->getDesc() << std::endl;
-            delete p;
-            delete o;
-            p = o = nullptr;
-            break;
-          } else if (idVar/1000 == 1) { // its a room
-            std::cout << world[getPos().first][getPos().second].getDesc() std::endl;
-            break;
-          } else if (idVar/1000 = 2) { //its a roomobject
-            RoomObject* r = world[getPos().first][getPos().second].getObj(idVar);
-            Object* a = r;
-            inspect(r);
-            //std::cout << r->getDesc() << std::endl;
-            delete r;
-            delete a;
-            r = a = nullptr;
-            break;
-          } else { //its an item
-            for(auto it:inventory){
-              if(op == it.first->getName()){
-               Object* ptr = it.first;
-               inspect(ptr);
-               break;
-              }
-            }
-          }
-        } else {
-          file.ignore(1000, '\n');
+    auto it = refs.find(op)
+    if (it != refs.end()) {
+      if (it.second/100 == 3) { //its a villager
+        Person* const p = world[i][j].getNPC(it.second);
+        Object* o = p;
+        inspect(o);
+        break;
+      } else if (it.second/1000 == 1) { // its a room
+        std::cout << world[i][j].getDesc() << std::endl;
+        break;
+      } else if (it.second/1000 = 2) { //its a roomobject
+        RoomObject* r = world[i][j].getObj(it.second);
+        Object* a = r;
+        inspect(a);
+        break;
+      } else { //its an item
+        auto itr = inventory.find(it.second);
+        if (itr!= inventory.end()) {
+          Object* pt = itr.second.first; //item*
+          inspect(pt);
         }
       }
+    } else {
+      std::cout << "you can't inspect that" << std::endl;
     }
     break;
   case "attack":
+    auto it = refs.find(op);
+    if(it != refs.end() && world[i][j].checkForNPC(it.second)){
+      Person* const eny = world[i][j].getNPC(it.second);
+      this->attack(eny);
+    }
     break;
   case "move":
+    switch (op) {
+    case "north":
+      mv(north, world);
+      break;
+    case "east":
+      mv(east, world);
+      break;
+    case "south":
+      mv(south, world);
+      break;
+    case "west":
+      mv(west, world);
+      break;
+    default:
+      std::cout << "that is not a direction" << std::endl;
+      break;
+    }
     break;
   case "talk":
+    auto it = refs.find(op);
+    if (it != refs.end() && world[i][j].checkForNPC(it.second) && (it.second/100 == 32)) {
+      Person* prn = world[i][j].getNPC(it.second);
+      Villager* v = static_cast<Villager*>(prn);
+      this->talk(v);
+    } else if (it.second/100 == 31 || it.second/100 == 33) {
+      std::cout << "you can't talk to this person" << std::endl;
+    } else {
+      std::cout << "this person isn't here" << std::endl;
+    }
     break;
   case "open":
+    auto it = refs.find(op);
+    if (it != refs.end() && (it.second/100 == 21) && world[i][j].checkForObj(it.second)) {
+      RoomObject* const rmb = world[i][j].getObj(it.second);
+      this->interact(rmb);
+    } else {
+      std::cout << "you can't open that" << std::endl;
+    }
     break;
   case "equip":
+    auto it = refs.find(op);
+    if(it != refs.end()){
+      auto ptr = inventory.find(it.second);
+      setWeapon(ptr.second.first);
+    }
     break;
   case "help":
+    this->help();
     break;
   case "inventory":
+    this->getInventory();
     break;
   default:
     std::cout << "not a possible" << std::endl;
+    break;
   }
-
 }
 */
 void Hero::getInventory() {
@@ -226,6 +280,22 @@ void Hero::usePotion(Item* a) {
   }
 }
 
+void Hero::setRef() {
+  std::ifstream file;
+  std::string line;
+  std::string name;
+  int idVar;
+  file.open("identifierMap.csv");
+  if (file.is_open()) {
+    while (!file.eof()) {
+      getline(file, line, ':');
+      idVar = stoi(line);
+      getline(file, line, ':');
+      refs[name] = idVar;
+      file.ignore(1000, '\n');
+    }
+  }
+}
 void Hero::useKey(Item* a, Lock* l) {
   l->unlock(a->getID());
 }

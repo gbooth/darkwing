@@ -1,3 +1,8 @@
+/**
+ *@autor Ben Hunt
+ *@date 2019-11
+ */
+
 #ifndef ENEMY_H
 #define ENEMY_H
 
@@ -5,9 +10,9 @@
 #include "Hero.h"
 #include <utility>
 
-/** 
+/**
  *This class will define all the characteristics of the Enemy during the game.
- */     
+ */
 
 class Enemy : public Person {
  public:
