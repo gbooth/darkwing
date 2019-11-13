@@ -1,7 +1,8 @@
 #include "Save.h"
 #include "Exceptions.h"
+#include<list>
 
-Save::Save(const Hero* h, const Room** r) {
+Save::Save(Hero* const h, Room** const r) {
   std::string fname;
   std::string out;
   std::cout << "Enter file name you wish to save as (no need for extension): " <<
@@ -9,7 +10,7 @@ Save::Save(const Hero* h, const Room** r) {
   std::cin >> fname;
   fileName = fname + ".txt";
 
-  std::string posit = to_string(h->getPos().first)+to_string(h->getPos().second);
+  std::string posit = std::to_string(h->getPos().first)+std::to_string(h->getPos().second);
   std::string invStr = "";
   for (auto it = h->invSave().begin(); it != h->invSave().end(); it++) {
     invStr += it->first + it->second + ",";
@@ -19,17 +20,17 @@ Save::Save(const Hero* h, const Room** r) {
   heroSaveMap[HP] = std::to_string(h->getHealth());
   heroSaveMap[pos] = posit;
   heroSaveMap[inv] = invStr;
-  heroSaveMap[equipWep] = h->getWeapon().getName();
+  heroSaveMap[equipWep] = h->getWeapon()->getName();
 
   //all the attributes of a room and its objects
   for (int i = 0; i < 5; i++) {
     for (int j = 0; j < 5; j++) {
       out = "";
-      list<int> objSave = r[i][j].objToSave();
+      std::list<int> objSave = r[i][j].objToSave();
       for (auto it: objSave) {
         if (it/1000 == 2) {
           out += it;
-          if (r[i][j].getObj(it).getState())
+          if (r[i][j].getObj(it)->getState())
             out += '1' + ',';
           else
             out += '0'+ ',';
@@ -38,7 +39,7 @@ Save::Save(const Hero* h, const Room** r) {
           if (std::to_string(r[i][j].getNPC(it)->getHealth()).length() < 2)
             out += '0' + std::to_string(r[i][j].getNPC(it)->getHealth());
           else
-            std::to_string(r[i][j].getNPC(it)->getHealth())
+            std::to_string(r[i][j].getNPC(it)->getHealth());
           }
       }
       roomObj[r[i][j].getID()] = out;

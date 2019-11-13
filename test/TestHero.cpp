@@ -2,19 +2,14 @@
 #include "gtest/gtest.h"
 #include "Exceptions.h"
 
-TEST(TestHero, ConstructorTest) {
-  EXPECT_NO_THROW(Hero h(3101, std::make_pair(0, 0)));
-  EXPECT_THROW(Hero g(3000, std::make_pair(0, 0)), invalid_id);
-}
-
 TEST(TestHero, inspectTest) {
   Object a(4205);
-  Hero h(3101, std::make_pair(0, 0));
+  Hero h;
   std::cout << h.inspect(&a) << std::endl;
 }
 
 TEST(TestHero, mvTest) {
-  Hero h(3101, std::make_pair(0, 0));
+  Hero h;
   Room** world;
   world = new Room*[5];
   for (int i = 0; i<5; i++)
@@ -28,7 +23,7 @@ TEST(TestHero, inventoryTest) {
   Item a(4203);
   Item b(4101);
   Item c(4301);
-  Hero h(3101, std::make_pair(0, 0));
+  Hero h;
   h.addInventory(&a);
   h.addInventory(&b);
   h.addInventory(&b);
@@ -39,7 +34,7 @@ TEST(TestHero, inventoryTest) {
 }
 
 TEST(TestHero, usePotionTest) {
-  Hero h(3101, std::make_pair(0, 0));
+  Hero h;
   Item b(4101);
   Item c(4102);
   h.setHealth(8);
@@ -55,14 +50,14 @@ TEST(TestHero, usePotionTest) {
 
 TEST(TestHero, weaponTest) {
   Item a(4205);
-  Hero h(3101, std::make_pair(0, 0));
+  Hero h;
   h.addInventory(&a);
   h.setWeapon(&a);
   std::cout << h.getWeapon()->getName() << std::endl;
 }
 
 TEST(TestHero, talkTest){
-Hero h(3101, std::make_pair(0, 0));
+Hero h;
 Villager v(3207);
 h.talk(&v);
 }

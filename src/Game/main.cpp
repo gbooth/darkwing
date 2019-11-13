@@ -20,80 +20,78 @@ int main() {
   while (true) {
     if (titleScreen() == 1) {
       newGame(h, world);
-      std::cout << "It's a pleasant spring day in Anates Terra, a province in Avemland. Each province in Avemland is ruled over by a king, and Anates Terra is no different. Our story begins in Castle Anates, in the resident wizard's tower, where an eager young apprentice named Duck Norris is assisting with the concoction of a new potion.";
-    }
-    else {
-      newGame(h, world);
-      loadGame(h, world);
-    }
-    getline(std::cin, inStr);
-    while(true) {
-      if(inStr == "exit"){
-        delete h;
-        for(int i = 0; i < 5; i++)
-          delete [] world[i];
-        delete world;
-        break;
+      "It is a pleasant spring day in Anates Terra, a province in Avemland.\nEach province in Avemland is ruled over by a king, and Anates Terra \nis no different. Our story begins in Castle Anates, in the resident\nwizard tower, where an eager young apprentice named Duck Norris is\nassisting with the concoction of a new potion. The wizard, brilliant\nas he is eccentric, still cannot determine why this potion does not\nmake pigs fly.\n\"Norris, bring me the wooden duck we must do some debugging.\"\ncried the wizard.  Duck Norris rushed to fetch the wooden duck and\nplaced it in front of the wizard.\"Your duck, master,\" murmured Norris.\nThe wizard took the duck without a second glance and proceeded to\nexplain the potion properties. Minutes go by and the Wizard grows\nincreasingly frustrated to the point of him throwing the duck into\nthe bubbling cauldron. Upon the duck touching the surface of the\npotion it comes alive and grows to the size of a dragon. \"You have\nused me for debugging for the last time wizard!\" thundered the giant\nduck. The duck swoops a wooden wing down and picks up the wizard\nand storms out of the castle leaving a giant duck-sized hole in the\nwall. As Duck Norris, you must save your master.\n";
+      else {
+        newGame(h, world);
+        loadGame(h, world);
       }
-      h->command(inStr, world);
       getline(std::cin, inStr);
+      while (true) {
+        if (inStr == "exit") {
+          delete h;
+          for (int i = 0; i < 5; i++)
+            delete [] world[i];
+          delete world;
+          break;
+        }
+        h->command(inStr, world);
+        getline(std::cin, inStr);
+      }
     }
   }
-}
 
-int titleScreen() {
-  int in;
-  while (true) {
-    std::cout << "  _____          _   _       _____                       " <<
-              std::endl
-              << " / ____|        | | | |     / ____|                      " << std::endl
-              << "| |     __ _ ___| |_| | ___| (___   ___ __ _ _ __   ___  " << std::endl
-              << "| |    / _` / __| __| |/ _ \\___ \ / __/ _` | ' _\ / _ \ " << std::endl
-              << "| |___| (_| \__ \ |_| |  __/____) | (_| (_| | |_) |  __/ " << std::endl
-              << " \_____\__,_|___/\__|_|\___|_____/ \___\__,_| .__/ \___| " << std::endl
-              << "                                            | |          " << std::endl
-              << "                                            |_|          " << std::endl;
+  int titleScreen() {
+    int in;
+    while (true) {
+      std::cout << "  _____          _   _       _____                       " << std::endl
+                << " / ____|        | | | |     / ____|                      " << std::endl
+                << "| |     __ _ ___| |_| | ___| (___   ___ __ _ _ __   ___  " << std::endl
+                << "| |    / _` / __| __| |/ _ \\___ \ / __/ _` | ' _\ / _ \ " << std::endl
+                << "| |___| (_| \__ \ |_| |  __/____) | (_| (_| | |_) |  __/ " << std::endl
+                << " \_____\__,_|___/\__|_|\___|_____/ \___\__,_| .__/ \___| " << std::endl
+                << "                                            | |          " << std::endl
+                << "                                            |_|          " << std::endl;
     std::cout << std::setw(22) << "1 - New Game" << std::endl
               << std::setw(22) << "2 - Load Game" << std::endl
               << std::setw(22) << "3 - Exit Game" << std:: endl;
-    std::cout << "Selection -- ";
-    std::cin >> in;
-    switch (in) {
-    case 1:
-      return 1;
-    case 2:
-      return 2;
-    case 3:
-      exitGame();
-    default:
-      std::cout << "invalid selection";
-      system("PAUSE");
-      break;
+      std::cout << "Selection -- ";
+      std::cin >> in;
+      switch (in) {
+      case 1:
+        return 1;
+      case 2:
+        return 2;
+      case 3:
+        exitGame();
+      default:
+        std::cout << "invalid selection";
+        system("PAUSE");
+        break;
+      }
+      clearScreen();
     }
-    clearScreen();
   }
-}
 
-void clearScreen() {
+  void clearScreen() {
   std::cout << std::flush;
-  system("CLS");
-}
+    system("CLS");
+  }
 
-void newGame(Hero* h, Room** world) {
-  h = new Hero;
-  world = new Room*[5];
-  for(int i = 0; i < 5; i++)
-    world[i] = new Room[5]{i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
+  void newGame(Hero* h, Room** world) {
+    h = new Hero;
+    world = new Room*[5];
+    for (int i = 0; i < 5; i++)
+      world[i] = new Room[5] {i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
   for(int i = 0; i < 5; i++)
     for(int j = 0; j < 5; j++)
       world[i][j].setDoor(world);
-}
+  }
 
 void loadGame(Hero* const h, Room** const world) {
-   Load l;
-   l.loadGame(h, world);
-}
+    Load l;
+    l.loadGame(h, world);
+  }
 
-void exitGame() {
-   exit(0);
-}
+  void exitGame() {
+    exit(0);
+  }
