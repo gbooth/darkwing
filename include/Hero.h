@@ -85,12 +85,15 @@ class Hero : public Person {
   void getInventory();
   void addInventory(Item*);
   void usePotion(Item*);
-  void useKey(Item*, Lock);
+  void useKey(Item*, Lock*);
   void talk(Villager*);
+  void command(std::string s, Room** wld);
  private:
+  void setRef();
   std::map<Item*, int>  inventory;
   Item* weaponOfChoice;
   std::pair<uint, uint> pos;
+  std::map<std::string, int> refs;
 };
 
 #endif // HERO_H
