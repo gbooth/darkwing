@@ -1,3 +1,9 @@
+/**
+ *@autor Ben Hunt
+ * @date 2019-11
+ */
+
+
 #include "Lever.h"
 #include "Exceptions.h"
 
