@@ -89,6 +89,7 @@ class Hero : public Person {
   void talk(Villager*);
   void command(std::string, Room**);
   void interact(RoomObject*);
+  void help();
  private:
   std::map<int, std::pair<Item*, int>>  inventory;
   Item* weaponOfChoice;
