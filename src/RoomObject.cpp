@@ -12,3 +12,7 @@ RoomObject::~RoomObject() {}
 bool RoomObject::getState() {
   return state;
 }
+
+void RoomObject::setState(bool s) {
+  state = s;
+}

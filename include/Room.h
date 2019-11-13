@@ -38,13 +38,16 @@ class Room : public Object {
 
   std::list<int> objToSave();
 
-  Person* getNPC(int);
-  RoomObject* getObj(int);
+  void setDoor(Room**);
+  void upDoorMood(Direction, DoorMood);
+
+  const Person* getNPC(int);
+  const RoomObject* getObj(int);
  private:
   std::map<int, Person*> npcInRoom;
   std::map<int, RoomObject*> objInRoom;
 
-  std::map<Direction, std::pair<DoorMood, std::pair<int, int>>> adjRooms;
+  std::map<Direction, std::tuple<DoorMood, RoomObject*, int, int> adjRooms;
 
   bool hasEnemy;
 
@@ -52,6 +55,7 @@ class Room : public Object {
   std::string roomMessage;
 
   bool checkDirection(Direction);
+  void setDoorMood(Direction, DoorMood);
 };
 
 #endif // ROOM_H

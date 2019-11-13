@@ -18,12 +18,6 @@ class Lever : public RoomObject {
   *destructor
   */
   virtual ~Lever();
-
-  /**
-  *sets the state of the lever
-  *@param flip set the state of the RoomObject to flip
-  */
-  void setLever(bool flip);
 };
 
 #endif // LEVER_H

@@ -16,7 +16,7 @@ Chest::Chest(int id): RoomObject{id} {
       getline(chestData, line, ',');
       if (line == idStr) {
         getline(chestData, line);
-        contents = std::stoi(line);
+        contents = new Item(stoi(line));
         break;
       } else {
         chestData.ignore(1000, '\n');
@@ -30,9 +30,11 @@ Chest::Chest(int id): RoomObject{id} {
   }
 }
 
-Chest::~Chest(){}
+Chest::~Chest() {
+  delete contents;
+}
 
-Item Chest::getContents() {
-  state = true;
+Item* Chest::getContents() {
+  this->setState(true);
   return contents;
 }

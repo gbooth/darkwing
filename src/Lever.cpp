@@ -8,7 +8,3 @@ Lever::Lever(int ident, bool mode)
 }
 
 Lever::~Lever() {}
-
-void Lever::setLever(bool flip) {
-  state = flip;
-}

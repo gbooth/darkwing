@@ -27,15 +27,15 @@ class Lock : public RoomObject {
   Lock (int);
   virtual ~Lock();
 
-  /** This function verify if the player is using the right key.
-   */
-  bool checkKey(Item key);
-  int getLockValue();
+  void unlock(Item key);
 
  private:
   /** This private variable is  the key to have the right value for the player to open the specific object.
    */
-
   int lockValue;
+
+  /** This function verify if the player is using the right key.
+  */
+  bool checkKey(Item key);
 };
 #endif

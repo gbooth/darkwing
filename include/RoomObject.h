@@ -24,9 +24,10 @@ class RoomObject : public Object {
   */
   bool getState();
 
- protected:
-  bool state;
+  void setState(bool);
+
  private:
+  bool state;
 };
 
 #endif // ROOMOBJECT_H

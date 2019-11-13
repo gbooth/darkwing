@@ -56,7 +56,7 @@ Room::Room(int id) : Object{id} {
       default:
         throw file_error("file has incorrect data - 1");
       }
-      adjRooms[tempDir] = std::make_pair(tempDoor, std::make_pair(tempX, tempY));
+      adjRooms[tempDir] = std::make_tuple(tempDoor, nullptr, tempX, tempY);
     }
 
     //create and map NPCs
@@ -146,6 +146,7 @@ Room::Room(int id) : Object{id} {
   } else {
     throw file_error("room file not present");
   }
+  in.close();
 }
 
 Room::~Room() {
@@ -186,13 +187,21 @@ bool Room::checkDirection(Direction d) {
     return true;
 }
 
+void Room::setDoorMood(Direction d, DoorMood m) {
+  std::get<0>(adjRooms[d]) = m;
+}
+
 std::pair<int, int> Room::getDirection(Direction d) {
   if (this->checkDirection(d))
-    switch (adjRooms[d].first) {
+    switch (std::get<0>(adjRooms[d])) {
     case open:
-      return adjRooms[d].second;
+      return std::make_pair(std::get<2>(adjRooms[d]), std::get<3>(adjRooms[d]));
     case blocked:
-      return std::make_pair(0, -1);
+      if(std::get<1>(adjRoom[d]))
+        if(std::get<1>(adjRoom[d])->getState())
+          this->setDoorMood(d, open);
+          return std::make_pair(std::get<2>(adjRooms[d]), std::get<3>(adjRooms[d]));
+          return std::make_pair(0, -1);
     case locked:
       return std::make_pair(0, -2);
     } else {
@@ -230,14 +239,43 @@ std::list<int> Room::objToSave() {
   return changedObj;
 }
 
-Person* Room::getNPC(int id) {
+void Room::setDoor(Room** world) {
+  std::ifstream in("doorDep.csv");
+  std::string readIn;
+  Direction dir;
+  int x, y, roomObjID;
+
+  if(in.is_open()){
+    getline(in, readIn, ':');
+    while(!in.eof()){
+      if(this->getID() == stoi(readIn)){
+        getline(in, readIn, ':');
+        dir = static_cast<Direction>(stoi(readIn));
+        getline(in, readIn, ':');
+        x = readIn[0] - '0';
+        y = readIn[1] - '0';
+        getline(in, readIn);
+        std::get<1>(adjRooms[dir]) = world[x][y].getObj(stoi(readIn));
+      }
+      else{
+        in.ignore(1000, '\n');
+      }
+      getline(in, readIn, ':');
+    }
+  }
+  else {
+    throw file_error("door depend file is missing");
+  }
+}
+
+const Person* Room::getNPC(int id) {
   if(this->checkForNPC(id))
     return npcInRoom[id];
   else
     return nullptr;
 }
 
-RoomObject* Room::getObj(int id) {
+const RoomObject* Room::getObj(int id) {
   if(this->checkForObj(id))
     return objInRoom[id];
   else
