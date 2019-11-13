@@ -1,3 +1,7 @@
+/**
+ *@autor Wesley Waldern
+ *@date 2019-11
+ */
 #include <Hero.h>
 #include <string>
 #include <utility>

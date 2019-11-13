@@ -17,7 +17,7 @@
 #include "Villager.h"
 /**
  *This class will provide to the Hero or player, all the conditions that he is involve with ,during the whole game as: Weapons,Enemy identifier,position,
- *Directionsgit ,inventory.
+ *Directions,inventory.
  */
 class Hero : public Person {
  public:
@@ -34,7 +34,7 @@ class Hero : public Person {
 
   /**
    *This function define the npc by the hero.
-   * @parameter represent the npc with be rlated with the hero.
+   * @parameter represent the npc with be related with the hero.
    */
   void attack(Person*);
 
