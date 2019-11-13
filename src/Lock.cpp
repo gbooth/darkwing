@@ -4,6 +4,7 @@
 */
 
 #include"Lock.h"
+#include"Room.h"
 #include<fstream>
 #include<string>
 #include"Exceptions.h"
@@ -16,7 +17,7 @@
 */
 Lock::Lock(int id) : RoomObject{id} {
   std::string line;
-  std:: string idStr=std::to_string(id);
+  std::string idStr=std::to_string(id);
   std::fstream lockData;
   lockData.open("Locks.csv");
   if (lockData.is_open()) {
@@ -42,21 +43,28 @@ Lock::Lock(int id) : RoomObject{id} {
 
 Lock::~Lock() {}
 
+void Lock::unlock(Item key) {
+  if(this->getID() == 2203) {
+    if(this->checkKey(key))
+      std::cout << "The map clearly shows the way out of the forest is east" << std::endl;
+      this->setState(true);
+  }
+  else {
+    if(this->checkKey(key)) {
+      std::cout << "The key fits perfectly into the lock and turns, unlocking the door" << std::endl;
+      this->setState(true);
+    }
+    else {
+      std::cout << "The key fits into the lock but wont turn" << std::endl;
+    }
+  }
+}
 
 /** This function verify if the player is using the right key.
  */
 bool Lock::checkKey(Item key) {
-  if (key.getItemValue() != lockValue) {
-    return state;
-  } else {
-    state = true;
-    return state;
-  }
-}
-
-/** If the player does not use the right key has the option to test other lock.
- */
-
-int Lock::getLockValue() {
-  return lockValue;
+  if (key.getItemValue() != lockValue)
+    return false;
+  else
+    return true;
 }
