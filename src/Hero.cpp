@@ -246,14 +246,15 @@ void Hero::help() {
   std::cout << output;
 }
 
-void Hero::interact(RoomObject* r) {
+void Hero::interact(RoomObject* r const) {
   if (r->getID() / 100 % 10 == 3 && r->getID() / 1000 == 2) {
     r->setState(!r->getState());
     std::cout << "The Lever has been flipped" << std::endl;
-  } else if (r->getID() / 100 % 10 == 2 && r->getID() / 1000 == 2) {
+  } else if (r->getID() / 100 % 10 == 1 && r->getID() / 1000 == 2) {
     if (!r->getState()) {
-      this->addInventory(static_cast<Chest*>(r)->getContents());
-      std::cout << r->getName() << " has been added to your inventory" << std::endl;
+        Item* a = static_cast<Chest*>(r)->getContents();
+          std::cout << a->getName() << " has been added to your inventory" << std::endl;
+      this->addInventory(a);
     }
   } else {
     std::cout << "This is not a Chest, nor is it a Lever" << std::endl;

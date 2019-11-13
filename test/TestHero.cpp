@@ -20,39 +20,39 @@ TEST(TestHero, mvTest) {
 }
 
 TEST(TestHero, inventoryTest) {
-  Item a(4203);
-  Item b(4101);
-  Item c(4301);
+  Item* a = new Item(4203);
+  Item* b = new Item(4101);
+  Item* c = new Item(4301);
   Hero h;
-  h.addInventory(&a);
-  h.addInventory(&b);
-  h.addInventory(&b);
-  h.addInventory(&b);
-  h.addInventory(&b);
-  h.addInventory(&c);
+  h.addInventory(a);
+  h.addInventory(b);
+  h.addInventory(b);
+  h.addInventory(b);
+  h.addInventory(b);
+  h.addInventory(c);
   h.getInventory();
 }
 
 TEST(TestHero, usePotionTest) {
   Hero h;
-  Item b(4101);
-  Item c(4102);
+  Item* b = new Item(4101);
+  Item* c = new Item(4102);
   h.setHealth(8);
-  h.usePotion(&b);
+  h.usePotion(b);
   std::cout << h.getHealth() << std::endl;
   h.setHealth(5);
-  h.usePotion(&c);
+  h.usePotion(c);
   std::cout << h.getHealth() << std::endl;
   h.setHealth(10);
-  h.usePotion(&c);
+  h.usePotion(c);
   std::cout << h.getHealth() << std::endl;
 }
 
 TEST(TestHero, weaponTest) {
-  Item a(4205);
+  Item* a = new Item(4205);
   Hero h;
-  h.addInventory(&a);
-  h.setWeapon(&a);
+  h.addInventory(a);
+  h.setWeapon(a);
   std::cout << h.getWeapon()->getName() << std::endl;
 }
 
@@ -64,17 +64,17 @@ h.talk(&v);
 
 TEST(TestHero, useKeyTest){
 Hero h;
-Lock l(2201);
-Lock m(2202);
-Item a(4301);
-h.useKey(&a,&l);
-h.useKey(&a,&m);
+Lock* l = new Lock(2201);
+Lock* m = new Lock(2202);
+Item* a = new Item(4301);
+h.useKey(a,l);
+h.useKey(a,m);
 }
 
 TEST(TestHero, interactTest){
 Hero h;
-RoomObject r(3202, false);
-RoomObject s(2101,false);
-h.interact(&r);
-h.interact(&s);
+RoomObject* r = new Lever(2302);
+RoomObject* s = new Chest(2101);
+h.interact(r);
+h.interact(s);
 }
