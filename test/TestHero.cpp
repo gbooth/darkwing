@@ -61,3 +61,20 @@ Hero h;
 Villager v(3207);
 h.talk(&v);
 }
+
+TEST(TestHero, useKeyTest){
+Hero h;
+Lock l(2201);
+Lock m(2202);
+Item a(4301);
+h.useKey(&a,&l);
+h.useKey(&a,&m);
+}
+
+TEST(TestHero, interactTest){
+Hero h;
+RoomObject r(3202, false);
+RoomObject s(2101,false);
+h.interact(&r);
+h.interact(&s);
+}

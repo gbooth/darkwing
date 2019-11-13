@@ -7,7 +7,11 @@
 
 Hero::Hero(): Person{3101}, pos{std::make_pair(0, 0)} {}
 
-Hero::~Hero() {}
+Hero::~Hero() {
+  for (auto it: inventory) {
+    delete it.second.first;
+  }
+}
 
 void Hero::setWeapon(Item* w) {
   if (inventory.find(w->getID()) != inventory.end() && (w->getID()/100 % 10 == 2))
@@ -194,9 +198,9 @@ void Hero::command(std::string s, Room** world) {
 }
 */
 void Hero::getInventory() {
-  std::cout << "Items" << std::setw(25) << "Amount" << std::endl;
+  std::cout << "Items" << std::setw(30) << "Amount" << std::endl;
   for (auto it: inventory)
-    std::cout << std::left << std::setw(15) << std::setfill('-') <<
+    std::cout << std::left << std::setw(20) << std::setfill('-') <<
               it.second.first->getName() << std::setw(15) << std::setfill('-') << std::right
               <<
               it.second.second << std::endl;
@@ -211,19 +215,35 @@ void Hero::addInventory(Item* a) {
 }
 
 void Hero::usePotion(Item* a) {
-  if (health == 10)
+  int potionID = a->getID();
+  if (health == 10) {
     std::cout << "You are already at full health" << std::endl;
-  else if (health + a->getItemValue() > 10)
+  } else if (health + a->getItemValue() > 10) {
     health = 10;
-  else
+    inventory[potionID].second--;
+  } else {
     health += a->getItemValue();
+    inventory[potionID].second--;
+  }
 }
 
-void Hero::useKey(Item* a, Lock l) {
-
+void Hero::useKey(Item* a, Lock* l) {
+  l->unlock(a->getID());
 }
 
 void Hero::talk(Villager* v) {
   v->response();
 }
 
+void Hero::interact(RoomObject* r) {
+  if (r->getID() / 100 % 10 == 3 && r->getID() / 1000 == 2) {
+    r->setState(!r->getState());
+    std::cout << "The Lever has been flipped" << std::endl;
+  } else if (r->getID() / 100 % 10 == 2 && r->getID() / 1000 == 2) {
+    if (!r->getState()) {
+      this->addInventory(static_cast<Chest*>(r)->getContents());
+      std::cout << r->getName() << " has been added to your inventory" << std::endl;
+    }
+  } else
+    std::cout << "This is not a Chest, nor is it a Lever" << std::endl;
+}
