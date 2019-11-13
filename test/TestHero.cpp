@@ -37,3 +37,32 @@ TEST(TestHero, inventoryTest) {
   h.addInventory(&c);
   h.getInventory();
 }
+
+TEST(TestHero, usePotionTest) {
+  Hero h(3101, std::make_pair(0, 0));
+  Item b(4101);
+  Item c(4102);
+  h.setHealth(8);
+  h.usePotion(&b);
+  std::cout << h.getHealth() << std::endl;
+  h.setHealth(5);
+  h.usePotion(&c);
+  std::cout << h.getHealth() << std::endl;
+  h.setHealth(10);
+  h.usePotion(&c);
+  std::cout << h.getHealth() << std::endl;
+}
+
+TEST(TestHero, weaponTest) {
+  Item a(4205);
+  Hero h(3101, std::make_pair(0, 0));
+  h.addInventory(&a);
+  h.setWeapon(&a);
+  std::cout << h.getWeapon()->getName() << std::endl;
+}
+
+TEST(TestHero, talkTest){
+Hero h(3101, std::make_pair(0, 0));
+Villager v(3207);
+h.talk(&v);
+}

@@ -30,8 +30,7 @@ class Chest: public RoomObject {
    *This function is in charge to access the identifier of the object.
    *@return the identifier of the objects inside the chest.
    */
-   Item getContents();
-
+   Item* getContents();
    /**
     *This variable contains the object identifier.
     *The identifier 4101 ,is to have an at least one initial object at the beginning, means the chest is not empty.
@@ -39,7 +38,7 @@ class Chest: public RoomObject {
 
 
  private:
-  Item contents = 4101;
+  Item* contents;
 
 };
 

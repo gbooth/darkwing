@@ -9,7 +9,7 @@
 int titleScreen();
 void clearScreen();
 void newGame(Hero*, Room**);
-void loadGame(const Hero*, const Room**);
+void loadGame(Hero* const, Room** const);
 void exitGame();
 
 int main() {
@@ -51,9 +51,9 @@ int main() {
                 << " \_____\__,_|___/\__|_|\___|_____/ \___\__,_| .__/ \___| " << std::endl
                 << "                                            | |          " << std::endl
                 << "                                            |_|          " << std::endl;
-      std::cout << setw(22) << "1 - New Game" << std::endl
-                << setw(22) << "2 - Load Game" << std::endl
-                << setw(22) << "3 - Exit Game" << std:: endl;
+    std::cout << std::setw(22) << "1 - New Game" << std::endl
+              << std::setw(22) << "2 - Load Game" << std::endl
+              << std::setw(22) << "3 - Exit Game" << std:: endl;
       std::cout << "Selection -- ";
       std::cin >> in;
       switch (in) {
@@ -73,7 +73,7 @@ int main() {
   }
 
   void clearScreen() {
-    std::cout << flush;
+  std::cout << std::flush;
     system("CLS");
   }
 
@@ -82,9 +82,12 @@ int main() {
     world = new Room*[5];
     for (int i = 0; i < 5; i++)
       world[i] = new Room[5] {i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
+  for(int i = 0; i < 5; i++)
+    for(int j = 0; j < 5; j++)
+      world[i][j].setDoor(world);
   }
 
-  void loadGame(const Hero* h, const Room** world) {
+void loadGame(Hero* const h, Room** const world) {
     Load l;
     l.loadGame(h, world);
   }

@@ -142,21 +142,33 @@ void Hero::command(std::string s, Room** world) {
         if (op == name) {
           if (idVar/100 == 32) { //its a villager
             Person* p = world[getPos().first][getPos().second].getNPC(idVar);
-            std::cout << p->getDesc() << std::endl;
+            Object* o = p;
+            inspect(p);
+            //std::cout << p->getDesc() << std::endl;
             delete p;
-            p = nullptr;
+            delete o;
+            p = o = nullptr;
             break;
           } else if (idVar/1000 == 1) { // its a room
             std::cout << world[getPos().first][getPos().second].getDesc() std::endl;
             break;
           } else if (idVar/1000 = 2) { //its a roomobject
             RoomObject* r = world[getPos().first][getPos().second].getObj(idVar);
-            std::cout << r->getDesc() << std::endl;
+            Object* a = r;
+            inspect(r);
+            //std::cout << r->getDesc() << std::endl;
             delete r;
-            r = nullptr;
+            delete a;
+            r = a = nullptr;
             break;
           } else { //its an item
-            if(inventory.find()
+            for(auto it:inventory){
+              if(op == it.first->getName()){
+               Object* ptr = it.first;
+               inspect(ptr);
+               break;
+              }
+            }
           }
         } else {
           file.ignore(1000, '\n');
@@ -165,8 +177,6 @@ void Hero::command(std::string s, Room** world) {
     }
     break;
   case "attack":
-    if
-
     break;
   case "move":
     break;

@@ -14,6 +14,7 @@
 #include "Direction.h"
 #include <list>
 #include "RoomObject.h"
+#include "Villager.h"
 /**
  *This class will provide to the Hero or player, all the conditions that he is involve with ,during the whole game as: Weapons,Enemy identifier,position,
  *Directionsgit ,inventory.
@@ -47,13 +48,13 @@ class Hero : public Person {
    *This function gives the weapon identifier.
    * @return the identifier of the chosen weapon.
    */
-  Item getWeapon();
+  Item* getWeapon();
 
   /**
    *This function let you set the identifier of the weapon of choice.
    * @return the weapon of choice.
    */
-  void setWeapon(Item);
+  void setWeapon(Item*);
 
   /**
   *This function will give the direction and the position of the hero.
@@ -83,10 +84,12 @@ class Hero : public Person {
   std::list<std::pair<int, int>> invSave();
   void getInventory();
   void addInventory(Item*);
-  Item* searchInv(int id);
+  void usePotion(Item*);
+  void useKey(Item*, Lock);
+  void talk(Villager*);
  private:
   std::map<Item*, int>  inventory;
-  Item weaponOfChoice = 4205;
+  Item* weaponOfChoice;
   std::pair<uint, uint> pos;
 };
 
