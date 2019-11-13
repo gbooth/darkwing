@@ -22,7 +22,7 @@ class Save {
   *@param h the pointer to the hero to save
   *@param r the pointer to the world that needs to be saved
   */
-  Save(const Hero* h, const Room** r);
+  Save(Hero* const h, Room** const r);
 
   /**
   *virtual destructor
@@ -40,8 +40,8 @@ class Save {
   /**< helper function to save room */
   void saveRoom();
   std::ofstream saveFile;
-  std::map<HeroAtt, std::string data> heroSaveMap;
-  std::map<int roomID, std::string> roomObj;
+  std::map<HeroAtt, std::string> heroSaveMap;
+  std::map<int, std::string> roomObj;
   std::string fileName;
 };
 
