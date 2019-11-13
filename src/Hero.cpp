@@ -5,17 +5,12 @@
 #include <iostream>
 #include <iomanip>
 
-Hero::Hero(int id = 3101,
-           std::pair<unsigned int, unsigned int> posi = std::make_pair(0, 0))
-  : Person{id} {
-  if (id / 100 % 10 != 1)
-    throw invalid_id("ERROR: THIS ISNT DUCK NORRIS");
-}
+Hero::Hero(): Person{3101}, pos{std::make_pair(0, 0)} {}
 
 Hero::~Hero() {}
 
 void Hero::setWeapon(Item* w) {
-  if (inventory.find(w) != inventory.end() && (w->getID()/100 % 10 == 2))
+  if (inventory.find(w->getID()) != inventory.end() && (w->getID()/100 % 10 == 2))
     weaponOfChoice = w;
   else
     std::cout << "You don't have this weapon" << std::endl;
@@ -110,15 +105,17 @@ void Hero::getInventory() {
   std::cout << "Items" << std::setw(25) << "Amount" << std::endl;
   for (auto it: inventory)
     std::cout << std::left << std::setw(15) << std::setfill('-') <<
-              it.first->getName() << std::setw(15) << std::setfill('-') << std::right <<
-              it.second << std::endl;
+              it.second.first->getName() << std::setw(15) << std::setfill('-') << std::right
+              <<
+              it.second.second << std::endl;
 }
 
 void Hero::addInventory(Item* a) {
-  if (inventory.find(a) == inventory.end())
-    inventory[a] = 1;
+  int itemID = a->getID();
+  if (inventory.find(itemID) == inventory.end())
+    inventory[itemID] = std::make_pair(a, 1);
   else
-    inventory[a]++;
+    inventory[itemID].second++;
 }
 
 void Hero::usePotion(Item* a) {
@@ -130,8 +127,11 @@ void Hero::usePotion(Item* a) {
     health += a->getItemValue();
 }
 
-void Hero::talk(Villager* v){
-  v->response();
+void Hero::useKey(Item* a, Lock l) {
+
 }
 
+void Hero::talk(Villager* v) {
+  v->response();
+}
 
