@@ -2,6 +2,7 @@
 #include "Hero.h"
 #include "Load.h"
 #include <stdlib.h>
+#include <cstdlib>
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -9,17 +10,17 @@
 
 int titleScreen();
 void clearScreen();
-void newGame(Hero*, Room**);
+Room** newGame(Room**);
 void loadGame(Hero* const, Room** const);
 void exitGame();
 
 int main() {
-  std::string inStr = "";
-  Hero* h = nullptr;
+  std::string inStr;
+  Hero h;
   Room** world = nullptr;
   while (true) {
     if (titleScreen() == 1) {
-      newGame(h, world);
+      world = newGame(world);
       std::cout << "It is a pleasant spring day in Anates Terra, a province in"
                 << " Avemland.\nEach province in Avemland is ruled over by a k"
                 << "ing, and Anates Terra \nis no different. Our story begins "
@@ -40,31 +41,32 @@ int main() {
                 << "or debugging for the last time wizard!\" thundered the gia"
                 << "nt\nduck. The duck swoops a wooden wing down and picks up "
                 << "the wizard\nand storms out of the castle leaving a giant d"
-                << "uck-sized hole in the\nwall. As Duck Norris, you must save"
-                << " your master.\n";
-    } else {
-      newGame(h, world);
-      loadGame(h, world);
+                << "uck-sized hole in the\nwall. As Duck Norris, you stand awes"
+                << "truck in the WIZARD ROOM you must\nsave your master.\n";
     }
-    std::cout <<"hello " << world[0][0].getName();
-
+//    else {
+//      newGame(h, world);
+//      loadGame(h, world);
+//    }
     std::getline(std::cin, inStr);
     while (true) {
       if (inStr == "exit") {
-        delete h;
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++){
           delete [] world[i];
+        }
         delete world;
+        world = nullptr;
         break;
       }
-      h->command(inStr, world);
+      h.command(inStr, world);
       getline(std::cin, inStr);
     }
   }
+  return 0;
 }
 
 int titleScreen() {
-  int in;
+  std::string in;
   while (true) {
     std::cout << "  _____          _   _       _____                       " <<
               std::endl
@@ -75,40 +77,35 @@ int titleScreen() {
               << " \_____\__,_|___/\__|_|\___|_____/ \___\__,_| .__/ \___| " << std::endl
               << "                                            | |          " << std::endl
               << "                                            |_|          " << std::endl;
-    std::cout << std::setw(22) << "1 - New Game" << std::endl
+    std::cout << std::setw(21) << "1 - New Game" << std::endl
               << std::setw(22) << "2 - Load Game" << std::endl
               << std::setw(22) << "3 - Exit Game" << std:: endl;
     std::cout << "Selection -- ";
     std::cin >> in;
-    switch (in) {
-    case 1:
+    if(in == "1"){
       return 1;
-    case 2:
+    } else if(in == "2"){
       return 2;
-    case 3:
+    } else if (in == "3"){
       exitGame();
-    default:
-      std::cout << "invalid selection";
-      system("PAUSE");
-      break;
     }
     clearScreen();
   }
 }
 
 void clearScreen() {
-  std::cout << std::flush;
-  system("CLS");
+ std::cout << std::string( 100, '\n' );
 }
 
-void newGame(Hero* h, Room** world) {
-  h = new Hero;
+Room** newGame(Room** world) {
   world = new Room*[5];
-  for (int i = 0; i < 5; i++)
+  for (int i = 0; i < 5; i++) {
     world[i] = new Room[5] {i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
+  }
   for (int i = 0; i < 5; i++)
     for (int j = 0; j < 5; j++)
       world[i][j].setDoor(world);
+  return world;
 }
 
 void loadGame(Hero* const h, Room** const world) {

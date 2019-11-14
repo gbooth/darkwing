@@ -211,7 +211,7 @@ void Hero::command(std::string s, Room** world) {
     }
     break;
   }
-  case Command::move: {
+  case Command::go: {
     if (op == "north") {
       mv(north, world);
       break;
@@ -333,7 +333,7 @@ void Hero::setRef() {
 }
 
 void Hero::setCommand() {
-  cRefs["move"] = Command::move;
+  cRefs["go"] = Command::go;
   cRefs["use"] = Command::use;
   cRefs["inspect"] = Command::inspect;
   cRefs["inventory"] = Command::inv;
