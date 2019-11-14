@@ -262,6 +262,10 @@ void Hero::command(std::string s, Room** world) {
     this->getInventory();
     break;
   }
+  case Command::save: {
+    Save s(h, r);
+    s.saveGame();
+  }
   default: {
     std::cout << "not a possible command" << std::endl;
     break;
