@@ -13,7 +13,7 @@ Hero::Hero(): Person{3101} {
   pos = std::make_pair(0, 0);
   this->setRef();
   this->setCommand();
-}default
+}
 Hero::~Hero() {
   for (auto it: inventory) {
     delete it.second.first;
@@ -70,66 +70,14 @@ void Hero::setPosition (std::pair<uint, uint> posi) {
 std::pair<uint, uint> Hero::getPos() {
   return pos;
 }
-
-
-void Hero::attack(Person* npc) {
-Hero::~Hero() {
   for (auto it: inventory) {
     delete it.second.first;
   }
 }
-
-void Hero::setWeapon(Item* w) {
   if (inventory.find(w->getID()) != inventory.end() && (w->getID()/100 % 10 == 2))
     weaponOfChoice = w;
   else
     std::cout << "You don't have this weapon" << std::endl;
-}
-
-Item* Hero::getWeapon() {
-  return weaponOfChoice;
-}
-
-std::string Hero::inspect(Object* a) {
-  return a->getDesc();
-}
-
-void Hero::mv(Direction a, Room** world) {
-  int iPos = world[pos.first][pos.second].getDirection(a).second;
-  iPos += (world[pos.first][pos.second].getDirection(a).first * 10);
-
-  switch (iPos) {
-  case -1:
-    std::cout << "The Door wont open and there is no keyhole." <<std::endl;
-    break;
-  case -2:
-    if (pos.first == 3 && pos.second == 1) {
-      std::cout << "you're in the forest" <<std::endl;
-      break;
-    } else {
-      std::cout << "The Door is locked" << std::endl;
-      break;
-    }
-  case -11:
-    std::cout << "You can't go that way" << std::endl;
-    break;
-  default:
-    pos = world[pos.first][pos.second].getDirection(a);
-    std::cout << world[pos.first][pos.second].getMessage();
-    break;
-  }
-}
-
-void Hero::setPosition (std::pair<uint, uint> posi) {
-  if (pos.first > 4  || pos.second > 4)
-    throw invalid_pos("ERROR: position out of bounds");
-  pos = posi;
-}
-
-std::pair<uint, uint> Hero::getPos() {
-  return pos;
-}
-
 
 void Hero::attack(Person* npc) {
   int npcHealth = npc->getHealth();
