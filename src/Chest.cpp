@@ -13,7 +13,7 @@ Chest::Chest(int id): RoomObject{id} {
   chestData.open("Chests.csv");
   if (chestData.is_open()) {
     while (!chestData.eof()) {
-      getline(chestData, line, ',');
+      std::getline(chestData, line, ',');
       if (line == idStr) {
         getline(chestData, line);
         contents = new Item(std::stoi(line));

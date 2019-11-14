@@ -46,6 +46,8 @@ int main() {
       newGame(h, world);
       loadGame(h, world);
     }
+    std::cout <<"hello " << world[0][0].getName();
+
     std::getline(std::cin, inStr);
     while (true) {
       if (inStr == "exit") {

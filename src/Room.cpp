@@ -262,19 +262,19 @@ void Room::setDoor(Room** world) {
   if(in.is_open()){
     getline(in, readIn, ':');
     while(!in.eof()){
-      if(this->getID() == stoi(readIn)){
+      if(this->getID() == std::stoi(readIn)){
         getline(in, readIn, ':');
-        dir = static_cast<Direction>(stoi(readIn));
-        getline(in, readIn, ':');
+        dir = static_cast<Direction>(std::stoi(readIn));
+        std::getline(in, readIn, ':');
         x = readIn[0] - '0';
         y = readIn[1] - '0';
-        getline(in, readIn);
-        std::get<1>(adjRooms[dir]) = world[x][y].getObj(stoi(readIn));
+        std::getline(in, readIn);
+        std::get<1>(adjRooms[dir]) = world[x][y].getObj(std::stoi(readIn));
       }
       else{
         in.ignore(1000, '\n');
       }
-      getline(in, readIn, ':');
+      std::getline(in, readIn, ':');
     }
   }
   else {
