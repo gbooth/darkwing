@@ -15,6 +15,7 @@
 #include <list>
 #include "RoomObject.h"
 #include "Villager.h"
+#include "Command.h"
 /**
  *This class will provide to the Hero or player, all the conditions that he is involve with ,during the whole game as: Weapons,Enemy identifier,position,
  *Directions,inventory.
@@ -92,10 +93,12 @@ class Hero : public Person {
   void help();
  private:
   void setRef();
+  void setCommand();
   std::map<int, std::pair<Item*, int>>  inventory;
   Item* weaponOfChoice;
   std::pair<uint, uint> pos;
   std::map<std::string, int> refs;
+  std::map<std::string, Command> cRefs;
 };
 
 #endif // HERO_H

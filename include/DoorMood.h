@@ -8,6 +8,6 @@
 /**
  *This class gives the state of the Door during the game.
  */
-enum DoorMood {open, blocked, locked};
+enum DoorMood {ajar, blocked, locked};
 
 #endif // DOORMOOD_INCLUDED

@@ -45,7 +45,7 @@ Room::Room(int id) : Object{id} {
       tempY = readIn[1] - '0';
       switch (readIn[2]) {
       case 't':
-        tempDoor = open;
+        tempDoor = ajar;
         break;
       case 'l':
         tempDoor = locked;
@@ -199,7 +199,7 @@ std::pair<int, int> Room::getDirection(Direction d) {
     case blocked:
       if(std::get<1>(adjRooms[d])) {
         if(std::get<1>(adjRooms[d])->getState()) {
-          this->setDoorMood(d, open);
+          this->setDoorMood(d, ajar);
           return std::make_pair(std::get<2>(adjRooms[d]), std::get<3>(adjRooms[d]));
         }
         else {
@@ -209,7 +209,7 @@ std::pair<int, int> Room::getDirection(Direction d) {
     case locked:
       if(std::get<1>(adjRooms[d])){
         if(std::get<1>(adjRooms[d])->getState()){
-          this->setDoorMood(d, open);
+          this->setDoorMood(d, ajar);
           return std::make_pair(std::get<2>(adjRooms[d]), std::get<3>(adjRooms[d]));
         }
         else {
