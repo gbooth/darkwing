@@ -1,3 +1,9 @@
+/**
+ *@autor Ben Hunt
+ * @date 2019-11
+ */
+
+
 #include "Object.h"
 #include"Exceptions.h"
 #include<iostream>
