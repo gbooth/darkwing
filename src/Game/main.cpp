@@ -15,7 +15,7 @@ void loadGame(Hero* const, Room** const);
 void exitGame();
 
 int main() {
-  std::string inStr;
+  std::string inStr = "";
   Hero h;
   Room** world = nullptr;
   while (true) {
@@ -42,14 +42,15 @@ int main() {
                 << "nt\nduck. The duck swoops a wooden wing down and picks up "
                 << "the wizard\nand storms out of the castle leaving a giant d"
                 << "uck-sized hole in the\nwall. As Duck Norris, you stand awes"
-                << "truck in the WIZARD ROOM you must\nsave your master.\n";
+                << "truck in the wizard room you must\nsave your master.\n\n";
     }
 //    else {
 //      newGame(h, world);
 //      loadGame(h, world);
 //    }
-    std::getline(std::cin, inStr);
+    std::cout << "what will you do now?(type for help for commands)\n";
     while (true) {
+      std::getline(std::cin, inStr);
       if (inStr == "exit") {
         for (int i = 0; i < 5; i++){
           delete [] world[i];
@@ -59,7 +60,6 @@ int main() {
         break;
       }
       h.command(inStr, world);
-      getline(std::cin, inStr);
     }
   }
   return 0;
