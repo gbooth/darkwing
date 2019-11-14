@@ -19,7 +19,7 @@ Save::Save(Hero* const h, Room** const r) {
   //all the attributes of a hero
   heroSaveMap[HP] = std::to_string(h->getHealth());
   heroSaveMap[pos] = posit;
-  heroSaveMap[inv] = invStr;
+  heroSaveMap[invty] = invStr;
   heroSaveMap[equipWep] = h->getWeapon()->getName();
 
   //all the attributes of a room and its objects

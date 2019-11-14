@@ -9,6 +9,6 @@
 /**
  *This class will give the conditions for the player during the game.
  */
-enum HeroAtt {HP, pos, inv, equipWep};
+enum HeroAtt {HP, pos, invnty, equipWep};
 
 #endif // HEROATT_H_INCLUDED
