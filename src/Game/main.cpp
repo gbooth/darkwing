@@ -14,10 +14,9 @@ void loadGame(Hero* const, Room** const);
 void exitGame();
 
 int main() {
-  std::string inStr;
+  std::string inStr = "";
   Hero* h = nullptr;
   Room** world = nullptr;
-
   while (true) {
     if (titleScreen() == 1) {
       newGame(h, world);
@@ -43,78 +42,78 @@ int main() {
                 << "the wizard\nand storms out of the castle leaving a giant d"
                 << "uck-sized hole in the\nwall. As Duck Norris, you must save"
                 << " your master.\n";
+    } else {
+      newGame(h, world);
+      loadGame(h, world);
     }
-      else {
-        newGame(h, world);
-        loadGame(h, world);
+    std::getline(std::cin, inStr);
+    while (true) {
+      if (inStr == "exit") {
+        delete h;
+        for (int i = 0; i < 5; i++)
+          delete [] world[i];
+        delete world;
+        break;
       }
+      h->command(inStr, world);
       getline(std::cin, inStr);
-      while (true) {
-        if (inStr == "exit") {
-          delete h;
-          for (int i = 0; i < 5; i++)
-            delete [] world[i];
-          delete world;
-          break;
-        }
-        h->command(inStr, world);
-        getline(std::cin, inStr);
-      }
     }
   }
+}
 
-  int titleScreen() {
-    int in;
-    while (true) {
-      std::cout << "  _____          _   _       _____                       " << std::endl
-                << " / ____|        | | | |     / ____|                      " << std::endl
-                << "| |     __ _ ___| |_| | ___| (___   ___ __ _ _ __   ___  " << std::endl
-                << "| |    / _` / __| __| |/ _ \\___ \ / __/ _` | ' _\ / _ \ " << std::endl
-                << "| |___| (_| \__ \ |_| |  __/____) | (_| (_| | |_) |  __/ " << std::endl
-                << " \_____\__,_|___/\__|_|\___|_____/ \___\__,_| .__/ \___| " << std::endl
-                << "                                            | |          " << std::endl
-                << "                                            |_|          " << std::endl;
+int titleScreen() {
+  int in;
+  while (true) {
+    std::cout << "  _____          _   _       _____                       " <<
+              std::endl
+              << " / ____|        | | | |     / ____|                      " << std::endl
+              << "| |     __ _ ___| |_| | ___| (___   ___ __ _ _ __   ___  " << std::endl
+              << "| |    / _` / __| __| |/ _ \\___ \ / __/ _` | ' _\ / _ \ " << std::endl
+              << "| |___| (_| \__ \ |_| |  __/____) | (_| (_| | |_) |  __/ " << std::endl
+              << " \_____\__,_|___/\__|_|\___|_____/ \___\__,_| .__/ \___| " << std::endl
+              << "                                            | |          " << std::endl
+              << "                                            |_|          " << std::endl;
     std::cout << std::setw(22) << "1 - New Game" << std::endl
               << std::setw(22) << "2 - Load Game" << std::endl
               << std::setw(22) << "3 - Exit Game" << std:: endl;
-      std::cout << "Selection -- ";
-      std::cin >> in;
-      switch (in) {
-      case 1:
-        return 1;
-      case 2:
-        return 2;
-      case 3:
-        exitGame();
-      default:
-        std::cout << "invalid selection";
-        system("PAUSE");
-        break;
-      }
-      clearScreen();
+    std::cout << "Selection -- ";
+    std::cin >> in;
+    switch (in) {
+    case 1:
+      return 1;
+    case 2:
+      return 2;
+    case 3:
+      exitGame();
+    default:
+      std::cout << "invalid selection";
+      system("PAUSE");
+      break;
     }
+    clearScreen();
   }
+}
 
-  void clearScreen() {
+void clearScreen() {
   std::cout << std::flush;
-    system("CLS");
-  }
+  system("CLS");
+}
 
-  void newGame(Hero* h, Room** world) {
-    h = new Hero;
-    world = new Room*[5];
-    for (int i = 0; i < 5; i++)
-      world[i] = new Room[5] {i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
-  for(int i = 0; i < 5; i++)
-    for(int j = 0; j < 5; j++)
+void newGame(Hero* h, Room** world) {
+  h = new Hero;
+  world = new Room*[5];
+  for (int i = 0; i < 5; i++)
+    world[i] = new Room[5] {i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
+  for (int i = 0; i < 5; i++)
+    for (int j = 0; j < 5; j++)
       world[i][j].setDoor(world);
-  }
+}
 
 void loadGame(Hero* const h, Room** const world) {
-    Load l;
-    l.loadGame(h, world);
-  }
+//    Load l;
+//    l.loadGame(h, world);
+}
 
-  void exitGame() {
-    exit(0);
-  }
+void exitGame() {
+  exit(0);
+}

@@ -16,7 +16,7 @@ Chest::Chest(int id): RoomObject{id} {
       getline(chestData, line, ',');
       if (line == idStr) {
         getline(chestData, line);
-        contents = new Item(stoi(line));
+        contents = new Item(std::stoi(line));
         break;
       } else {
         chestData.ignore(1000, '\n');

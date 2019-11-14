@@ -5,6 +5,7 @@
 #include <Hero.h>
 #include <string>
 #include <utility>
+#include <fstream>
 #include <Exceptions.h>
 #include <iostream>
 #include <iomanip>
@@ -70,14 +71,6 @@ void Hero::setPosition (std::pair<uint, uint> posi) {
 std::pair<uint, uint> Hero::getPos() {
   return pos;
 }
-  for (auto it: inventory) {
-    delete it.second.first;
-  }
-}
-  if (inventory.find(w->getID()) != inventory.end() && (w->getID()/100 % 10 == 2))
-    weaponOfChoice = w;
-  else
-    std::cout << "You don't have this weapon" << std::endl;
 
 void Hero::attack(Person* npc) {
   int npcHealth = npc->getHealth();
@@ -277,10 +270,10 @@ void Hero::command(std::string s, Room** world) {
     this->getInventory();
     break;
   }
-  case Command::save: {
-    Save s(h, r);
-    s.saveGame();
-  }
+//  case Command::save: {
+//    Save s(*this, world);
+//    s.saveGame();
+//  }
   default: {
     std::cout << "not a possible command" << std::endl;
     break;
@@ -328,11 +321,14 @@ void Hero::setRef() {
   if (file.is_open()) {
     while (!file.eof()) {
       getline(file, line, ':');
-      idVar = stoi(line);
-      getline(file, line, ':');
+      idVar = std::stoi(line);
+      std::getline(file, line, ':');
+      name = line;
       refs[name] = idVar;
       file.ignore(1000, '\n');
     }
+  } else{
+    std::cout <<"file not open" << std::endl;
   }
 }
 
