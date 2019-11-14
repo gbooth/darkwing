@@ -23,18 +23,26 @@ class Lock : public RoomObject {
   *@Parameter State stat which give us the state of the lock.
   *@Parameter lockValue which give the verification for the lock.
   */
-
   Lock (int);
+
+  /**
+   *Default Destructor
+   */
   virtual ~Lock();
 
+  /**
+   *This function will give the option to continue if the key identifier is the right one .
+   * @parameter key will take to the identifier ,which will access to continue.
+   */
   void unlock(Item key);
 
  private:
-  /** This private variable is  the key to have the right value for the player to open the specific object.
+  /** This private variable is the key to have the right value for the player to open the specific object.
    */
   int lockValue;
 
   /** This function verify if the player is using the right key.
+  *@return true is the key and lock matches.
   */
   bool checkKey(Item key);
 };
