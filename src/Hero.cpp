@@ -14,7 +14,6 @@ Hero::Hero(): Person{3101} {
   this->setRef();
   this->setCommand();
 }
-
 Hero::~Hero() {
   for (auto it: inventory) {
     delete it.second.first;
