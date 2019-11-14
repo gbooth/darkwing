@@ -1,3 +1,7 @@
+/**
+ *@autor Gavin Booth
+ * @date 2019-11
+ */
 #include "Load.h"
 #include "Exceptions.h"
 #include<iostream>
