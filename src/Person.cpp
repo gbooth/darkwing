@@ -1,5 +1,5 @@
-/**author  Jorge Aceytuno id : 001003732
- * @date 2019 -11-05
+/**author  Jorge Aceytuno
+ * @date 2019 -11
  */
 
 #include "Person.h"
