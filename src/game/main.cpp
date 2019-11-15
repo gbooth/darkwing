@@ -1,6 +1,7 @@
 #include "Room.h"
 #include "Hero.h"
 #include "Load.h"
+#include "Enemy.h"
 #include <stdlib.h>
 #include <cstdlib>
 #include <string>
