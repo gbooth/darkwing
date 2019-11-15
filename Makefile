@@ -1,6 +1,6 @@
 PROJECT_DIR = Navi
 PROGRAM_TEST = testGame
-PROGRAM_GAME = Duckwing
+PROGRAM_GAME = Darkwing
 
 CXX=g++
 CXXFLAGS= -std=c++11 -g -fprofile-arcs -ftest-coverage
