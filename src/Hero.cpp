@@ -57,7 +57,7 @@ void Hero::mv(Direction a, Room** world) {
     break;
   default:
     pos = world[pos.first][pos.second].getDirection(a);
-    std::cout << world[pos.first][pos.second].getMessage();
+    std::cout << "You are in the " << world[pos.first][pos.second].getMessage() << std::endl;
     break;
   }
 }
