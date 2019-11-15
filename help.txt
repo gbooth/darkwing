@@ -1,6 +1,6 @@
 Command							                           Operand
 ------------------------------------------------------------------------------------------
-move					                             north/south/east/west
+go					                             north/south/east/west
 use							      name of potion or key to use
 inspect                            name of entity to inspect(room to inspect current room)
 inventory                                                                       no operand
