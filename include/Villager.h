@@ -26,6 +26,14 @@ class Villager : public Person {
   * the talking aspect of a villager
   */
   void response();
+
+  /**
+   *gives a riddle
+   *
+   */
+  bool riddle();
+
+
 };
 
 #endif // VILLAGER_H
