@@ -46,7 +46,7 @@ void Hero::mv(Direction a, Room** world) {
     break;
   case -2:
     if (pos.first == 3 && pos.second == 1) {
-      std::cout << "you're in the forest" <<std::endl;
+      std::cout << "You are in the forest." <<std::endl;
       break;
     } else {
       std::cout << "The Door is locked" << std::endl;
