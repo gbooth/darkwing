@@ -3,12 +3,13 @@
  *@date 2019-11
  */
 #include <Hero.h>
+#include <Exceptions.h>
 #include <string>
 #include <utility>
 #include <fstream>
-#include <Exceptions.h>
 #include <iostream>
 #include <iomanip>
+#include <algorithm>
 
 Hero::Hero(): Person{3101} {
   pos = std::make_pair(0, 0);
@@ -57,7 +58,8 @@ void Hero::mv(Direction a, Room** world) {
     break;
   default:
     pos = world[pos.first][pos.second].getDirection(a);
-    std::cout << "You are in the " << world[pos.first][pos.second].getMessage() << std::endl;
+    std::cout << "You are in the " << world[pos.first][pos.second].getMessage() <<
+              std::endl;
     break;
   }
 }
@@ -101,6 +103,7 @@ std::list<std::pair<int, int>> Hero::invSave() {
 }
 
 void Hero::command(std::string s, Room** world) {
+  std::transform(s.begin(), s.end(), s.begin(), ::tolower);
   std::string cmd = "", op = "";
   int i = this->getPos().first;
   int j = this->getPos().second;
@@ -317,6 +320,7 @@ void Hero::getInventory() {
 }
 
 void Hero::addInventory(Item* a) {
+  std::cout << a->getName() << " has been added to your inventory!" << std::endl;
   int itemID = a->getID();
   if (inventory.find(itemID) == inventory.end())
     inventory[itemID] = std::make_pair(a, 1);
@@ -382,6 +386,7 @@ void Hero::useKey(Item* a, Lock* l) {
 void Hero::talk(Villager* v) {
   if (v->getID() == 3208 && inventory.find(4303) == inventory.end()) {
     if (v->riddle()) {
+      std::cout << "Correct! Here, take this map to the woods. You'll likely get lost without it." << std::endl;
       Item* mapKey = new Item(4303);
       this->addInventory(mapKey);
     } else {
@@ -390,8 +395,9 @@ void Hero::talk(Villager* v) {
       exit(0);
     }
 
+  } else {
+    v->response();
   }
-  v->response();
 }
 
 void Hero::help() {

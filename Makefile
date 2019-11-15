@@ -8,7 +8,7 @@ CXXFLAGS= -std=c++11 -g -fprofile-arcs -ftest-coverage
 LINKFLAGS= -lgtest
 
 SRC_DIR = src
-GAME_SRC_DIR = src/Game
+GAME_SRC_DIR = src/game
 
 TEST_DIR = test
 
