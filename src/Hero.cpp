@@ -317,6 +317,7 @@ void Hero::getInventory() {
 }
 
 void Hero::addInventory(Item* a) {
+  std::cout << a->getName() << " has been added to your inventory!" << std::endl;
   int itemID = a->getID();
   if (inventory.find(itemID) == inventory.end())
     inventory[itemID] = std::make_pair(a, 1);
@@ -382,6 +383,7 @@ void Hero::useKey(Item* a, Lock* l) {
 void Hero::talk(Villager* v) {
   if (v->getID() == 3208 && inventory.find(4303) == inventory.end()) {
     if (v->riddle()) {
+      std::cout << "Correct! Here, take this map to the woods. You'll likely get lost without it." << std::endl;
       Item* mapKey = new Item(4303);
       this->addInventory(mapKey);
     } else {
@@ -390,8 +392,9 @@ void Hero::talk(Villager* v) {
       exit(0);
     }
 
+  } else {
+    v->response();
   }
-  v->response();
 }
 
 void Hero::help() {
