@@ -1,5 +1,5 @@
 1001:wizard room:the home of the renowned wizard whom you serve loyally
-1002:throne:an ornate and exquisite masterpiece of luxury and power befitting of a king
+1002:throne:an ornate and exquisite masterpiece of luxury and power befitting of a king. You see 3 people huddle around a table.  You know them the duke,with a spikey chest in the corner. 
 1003:lake:a giant lake that may hold the loch ness monster 
 1004:cavernEntrance:a dark and ravaged entrance to a cavern deep inside of the mountain with skeletons spewd about the ways
 1005:undergoundLake:a large lake spans out in front of you
@@ -52,7 +52,13 @@
 4101:major health potion:a pretty nice potion capable of healing 5hp
 4102:minor health potion:an ok health potion capable of healing 3ish hp
 2101:golden chest:a large chest with golden filigry about the handle
-2102:chest:a boring old chest but perhaps there's treasure inside
+2102:jade chest:a boring old chest but perhaps there's treasure inside
+2103:blue chest:a chest as blue as the sea?
+2104:orange chest:a chest as orange an...orange
+2105:spikey chest:a super spikey chest...like a porcupine
+2106:sand chest:a very sandy and dirty chest
+2107:small chest: a really tiny chest
+2108:major chest:massive chest the size of your...house
 4201:sword:its a sword...kinda sharp..the pointy end goes away from you
 4202:golden sword:its  super duper nice sword with gold all around it
 4203:dagger:meh...its a dagger what more can you ask for?

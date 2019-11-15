@@ -1,6 +1,8 @@
 #include "Villager.h"
 #include "Exceptions.h"
+#include <string>
 #include <iostream>
+#include <ctype.h>
 
 Villager::Villager(int idnty)
   :Person{idnty} {
@@ -37,9 +39,10 @@ void Villager::response() {
     std::cout << "Name's " << name <<
               ", not many people like me. I hope you're different.\n";
     break;
-  case 3208:
-    std::cout << "I'm " << name << ", Hope you pay taxes on time.\n";
+  case 3208: {
+    std::cout << "I'm " << name << ". I love the lake county\n";
     break;
+  }
   case 3209:
     std::cout << "You can call me " << name <<
               ", I got these here shoes from the demon infested Croc swamp. Mighty dangerous...\n";
@@ -49,4 +52,20 @@ void Villager::response() {
               "fact: a gray whale make 1 of the largest migrations of any mammal.\n";
     break;
   }
+}
+
+bool Villager::riddle() {
+  std::string guess;
+  std::string ans = "chuck norris";
+  std::string rdl = "Who are you named after in the world up above?\n";
+  std::cout << rdl;
+  std::getline(std::cin, guess);
+  std::string newGuess ="";
+  for (uint i = 0 ; i < guess.size(); i++) {
+    newGuess += tolower(guess[i]);
+  }
+  if (newGuess == ans)
+    return true;
+  else
+    return false;
 }

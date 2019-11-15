@@ -174,7 +174,8 @@ void Hero::command(std::string s, Room** world) {
       }
       case Command::flip: {
         auto it = refs.find(op);
-        if (it != refs.end() && world[i][j].checkForObj(it->second)) {
+        if (it->second/100 == 23 &&  it != refs.end()
+            && world[i][j].checkForObj(it->second)) {
           RoomObject* const robj = world[i][j].getObj(it->second);
           this->interact(robj);
         } else {
@@ -198,11 +199,11 @@ void Hero::command(std::string s, Room** world) {
               std::cout << "you are not in that area" << std::endl;
             }
           } else if (it->second/1000 == 2) { //its a roomobject
-            if(world[i][j].checkForObj(it->second)){
+            if (world[i][j].checkForObj(it->second)) {
               RoomObject* r = world[i][j].getObj(it->second);
               Object* a = r;
               std::cout << this->inspect(a) << std::endl;
-            }else{
+            } else {
               std::cout << "this "<< op << " is not in the room\n";
             }
             break;
@@ -220,9 +221,14 @@ void Hero::command(std::string s, Room** world) {
       }
       case Command::attack: {
         auto it = refs.find(op);
-        if (it != refs.end() && world[i][j].checkForNPC(it->second)) {
+        if (it->second/1000 == 3 it != refs.end()
+            && world[i][j].checkForNPC(it->second)) {
           Person* const eny = world[i][j].getNPC(it->second);
           this->attack(eny);
+        } else if (it->second/1000 == 1 || it->second /1000 == 2 || it->second == 4) {
+          std::cout << "your " << weaponOfChoice.getName() <<
+                    " bounces off the object and hits you in the face.\n";
+          this->setHealth(this->getHealth() - 1);
         } else {
           std::cout << op << " is not in the area." << std::endl;
         }
