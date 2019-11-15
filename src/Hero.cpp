@@ -3,12 +3,13 @@
  *@date 2019-11
  */
 #include <Hero.h>
+#include <Exceptions.h>
 #include <string>
 #include <utility>
 #include <fstream>
-#include <Exceptions.h>
 #include <iostream>
 #include <iomanip>
+#include <algorithm>
 
 Hero::Hero(): Person{3101} {
   pos = std::make_pair(0, 0);
@@ -46,7 +47,7 @@ void Hero::mv(Direction a, Room** world) {
     break;
   case -2:
     if (pos.first == 3 && pos.second == 1) {
-      std::cout << "you're in the forest" <<std::endl;
+      std::cout << "You are in the forest." <<std::endl;
       break;
     } else {
       std::cout << "The Door is locked" << std::endl;
@@ -102,6 +103,7 @@ std::list<std::pair<int, int>> Hero::invSave() {
 }
 
 void Hero::command(std::string s, Room** world) {
+  std::transform(s.begin(), s.end(), s.begin(), ::tolower);
   std::string cmd = "", op = "";
   int i = this->getPos().first;
   int j = this->getPos().second;
@@ -185,6 +187,10 @@ void Hero::command(std::string s, Room** world) {
         break;
       }
       case Command::inspect: {
+        if(op == "room") {
+          std::cout << this->inspect(&world[i][j]) << std::endl;
+          break;
+        }
         auto it = refs.find(op);
         if (it != refs.end()) {
           if (it->second/100 == 32) { //its a villager
@@ -192,13 +198,6 @@ void Hero::command(std::string s, Room** world) {
             Object* o = p;
             std::cout << this->inspect(o) << std::endl;
             break;
-          } else if (it->second/1000 == 1) { // its a room
-            if (op == world[i][j].getName()) {
-              std::cout << world[i][j].getDesc() << std::endl;
-              break;
-            } else {
-              std::cout << "you are not in that area" << std::endl;
-            }
           } else if (it->second/1000 == 2) { //its a roomobject
             if (world[i][j].checkForObj(it->second)) {
               RoomObject* r = world[i][j].getObj(it->second);
@@ -321,6 +320,7 @@ void Hero::getInventory() {
 }
 
 void Hero::addInventory(Item* a) {
+  std::cout << a->getName() << " has been added to your inventory!" << std::endl;
   int itemID = a->getID();
   if (inventory.find(itemID) == inventory.end())
     inventory[itemID] = std::make_pair(a, 1);
@@ -350,6 +350,10 @@ void Hero::setRef() {
   if (file.is_open()) {
     while (!file.eof()) {
       std::getline(file, line, ':');
+      if(std::stoi(line)/1000 == 1){
+        file.ignore(1000, '\n');
+        continue;
+      }
       idVar = std::stoi(line);
       std::getline(file, line, ':');
       name = line;
@@ -382,6 +386,7 @@ void Hero::useKey(Item* a, Lock* l) {
 void Hero::talk(Villager* v) {
   if (v->getID() == 3208 && inventory.find(4303) == inventory.end()) {
     if (v->riddle()) {
+      std::cout << "Correct! Here, take this map to the woods. You'll likely get lost without it." << std::endl;
       Item* mapKey = new Item(4303);
       this->addInventory(mapKey);
     } else {
@@ -390,8 +395,9 @@ void Hero::talk(Villager* v) {
       exit(0);
     }
 
+  } else {
+    v->response();
   }
-  v->response();
 }
 
 void Hero::help() {
