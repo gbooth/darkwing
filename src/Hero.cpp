@@ -184,6 +184,10 @@ void Hero::command(std::string s, Room** world) {
         break;
       }
       case Command::inspect: {
+        if(op == "room") {
+          std::cout << this->inspect(&world[i][j]) << std::endl;
+          break;
+        }
         auto it = refs.find(op);
         if (it != refs.end()) {
           if (it->second/100 == 32) { //its a villager
@@ -191,13 +195,6 @@ void Hero::command(std::string s, Room** world) {
             Object* o = p;
             std::cout << this->inspect(o) << std::endl;
             break;
-          } else if (it->second/1000 == 1) { // its a room
-            if (op == world[i][j].getName()) {
-              std::cout << world[i][j].getDesc() << std::endl;
-              break;
-            } else {
-              std::cout << "you are not in that area" << std::endl;
-            }
           } else if (it->second/1000 == 2) { //its a roomobject
             if (world[i][j].checkForObj(it->second)) {
               RoomObject* r = world[i][j].getObj(it->second);
@@ -349,6 +346,10 @@ void Hero::setRef() {
   if (file.is_open()) {
     while (!file.eof()) {
       std::getline(file, line, ':');
+      if(std::stoi(line)/1000 == 1){
+        file.ignore(1000, '\n');
+        continue;
+      }
       idVar = std::stoi(line);
       std::getline(file, line, ':');
       name = line;
