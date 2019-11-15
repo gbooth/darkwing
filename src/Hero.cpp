@@ -129,6 +129,8 @@ void Hero::command(std::string s, Room** world) {
                   this->useKey(itr->second.first, l);
                   break;
                 }
+              } else {
+                std::cout << "this key can't be used right now\n";
               }
             } else {
               if (op == "blue key") {
@@ -141,6 +143,8 @@ void Hero::command(std::string s, Room** world) {
                     this->useKey(itr->second.first, l);
                     break;
                   }
+                } else {
+                  std::cout << "this key can't be used right now\n";
                 }
               } else {
                 if (op == "brown key") {
@@ -153,6 +157,8 @@ void Hero::command(std::string s, Room** world) {
                       this->useKey(itr->second.first, l);
                       break;
                     }
+                  } else {
+                    std::cout << "this key can't be used right now\n";
                   }
                 } else {
                   std::cout<<"not a usable item" << std::endl;
@@ -191,11 +197,14 @@ void Hero::command(std::string s, Room** world) {
             } else {
               std::cout << "you are not in that area" << std::endl;
             }
-
           } else if (it->second/1000 == 2) { //its a roomobject
-            RoomObject* r = world[i][j].getObj(it->second);
-            Object* a = r;
-            std::cout << this->inspect(a) << std::endl;
+            if(world[i][j].checkForObj(it->second)){
+              RoomObject* r = world[i][j].getObj(it->second);
+              Object* a = r;
+              std::cout << this->inspect(a) << std::endl;
+            }else{
+              std::cout << "this "<< op << " is not in the room\n";
+            }
             break;
           } else { //its an item
             auto itr = inventory.find(it->second);
@@ -267,6 +276,8 @@ void Hero::command(std::string s, Room** world) {
         if (it != refs.end()) {
           auto ptr = inventory.find(it->second);
           setWeapon(ptr->second.first);
+          std::cout<<"your weapon of choice is now: " << this->getWeapon()->getName() <<
+                   std::endl;
         }
         break;
       }
@@ -287,7 +298,7 @@ void Hero::command(std::string s, Room** world) {
         break;
       }
       }
-    }else{
+    } else {
       std::cout << "not a valid command" << std::endl;
     }
   }
@@ -331,12 +342,13 @@ void Hero::setRef() {
   file.open("identifierMap.csv");
   if (file.is_open()) {
     while (!file.eof()) {
-      getline(file, line, ':');
+      std::getline(file, line, ':');
       idVar = std::stoi(line);
       std::getline(file, line, ':');
       name = line;
       refs[name] = idVar;
-      file.ignore(1000, '\n');
+      std::getline(file, line);
+      //file.ignore(1000, '\n');
     }
   } else {
     std::cout <<"file not open" << std::endl;
@@ -361,6 +373,17 @@ void Hero::useKey(Item* a, Lock* l) {
 }
 
 void Hero::talk(Villager* v) {
+  if (v->getID() == 3208 && inventory.find(4303) == inventory.end()) {
+    if (v->riddle()) {
+      Item* mapKey = new Item(4303);
+      this->addInventory(mapKey);
+    } else {
+      std::cout << v->getName() <<
+                " looks at you with great disappointment. A wave of his hands opens the ground beneath your flippers and you die!\n";
+      exit(0);
+    }
+
+  }
   v->response();
 }
 

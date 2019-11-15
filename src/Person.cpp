@@ -17,12 +17,12 @@ Person::Person(int ident)
   objData.open("personStats.csv");
   if (objData.is_open()) {
     while (!objData.eof()) {
-      getline(objData, line, ',');
+      std::getline(objData, line, ',');
       if (line == idStr) {
-        getline(objData, line, ',');
-        damageValue = stoi(line);
-        getline(objData, line);
-        health = stoi(line);
+        std::getline(objData, line, ',');
+        damageValue = std::stoi(line);
+        std::getline(objData, line);
+        health = std::stoi(line);
         break;
       } else {
         objData.ignore(1000, '\n');
