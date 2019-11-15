@@ -24,7 +24,7 @@ STATIC_ANALYSIS = cppcheck
 
 STYLE_CHECK = cpplint.py
 
-#DOXY_DIR = docs/code
+DOXY_DIR = docs/code
 
 .PHONY: all
 all: tests memory coverage docs static style
@@ -53,9 +53,8 @@ $(PROGRAM_GAME): $(GAME_SRC_DIR) $(SRC_DIR)
 compile: $(PROGRAM_GAME)
 	$(PROGRAM_GAME)
 
-test: $(PROGRAM_TEST)
+tests: $(PROGRAM_TEST)
 	$(PROGRAM_TEST)
-	#diff -s $(TEST_DIR)/$(TEST_OUTPUT_FILE) $(TEST_DIR)/output/displayDottedFaces-expected.txt
 
 memory: $(PROGRAM_TEST)
 	valgrind --tool=memcheck --leak-check=yes $(PROGRAM_TEST)

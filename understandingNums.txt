@@ -1,0 +1,6 @@
+		thousands	Hundreds		tens	ones
+room		1		0			0-2	0-5
+RoomObject	2		1-3 chest/lock/lever	0-9	1-9
+Person		3		1-3 hero/villager/enemy	0-9	1-9
+Item		4		1-3 potion/weapon/key	0-9	1-9		
+
