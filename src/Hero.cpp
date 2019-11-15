@@ -221,12 +221,12 @@ void Hero::command(std::string s, Room** world) {
       }
       case Command::attack: {
         auto it = refs.find(op);
-        if (it->second/1000 == 3 it != refs.end()
+        if (it->second/1000 == 3 && it != refs.end()
             && world[i][j].checkForNPC(it->second)) {
           Person* const eny = world[i][j].getNPC(it->second);
           this->attack(eny);
         } else if (it->second/1000 == 1 || it->second /1000 == 2 || it->second == 4) {
-          std::cout << "your " << weaponOfChoice.getName() <<
+          std::cout << "your " << weaponOfChoice->getName() <<
                     " bounces off the object and hits you in the face.\n";
           this->setHealth(this->getHealth() - 1);
         } else {
