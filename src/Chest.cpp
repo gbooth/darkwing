@@ -31,7 +31,7 @@ Chest::Chest(int id): RoomObject{id} {
 }
 
 Chest::~Chest() {
-  if(contents)
+  if (contents)
     delete contents;
 }
 
