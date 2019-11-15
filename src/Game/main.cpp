@@ -15,7 +15,7 @@ void loadGame(Hero* const, Room** const);
 void exitGame();
 
 int main() {
-  std::string inStr = "";
+  std::string inStr;
   Hero h;
   Room** world = nullptr;
   while (true) {
@@ -49,8 +49,11 @@ int main() {
 //      loadGame(h, world);
 //    }
     std::cout << "what will you do now?(type for help for commands)\n";
+    std::cin.ignore(1000,'\n');
     while (true) {
+      std::cout << "   _  " << std::endl << "__(0)>";
       std::getline(std::cin, inStr);
+      std::cout << R"(\___))" << std::endl;
       if (inStr == "exit") {
         for (int i = 0; i < 5; i++){
           delete [] world[i];
