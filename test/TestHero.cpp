@@ -69,6 +69,10 @@ Lock* m = new Lock(2202);
 Item* a = new Item(4301);
 h.useKey(a,l);
 h.useKey(a,m);
+delete l, m, a;
+l = nullptr;
+m = nullptr;
+a = nullptr;
 }
 
 TEST(TestHero, interactTest){
@@ -77,4 +81,6 @@ RoomObject* r = new Lever(2302);
 RoomObject* s = new Chest(2101);
 h.interact(r);
 h.interact(s);
+delete r,s;
+r = s = nullptr;
 }
