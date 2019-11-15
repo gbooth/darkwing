@@ -3,12 +3,13 @@
  *@date 2019-11
  */
 #include <Hero.h>
+#include <Exceptions.h>
 #include <string>
 #include <utility>
 #include <fstream>
-#include <Exceptions.h>
 #include <iostream>
 #include <iomanip>
+#include <algorithm>
 
 Hero::Hero(): Person{3101} {
   pos = std::make_pair(0, 0);
@@ -101,6 +102,7 @@ std::list<std::pair<int, int>> Hero::invSave() {
 }
 
 void Hero::command(std::string s, Room** world) {
+  std::transform(s.begin(), s.end(), s.begin(), ::tolower);
   std::string cmd = "", op = "";
   int i = this->getPos().first;
   int j = this->getPos().second;
