@@ -24,4 +24,3 @@ void Enemy::attack(Person* hero) {
   else
     std::cout << "your health is now " << hero->getHealth() << "." << std::endl;
 }
-status
