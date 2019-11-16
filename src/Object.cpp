@@ -9,6 +9,7 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include <algorithm>
 
 Object::Object(int ident) {
   id = ident;
@@ -21,6 +22,7 @@ Object::Object(int ident) {
       getline(objData, line, ':');
       if (line == idStr) {
         getline(objData, line, ':');
+        std::transform(line.begin(), line.end(), line.begin(), ::tolower);
         name = line;
         getline(objData, line);
         description = line;
@@ -29,7 +31,7 @@ Object::Object(int ident) {
         objData.ignore(1000, '\n');
       }
       if (line != idStr && objData.eof())
-        throw invalid_id("ERROR: the ID specified is not on file");
+        throw invalid_id("ERROR: the object ID specified is not on file");
     }
     objData.close();
   } else {

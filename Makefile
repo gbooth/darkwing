@@ -1,6 +1,6 @@
 PROJECT_DIR = Navi
 PROGRAM_TEST = testGame
-PROGRAM_GAME = CastleScape
+PROGRAM_GAME = Darkwing
 
 CXX=g++
 CXXFLAGS= -std=c++11 -g -fprofile-arcs -ftest-coverage
@@ -8,7 +8,7 @@ CXXFLAGS= -std=c++11 -g -fprofile-arcs -ftest-coverage
 LINKFLAGS= -lgtest
 
 SRC_DIR = src
-GAME_SRC_DIR = src/Game
+GAME_SRC_DIR = src/game
 
 TEST_DIR = test
 

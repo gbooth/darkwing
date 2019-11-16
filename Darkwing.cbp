@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Darkwing" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Darkwing" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Darkwing" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="include/Chest.h" />
+		<Unit filename="include/Command.h" />
+		<Unit filename="include/Direction.h" />
+		<Unit filename="include/DoorMood.h" />
+		<Unit filename="include/Enemy.h" />
+		<Unit filename="include/Exceptions.h" />
+		<Unit filename="include/Hero.h" />
+		<Unit filename="include/HeroAtt.h" />
+		<Unit filename="include/Item.h" />
+		<Unit filename="include/Lever.h" />
+		<Unit filename="include/Load.h" />
+		<Unit filename="include/Lock.h" />
+		<Unit filename="include/Object.h" />
+		<Unit filename="include/Person.h" />
+		<Unit filename="include/Room.h" />
+		<Unit filename="include/RoomObject.h" />
+		<Unit filename="include/Save.h" />
+		<Unit filename="include/Villager.h" />
+		<Unit filename="src/Chest.cpp" />
+		<Unit filename="src/Enemy.cpp" />
+		<Unit filename="src/Hero.cpp" />
+		<Unit filename="src/Item.cpp" />
+		<Unit filename="src/Lever.cpp" />
+		<Unit filename="src/Load.cpp" />
+		<Unit filename="src/Lock.cpp" />
+		<Unit filename="src/Object.cpp" />
+		<Unit filename="src/Person.cpp" />
+		<Unit filename="src/Room.cpp" />
+		<Unit filename="src/RoomObject.cpp" />
+		<Unit filename="src/Save.cpp" />
+		<Unit filename="src/Villager.cpp" />
+		<Unit filename="src/game/main.cpp" />
+		<Unit filename="test/TestChest.cpp" />
+		<Unit filename="test/TestEnemy.cpp" />
+		<Unit filename="test/TestHero.cpp" />
+		<Unit filename="test/TestItem.cpp" />
+		<Unit filename="test/TestLever.cpp" />
+		<Unit filename="test/TestLock.cpp" />
+		<Unit filename="test/TestObject.cpp" />
+		<Unit filename="test/TestRoom.cpp" />
+		<Unit filename="test/TestRoomObject.cpp" />
+		<Unit filename="test/TestVillager.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
