@@ -16,6 +16,8 @@
 #include "Lever.h"
 #include "DoorMood.h"
 
+class Person;
+
 /**
  * This function gives all the identifiers related with the rooms:
  * checking for Enemies, orientation for the player.checking for objects

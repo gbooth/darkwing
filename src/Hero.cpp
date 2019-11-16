@@ -435,26 +435,26 @@ void Hero::lose(GitGud l, Room** world) {
   switch(l){
     case riddle:{
       std::cout << "You've offended Sirius Quack and he is very serious about "
-                << "that.\n\nGame Over.";
+                << "that.\n\nGame Over.\n";
       break;
     }
     case ducked:{
-      std::cout << "You've been slain by a duck.\n\nGame Over.";
+      std::cout << "You've been slain by a duck.\n\nGame Over.\n";
       break;
     }
     case moronUser:{
       std::cout << "Standing around when fighting a duck can get you killed..."
-                << " and it did.\n\nGame Over.";
+                << " and it did.\n\nGame Over.\n";
       break;
     }
     case stalactite:{
       std::cout << "You've been impaled by a falling stalactite. How unfortuna"
-                << "te.\n\nGame Over.";
+                << "te.\n\nGame Over.\n";
       break;
     }
     case jail:{
       std::cout << "Who would've ever thought attempted murder would land you "
-                << "in jail?\n\nGame Over.";
+                << "in jail?\n\nGame Over.\n";
       break;
     }
   }

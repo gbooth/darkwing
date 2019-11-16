@@ -8,6 +8,8 @@
 #include "Room.h"
 #include <utility>
 
+class Room;
+
 /**
  *This class is derived of the Object class and will provide the person identifier,
  *set the health of the player and will give the damageValue during the game.
