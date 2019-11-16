@@ -13,9 +13,13 @@
 
 Hero::Hero(): Person{3101} {
   pos = std::make_pair(0, 0);
+  Item* fist = new Item(4205);
+  this->addInventory(fist);
+  this->setWeapon(fist);
   this->setRef();
   this->setCommand();
 }
+
 Hero::~Hero() {
   for (auto it: inventory) {
     delete it.second.first;
