@@ -11,11 +11,17 @@
 #include <iomanip>
 #include <algorithm>
 
+const int MAX_HERO_HP = 20;
+
 Hero::Hero(): Person{3101} {
   pos = std::make_pair(0, 0);
+  Item* fist = new Item(4205);
+  this->addInventory(fist);
+  this->setWeapon(fist);
   this->setRef();
   this->setCommand();
 }
+
 Hero::~Hero() {
   for (auto it: inventory) {
     delete it.second.first;
@@ -79,21 +85,22 @@ std::pair<uint, uint> Hero::getPos() {
   return pos;
 }
 
-void Hero::attack(Person* npc) {
+void Hero::attack(Person* npc, Room** world) {
   int npcHealth = npc->getHealth();
   damageValue = 1 + weaponOfChoice->getItemValue();
-  if (npc->getID() / 100 == 32)
-    std::cout << "The villagers take you off to jail for attacking one of them" <<
-              std::endl;
+  if (npc->getID() / 100 == 32) {
+    std::cout << "The villagers take you off to jail for attacking one of them"
+              << std::endl;
+    this->lose(jail, world);
+  }
   if (npc->getID() / 100 == 33) {
     if (npcHealth <= 0) {
       std::cout << "The enemy is dead" << std::endl;
     } else if (npcHealth > 0 && health > 0) {
       npcHealth -= damageValue;
+      std::cout << "You deal " << damageValue << " points of damage.\n";
       npc->setHealth(npcHealth);
-      std::cout << "The enemy still stands" << std::endl;
-    } else
-      std::cout << "You Died" << std::endl;
+    }
   }
 }
 
@@ -244,7 +251,7 @@ void Hero::command(std::string s, Room** world) {
         if (it->second/1000 == 3 && it != refs.end()
             && world[i][j].checkForNPC(it->second)) {
           Person* const eny = world[i][j].getNPC(it->second);
-          this->attack(eny);
+          this->attack(eny, world);
         } else if (it->second/1000 == 1 || it->second /1000 == 2 || it->second == 4) {
           std::cout << "your " << weaponOfChoice->getName() <<
                     " bounces off the object and hits you in the face.\n";
@@ -345,7 +352,8 @@ void Hero::getInventory() {
 }
 
 void Hero::addInventory(Item* a) {
-  std::cout << a->getName() << " has been added to your inventory!" << std::endl;
+   if(a->getID() != 4205)
+   std::cout << a->getName() << " has been added to your inventory!" << std::endl;
   int itemID = a->getID();
   if (inventory.find(itemID) == inventory.end())
     inventory[itemID] = std::make_pair(a, 1);
@@ -355,14 +363,18 @@ void Hero::addInventory(Item* a) {
 
 void Hero::usePotion(Item* a) {
   int potionID = a->getID();
-  if (health == 10) {
+  if (health == MAX_HERO_HP) {
     std::cout << "You are already at full health" << std::endl;
-  } else if (health + a->getItemValue() > 10) {
-    health = 10;
+  } else if (health + a->getItemValue() > MAX_HERO_HP) {
+    health = MAX_HERO_HP;
     inventory[potionID].second--;
   } else {
     health += a->getItemValue();
     inventory[potionID].second--;
+  }
+  if(inventory[potionID].second == 0){
+     delete a;
+     inventory.erase(potionID);
   }
 }
 
@@ -409,7 +421,7 @@ void Hero::useKey(Item* a, Lock* l) {
   l->unlock(a->getID());
 }
 
-void Hero::talk(Villager* v) {
+void Hero::talk(Villager* v, Room** world) {
   if (v->getID() == 3208 && inventory.find(4303) == inventory.end()) {
     if (v->riddle()) {
       std::cout <<
@@ -420,7 +432,7 @@ void Hero::talk(Villager* v) {
     } else {
       std::cout << v->getName() <<
                 " looks at you with great disappointment. A wave of his hands opens the ground beneath your flippers and you die!\n";
-      exit(0);
+      this->lose(riddle, world);
     }
 
   } else {
@@ -451,4 +463,54 @@ void Hero::interact(RoomObject* const r) {
   } else {
     std::cout << "This is not a Chest, nor is it a Lever" << std::endl;
   }
+}
+
+void Hero::lose(GitGud l, Room** world) {
+  switch(l){
+    case riddle:{
+      std::cout << "You've offended Sirius Quack and he is very serious about "
+                << "that.\n\nGame Over.\n";
+      break;
+    }
+    case ducked:{
+      std::cout << "You've been slain by a duck.\n\nGame Over.\n";
+      break;
+    }
+    case moronUser:{
+      std::cout << "Standing around when fighting a duck can get you killed..."
+                << " and it did.\n\nGame Over.\n";
+      break;
+    }
+    case stalactite:{
+      std::cout << "You've been impaled by a falling stalactite. How unfortuna"
+                << "te.\n\nGame Over.\n";
+      break;
+    }
+    case jail:{
+      std::cout << "Who would've ever thought attempted murder would land you "
+                << "in jail?\n\nGame Over.\n";
+      break;
+    }
+  }
+  for (int i = 0; i < 5; i++)
+    delete [] world[i];
+  delete world;
+  world = nullptr;
+  exit(0);
+}
+
+void Hero::win(Room** world) {
+  std::cout << "As you stike your final blow, Firequacker shrieks a terrible r"
+            << "oar quack and falls to the floor. You rush over to free your c"
+            << "aptive mentor in the corner of the chamber. As you help him to"
+            << " his feet you both notice Firequacker has transformed back int"
+            << "o a wooden duck. \n\n\"Thank you for freeing me Duck Norris.\""
+            << " the wizard coughs as he stumbles over to Firequacker. \n\n\"H"
+            << "ow big do you think we can make him this time Norris?\" asks t"
+            << "he wizard as he picks Firequacker up from the cave floor";
+  for (int i = 0; i < 5; i++) 
+    delete [] world[i];
+  delete world;
+  world = nullptr;
+  exit(0);
 }

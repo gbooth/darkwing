@@ -17,9 +17,7 @@
 #include "Villager.h"
 #include "Command.h"
 #include "Save.h"
-
- const int MAX_HEALTH = 20;
-
+#include "GitGud.h"
 /**
  *This class will provide to the Hero or player, all the conditions that he is involve with ,during the whole game as: Weapons,Enemy identifier,position,
  *Directions,inventory.
@@ -41,7 +39,7 @@ class Hero : public Person {
    *This function define the npc by the hero.
    * @parameter represent the npc with be related with the hero.
    */
-  void attack(Person*);
+  void attack(Person*, Room**);
 
   /**
    *This function give the description of the object selected by the hero.
@@ -91,9 +89,11 @@ class Hero : public Person {
   void addInventory(Item*);
   void usePotion(Item*);
   void useKey(Item*, Lock*);
-  void talk(Villager*);
+  void talk(Villager*, Room**);
   void command(std::string, Room**);
   void interact(RoomObject* const);
+  void lose(GitGud, Room**);
+  void win(Room**);
   void help();
  private:
   void setRef();

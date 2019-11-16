@@ -3,8 +3,8 @@
  * @date 2019-11
  */
 
-#ifndef DOORMOOD_INCLUDED
-#define DOORMOOD_INCLUDED
+#ifndef DOORMOOD_H_INCLUDED
+#define DOORMOOD_H_INCLUDED
 /**
  *This class gives the state of the Door during the game.
  */
