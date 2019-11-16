@@ -1,11 +1,15 @@
 /**
- *@autor Ben Hunt
+ *@author Ben Hunt
  *@date 2019-11
  */
 
 #ifndef LEVER_H
 #define LEVER_H
 #include "RoomObject.h"
+
+/**
+ *This class gives the identifier for the levers
+ */
 
 
 class Lever : public RoomObject {
