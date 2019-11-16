@@ -211,7 +211,7 @@ void Hero::command(std::string s, Room** world) {
             auto itr = inventory.find(it->second);
             if (itr!= inventory.end()) {
               Object* pt = itr->second.first; //item*
-              this->inspect(pt);
+              std::cout<<this->inspect(pt) << std::endl;
             }
           }
         } else {
