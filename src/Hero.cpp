@@ -328,7 +328,8 @@ void Hero::getInventory() {
 }
 
 void Hero::addInventory(Item* a) {
-  std::cout << a->getName() << " has been added to your inventory!" << std::endl;
+   if(a->getID() != 4205)
+   std::cout << a->getName() << " has been added to your inventory!" << std::endl;
   int itemID = a->getID();
   if (inventory.find(itemID) == inventory.end())
     inventory[itemID] = std::make_pair(a, 1);
