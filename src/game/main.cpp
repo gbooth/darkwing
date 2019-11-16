@@ -233,9 +233,9 @@ void combat(Hero& h, Room** world) {
   } else {
      if(e->getHealth() < 1) {
 	std::cout << "The duck crumbles at your feet sucumbing to the wounds you"
-                << "'ve inflicted. \"You win this time Duck Norris.\" The duck"
-                << "sputters as he coughs up blood and exhales one last time"
-                << std::endl;
+                << "'ve inflicted. \"You win this time Duck Norris.\" sputters"
+                << " " << e->getName() << " as he coughs up blood and exhales "
+                << "one last time" << std::endl;
 	world[i][j].setHasEnemy();
      }
   }
