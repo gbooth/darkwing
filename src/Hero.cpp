@@ -188,6 +188,18 @@ void Hero::command(std::string s, Room** world) {
             && world[i][j].checkForObj(it->second)) {
           RoomObject* const robj = world[i][j].getObj(it->second);
           this->interact(robj);
+          if (op == "stone lever") {
+            std::cout << "You hear the drawbridge lower." << std::endl;
+          } else if (op == "bone lever") {
+            std::cout <<
+                      "You hear the distinct sound of heavy rocks moving on \nthe opposite side of the lake. Perhaps a door has opened?"
+                      << std::endl;
+          } else if (op == "mossy lever") {
+            std::cout << "That sound again...you suspect a door might be open else where."
+                      << std::endl;
+          } else {
+            std::cout  << "Hmm, that's strange, you don't hear anything happen." << std::endl;
+          }
         } else {
           std::cout <<"you can't flip that" << std::endl;
         }
