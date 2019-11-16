@@ -1,13 +1,13 @@
-1001:Wizard’s Tower.:24l:01t:10t:|:|:2105:f
+1001:Wizard’s Tower.:24b:01t:10t:|:|:2105:f
 1002:Throne Room.:|:11t:|:00t:320132023203:2107:f
 1003:Moby Duck Lake County.:|:21t:|:|:3208:|:f
-1004:mouth of the Cave.:|:|:31t:40t:3301:|:t
+1004:mouth of the Cave.:|:|:40t:31t:3301:|:t
 1005:cave. There is a large underground lake in front of you and a draw bridge.:23t:32t:14b:30t:3302:2301:t
 1006:Castle Market.:00t:|:11t:|:320432053206:|:f
 1007:Castle Courtyard.:10t:|:21t:01t:32093207:|:f
 1008:field in front of the Castle.:20t:22t:31t:11t:|:|:f
-1009:forest.:|:|:30l:21t:|:2203:f
-1010:hidden alcove.:|:|:|:32t:|:21032101:f
+1009:forest.:31t:31t:30l:21t:|:2203:f
+1010:hidden alcove.:|:|:32t:|:|:21032101:f
 1011:cave. There is a large ominous door in front of you. Perhaps it leads to the Duck.:|:|:12l:14t:3303:2201:t
 1012:Duck’s Lair.:|:|:|:02t:3305:|:t
 1013:Quacksand Desert.:21t:|:|:|:3210:2106:f
@@ -18,7 +18,7 @@
 1018:cave. A small stream runs along the side of the tunnel. :33l:40t:|:|:|:23032202:f
 1019:cave. This chamber has large Stalagmites yet no stalactites, how strange.:|:23t:43t:04t:|:2307:f
 1020:cave. This chamber appears to have been transformed into a makeshift Jail.:|:|:|:33t:|:2304:f
-1021:cave. This chamber has large columns that extend into a black void above.:|:|:33t:|:|:2305:f
+1021:cave. This chamber has large columns that extend into a black void above.:|:|:33t:|:|:21022305:f
 1022:cave on the bridge over the lake.:|:|:02b:40t:|:|:f
 1023:Cram Royale:|:00t:|:|:|:2108:f
 1024:currentlyUnused:|:|:|:|:|:|:f

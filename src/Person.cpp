@@ -28,7 +28,7 @@ Person::Person(int ident)
         objData.ignore(1000, '\n');
       }
       if (line != idStr && objData.eof())
-        throw invalid_id("ERROR: the ID specified is not on file");
+        throw invalid_id("ERROR: the person ID specified is not on file");
     }
     objData.close();
   } else {

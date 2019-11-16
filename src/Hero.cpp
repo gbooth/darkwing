@@ -150,7 +150,7 @@ void Hero::command(std::string s, Room** world) {
                   std::cout << "this key can't be used right now\n";
                 }
               } else {
-                if (op == "brown key") {
+                if (op == "forest map") {
                   auto it = refs.find(op);
                   if (it != refs.end() && world[i][j].checkForObj(2203)) {
                     RoomObject* lck = world[i][j].getObj(2203);
@@ -356,6 +356,7 @@ void Hero::setRef() {
       }
       idVar = std::stoi(line);
       std::getline(file, line, ':');
+      std::transform(line.begin(), line.end(), line.begin(), ::tolower);
       name = line;
       refs[name] = idVar;
       std::getline(file, line);
@@ -418,7 +419,6 @@ void Hero::interact(RoomObject* const r) {
   } else if (r->getID() / 100 % 10 == 1 && r->getID() / 1000 == 2) {
     if (!r->getState()) {
       Item* a = static_cast<Chest*>(r)->getContents();
-      std::cout << a->getName() << " has been added to your inventory" << std::endl;
       this->addInventory(a);
     }
   } else {

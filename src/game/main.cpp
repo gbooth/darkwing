@@ -53,10 +53,10 @@ int main() {
     std::cout << "what will you do now?(type for help for commands)\n";
     std::cin.ignore(1000, '\n');
     while (true) {
-      if (world[h.getPos().first][h.getPos().second].checkForEnemy()) {
-        combat(h, world);
-        continue;
-      }
+//      if (world[h.getPos().first][h.getPos().second].checkForEnemy()) {
+//        combat(h, world);
+//        continue;
+//      }
       std::cout << "   _  " << std::endl << "__(0)>";
       std::getline(std::cin, inStr);
       std::cout << R"(\___))" << std::endl;

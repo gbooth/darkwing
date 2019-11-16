@@ -51,7 +51,6 @@
 		<Unit filename="include/Villager.h" />
 		<Unit filename="src/Chest.cpp" />
 		<Unit filename="src/Enemy.cpp" />
-		<Unit filename="src/Game/main.cpp" />
 		<Unit filename="src/Hero.cpp" />
 		<Unit filename="src/Item.cpp" />
 		<Unit filename="src/Lever.cpp" />
@@ -63,6 +62,7 @@
 		<Unit filename="src/RoomObject.cpp" />
 		<Unit filename="src/Save.cpp" />
 		<Unit filename="src/Villager.cpp" />
+		<Unit filename="src/game/main.cpp" />
 		<Unit filename="test/TestChest.cpp" />
 		<Unit filename="test/TestEnemy.cpp" />
 		<Unit filename="test/TestHero.cpp" />

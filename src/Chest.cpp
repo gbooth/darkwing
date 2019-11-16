@@ -22,7 +22,7 @@ Chest::Chest(int id): RoomObject{id} {
         chestData.ignore(1000, '\n');
       }
       if (line != idStr && chestData.eof())
-        throw invalid_id("ERROR: the ID specified is not on file");
+        throw invalid_id("ERROR: the chest ID specified is not on file");
     }
     chestData.close();
   } else {

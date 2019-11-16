@@ -25,7 +25,7 @@ Item::Item(int id): Object{id} {
         itemData.ignore(1000, '\n');
       }
       if (line != idStr && itemData.eof())
-        throw invalid_id("ERROR: the ID specified is not on file");
+        throw invalid_id("ERROR: the item ID specified is not on file");
     }
     itemData.close();
   } else {
