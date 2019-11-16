@@ -11,6 +11,8 @@
 #include <iomanip>
 #include <algorithm>
 
+const int MAX_HERO_HP = 20;
+
 Hero::Hero(): Person{3101} {
   pos = std::make_pair(0, 0);
   Item* fist = new Item(4205);
@@ -339,14 +341,18 @@ void Hero::addInventory(Item* a) {
 
 void Hero::usePotion(Item* a) {
   int potionID = a->getID();
-  if (health == 10) {
+  if (health == MAX_HERO_HP) {
     std::cout << "You are already at full health" << std::endl;
-  } else if (health + a->getItemValue() > 10) {
-    health = 10;
+  } else if (health + a->getItemValue() > MAX_HERO_HP) {
+    health = MAX_HERO_HP;
     inventory[potionID].second--;
   } else {
     health += a->getItemValue();
     inventory[potionID].second--;
+  }
+  if(inventory[potionID].second == 0){
+     delete a;
+     inventory.erase(potionID);
   }
 }
 
