@@ -168,7 +168,7 @@ void combat(Hero& h, Room** world) {
     std::transform(line.begin(), line.end(), line.begin(), ::tolower);
     comd = line.substr(0, line.find(' '));
     oper = line.substr(line.find(' ') + 1);
-    if (comd  != "attack" || comd != "run") {
+    if (comd  != "attack" && comd != "run") {
       if(stupidUser) {
         std::cout << e->getName() << " has managed to get his dagger to your n"
                   << "eck while you've been standing there. \"All too easy Duc"
@@ -190,14 +190,17 @@ void combat(Hero& h, Room** world) {
         turnCount++;
         if(world[i][j].getID() == 1015) {
           switch(turnCount){
-            /* case 1:{
-              std::cout << "Your above shake a little" << std::endl;
+             case 1:{
+		//std::cout << "Your above shake a little" << std::endl;
               break;
             }
             case 2:{
-              std::cout << "You hear "
+	       //std::cout << "You hear "
+	       break;
             }
-            case 3:{} */
+	     case 3:{
+		break;
+	     } 
             case 4:{
               std::cout << "Stalactites start falling all around you and your "
                         << "opponent. As they slam against the ground echos bo"
@@ -234,10 +237,12 @@ void combat(Hero& h, Room** world) {
               << " your life as you bleed to death." << std:: endl;
     //h.lose();
   } else {
-    if(e->getHealth() < 1)
-      std::cout << "The duck crumbles at your feet sucumbing to the wounds you"
+     if(e->getHealth() < 1) {
+	std::cout << "The duck crumbles at your feet sucumbing to the wounds you"
                 << "'ve inflicted. \"You win this time Duck Norris.\" The duck"
                 << "sputters as he coughs up blood and exhales one last time"
                 << std::endl;
+	world[i][j].setHasEnemy();
+     }
   }
 }
