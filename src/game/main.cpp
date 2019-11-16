@@ -10,7 +10,7 @@
 #include <iomanip>
 
 int titleScreen();
-void clearScreen();
+//void clearScreen();
 Room** newGame(Room**);
 void loadGame(Hero* const, Room** const);
 void exitGame();
@@ -53,10 +53,10 @@ int main() {
     std::cout << "what will you do now?(type for help for commands)\n";
     std::cin.ignore(1000, '\n');
     while (true) {
-//      if (world[h.getPos().first][h.getPos().second].checkForEnemy()) {
-//        combat(h, world);
-//        continue;
-//      }
+      if (world[h.getPos().first][h.getPos().second].checkForEnemy()) {
+        combat(h, world);
+        continue;
+      }
       std::cout << "   _  " << std::endl << "__(0)>";
       std::getline(std::cin, inStr);
       std::cout << R"(\___))" << std::endl;
@@ -95,13 +95,13 @@ int titleScreen() {
     } else if (in == "3") {
       exitGame();
     }
-    clearScreen();
+//    clearScreen();
   }
 }
 
-void clearScreen() {
-  std::cout << std::string( 100, '\n' );
-}
+//void clearScreen() {
+//  std::cout << std::string( 100, '\n' );
+//}
 
 Room** newGame(Room** world) {
   world = new Room*[5];
@@ -123,54 +123,78 @@ void exitGame() {
   exit(0);
 }
 
-void combat(Hero& h, Room** r) {
-  int turnCount = 1;
+void combat(Hero& h, Room** world) {
+  int turnCount = 0;
+  bool stupidUser = false;
   std::string line, comd, oper;
   int i = h.getPos().first;
   int j = h.getPos().second;
   Enemy* e;
-  switch (r[i][j].getID()) {
+  switch (world[i][j].getID()) {
   case 1004: {
-    e = static_cast<Enemy*>(r[i][j].getNPC(3301));
+    e = static_cast<Enemy*>(world[i][j].getNPC(3301));
     break;
-  }
+    }
   case 1005: {
-    e = static_cast<Enemy*>(r[i][j].getNPC(3302));
+    e = static_cast<Enemy*>(world[i][j].getNPC(3302));
     break;
-  }
+    }
   case 1011: {
-    e = static_cast<Enemy*>(r[i][j].getNPC(3303));
+    e = static_cast<Enemy*>(world[i][j].getNPC(3303));
     break;
-  }
+    }
   case 1012: {
-    e = static_cast<Enemy*>(r[i][j].getNPC(3305));
+    e = static_cast<Enemy*>(world[i][j].getNPC(3305));
     break;
-  }
+    }
   case 1015: {
-    e = static_cast<Enemy*>(r[i][j].getNPC(3304));
+    e = static_cast<Enemy*>(world[i][j].getNPC(3304));
     break;
-  }
+    }
   }
   int eOrigHP = e->getHealth();
+
+  std::cout << "A cow sized duck blocks your path wielding a dagger in his bil"
+            << "l. He appears to be rather angry. Firequacker must have enchan"
+            << "ted him, perhaps with the help of the captive wizard."
+            << std::endl << "\"Hello Duck Norris. I'm " << e->getName() << "\""
+            << " the duck rasps through his clenched bill. \"I'm going to enjo"
+            << "y killing you\"" << std::endl;
   while (h.getHealth() > 0 && e->getHealth() > 0) {
-    std::cout << "Turn" << turnCount << std::endl;
-    turnCount++;
-    std::cout << "Enter a command (this takes you turn)" << std::endl;
+    std::cout << "Enter a command--";
     std::getline(std::cin, line);
+    std::transform(line.begin(), line.end(), line.begin(), ::tolower);
     comd = line.substr(0, line.find(' '));
-    oper = line.substr(line.find(' ')+1);
-    if (comd  == "attack" && oper == e->getName() ) {
-      h.command(line, r);
+    oper = line.substr(line.find(' ') + 1);
+    if (comd  != "attack" || comd != "go") {
+      if(stupidUser) {
+        std::cout << e->getName() " has managed to get his dagger to your neck"
+                  << " while you've been standing there. \"All too easy Duck N"
+                  << "orris\" " << e->getName() << " chuckles as he slits your"
+                  << " throat." << std::endl;
+        //h.lose();
+      } else {
+        std::cout << "You really shouldn't do that right now. You kind of have m"
+                  << "ore pressing matters, namely a duck the size of a cow who "
+                  << "wants to kill you. A smart man would probably either fight"
+                  << " or run away." << std::endl;
+        stupidUser = true;
+      }
+    } else {
+      stupidUser = false;
+      if(comd == "attack")
+    }
+      h.command(line, world);
       e->attack(&h);
-      if (r[i][j].getID() == 1015 && turnCount == 5) {
+      if (world[i][j].getID() == 1015 && turnCount == 5) {
         std::cout << "The cave collapses on you and a stalactite impales you" <<
                   std::endl;
       }
     }
     if (comd == "go" && oper == "west") {
       e->setHealth(eOrigHP);
-      h.command(line, r);
-      if (r[i]->getID() == 1015) {
+      h.command(line, world);
+      if (world[i]->getID() == 1015) {
         turnCount = 1;
       }
     }
