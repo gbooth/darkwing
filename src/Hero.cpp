@@ -278,7 +278,12 @@ void Hero::command(std::string s, Room** world) {
             && (it->second/100 == 32)) {
           Person* prn = world[i][j].getNPC(it->second);
           Villager* v = static_cast<Villager*>(prn);
+          if(v->getID() == 3207 && this->getHealth() < MAX_HEALTH){
+            this->setHealth(MAX_HEALTH);
+            std::cout << "You now have full health." << std::endl;
+          }
           this->talk(v);
+
         } else if (it->second/100 == 31 || it->second/100 == 33) {
           std::cout << "you can't talk to this person" << std::endl;
         } else {
