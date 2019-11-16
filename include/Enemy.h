@@ -1,5 +1,5 @@
 /**
- *@autor Ben Hunt
+ *@author  Ben Hunt
  *@date 2019-11
  */
 

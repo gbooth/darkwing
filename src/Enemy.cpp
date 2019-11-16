@@ -1,3 +1,8 @@
+/**
+ *@autor Ben Hunt
+ *@date 2019-11
+ */
+
 #include "Enemy.h"
 #include "Exceptions.h"
 #include <iostream>
@@ -19,3 +24,4 @@ void Enemy::attack(Person* hero) {
   else
     std::cout << "your health is now " << hero->getHealth() << "." << std::endl;
 }
+status

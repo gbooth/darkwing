@@ -5,6 +5,7 @@
 
 #ifndef CHEST_H_INCLUDED
 #define CHEST_H_INCLUDED
+
 #include <RoomObject.h>
 #include <Item.h>
 
@@ -30,10 +31,10 @@ class Chest: public RoomObject {
    *This function is in charge to access the contents in the Chests.
    *@return the contents of the objects inside the chest.
    */
-   Item* getContents();
-   /**
-    *@parameter contents give the objects inside the specfic chest. 
-    */
+  Item* getContents();
+  /**
+   *@parameter contents give the objects inside the specfic chest.
+   */
 
 
  private:
