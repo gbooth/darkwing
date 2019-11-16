@@ -77,10 +77,11 @@ std::pair<uint, uint> Hero::getPos() {
 void Hero::attack(Person* npc, Room** world) {
   int npcHealth = npc->getHealth();
   damageValue = 1 + weaponOfChoice->getItemValue();
-  if (npc->getID() / 100 == 32)
+  if (npc->getID() / 100 == 32) {
     std::cout << "The villagers take you off to jail for attacking one of them"
               << std::endl;
     this->lose(jail, world);
+  }
   if (npc->getID() / 100 == 33) {
     if (npcHealth <= 0) {
       std::cout << "The enemy is dead" << std::endl;
