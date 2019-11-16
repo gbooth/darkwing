@@ -35,7 +35,7 @@ void Villager::response() {
     std::cout << "The name's " << name << ", and no I haven't seen the play.\n";
     break;
   case 3207:
-    std::cout << "Name's " << name << "If you ever need healing be sure to see me.\n";
+    std::cout << "Name's " << name << " If you ever need healing be sure to see me.\n";
     break;
   case 3208:
     std::cout << "I'm " << name << ". I love the lake county\n";
