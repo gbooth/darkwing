@@ -95,7 +95,6 @@ void Hero::attack(Person* npc, Room** world) {
       npcHealth -= damageValue;
       std::cout << "You deal " << damageValue << " points of damage.\n";
       npc->setHealth(npcHealth);
-      std::cout << "The enemy still stands" << std::endl;
     }
   }
 }
