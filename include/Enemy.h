@@ -33,12 +33,9 @@ class Enemy : public Person {
 
   /**
   * @param the hero to attack
+  * @param Room array for the world to call lose function with
   */
-  void attack(Person* h);
-
- protected:
-
- private:
+  void attack(Person* h, Room** world);
 };
 
 #endif // ENEMY_H

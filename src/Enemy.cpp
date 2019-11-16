@@ -15,12 +15,10 @@ Enemy::Enemy(int id)
 
 Enemy::~Enemy() {}
 
-void Enemy::attack(Person* hero) {
+void Enemy::attack(Person* hero, Room** world) {
   std::cout << "I'll crush you Duck Norris" << std::endl;
   int heroHp = hero->getHealth() - this->damageValue;
+  std::cout << "You take " << damageValue << " points of damage." << std::endl;
   hero->setHealth(heroHp);
-  if (hero->getHealth() < 1)
-    std::cout << "you died" << std::endl;
-  else
-    std::cout << "your health is now " << hero->getHealth() << "." << std::endl;
+  std::cout << "your health is now " << hero->getHealth() << "." << std::endl;
 }

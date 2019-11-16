@@ -1,5 +1,6 @@
 #include "Villager.h"
 #include "Exceptions.h"
+#include "Room.h"
 #include <string>
 #include <iostream>
 #include <ctype.h>
@@ -12,7 +13,7 @@ Villager::Villager(int idnty)
 
 Villager::~Villager() {}
 
-void Villager::attack(Person* npc) {}
+void Villager::attack(Person* npc, Room** world) {}
 
 void Villager::response() {
   switch (id) {

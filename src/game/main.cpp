@@ -12,10 +12,8 @@
 #include <algorithm>
 
 int titleScreen();
-//void clearScreen();
 Room** newGame(Room**);
 void loadGame(Hero* const, Room** const);
-void exitGame();
 void combat(Hero&, Room**);
 
 int main() {
@@ -95,15 +93,10 @@ int titleScreen() {
     } else if (in == "2") {
       return 2;
     } else if (in == "3") {
-      exitGame();
+      exit(0);
     }
-//    clearScreen();
   }
 }
-
-//void clearScreen() {
-//  std::cout << std::string( 100, '\n' );
-//}
 
 Room** newGame(Room** world) {
   world = new Room*[5];
@@ -174,7 +167,7 @@ void combat(Hero& h, Room** world) {
                   << "eck while you've been standing there. \"All too easy Duc"
                   << "k Norris\" " << e->getName() << " chuckles as he slits y"
                   << "our throat." << std::endl;
-        //h.lose();
+        h.lose(moronUser, world);
       } else {
         std::cout << "You really shouldn't do that right now. You kind of have m"
                   << "ore pressing matters, namely a duck the size of a cow who "
@@ -185,13 +178,14 @@ void combat(Hero& h, Room** world) {
     } else {
       stupidUser = false;
       if(comd == "attack") {
-        h.attack(e);
-        e->attack(&h);
+        h.attack(e, world);
+        e->attack(&h, world);
         turnCount++;
         if(world[i][j].getID() == 1015) {
           switch(turnCount){
              case 1:{
-		//std::cout << "Your above shake a little" << std::endl;
+		          std::cout << "Your blows at each other echo throughout the cave." 
+                        << std::endl;
               break;
             }
             case 2:{
@@ -218,7 +212,7 @@ void combat(Hero& h, Room** world) {
                         << "crushing your legs and pinning you to the ground."
                         << " You screech out in pain and everything goes blac"
                         << "k." << std::endl;
-              //h.lose();
+              h.lose(stalactite, world);
             }
             default:{
               throw combat_error("Something really broke when you did or didn't hit that guy");
@@ -235,7 +229,7 @@ void combat(Hero& h, Room** world) {
   if (h.getHealth() < 1) {
     std::cout << "The duck has triumphed over you. You lay there contemplating"
               << " your life as you bleed to death." << std:: endl;
-    //h.lose();
+    h.lose(ducked, world);
   } else {
      if(e->getHealth() < 1) {
 	std::cout << "The duck crumbles at your feet sucumbing to the wounds you"

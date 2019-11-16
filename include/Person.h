@@ -31,7 +31,7 @@ class Person : public Object {
   /**
   *  Attack is a pure virtual method to be used for the Enemies and the Hero.
   */
-  virtual void attack (Person* npc) = 0;
+  virtual void attack (Person* npc, Room** world) = 0;
 
   /**
   *set health of the person.
