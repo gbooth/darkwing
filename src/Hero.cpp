@@ -139,6 +139,7 @@ void Hero::command(std::string s, Room** world) {
                 }
               } else {
                 std::cout << "this key can't be used right now\n";
+                break;
               }
             } else {
               if (op == "blue key") {
@@ -189,7 +190,7 @@ void Hero::command(std::string s, Room** world) {
           RoomObject* const robj = world[i][j].getObj(it->second);
           this->interact(robj);
           if (op == "stone lever") {
-            std::cout << "You hear the drawbridge lower." << std::endl;
+              std::cout << "The bridge is down." << std::endl;
           } else if (op == "bone lever") {
             std::cout <<
                       "You hear the distinct sound of heavy rocks moving on \nthe opposite side of the lake. Perhaps a door has opened?"
