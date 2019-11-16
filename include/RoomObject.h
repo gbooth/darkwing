@@ -8,6 +8,9 @@
 
 #include "Object.h"
 
+/**
+ *This function gives the Identification of the Objects in the room and the state of them.
+ */
 
 class RoomObject : public Object {
  public:

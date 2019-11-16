@@ -1,3 +1,8 @@
+/**
+ *@author Gavin Booth
+ *@date 2019-11
+ */
+
 #ifndef ROOM_H
 #define ROOM_H
 
@@ -10,6 +15,12 @@
 #include "Lock.h"
 #include "Lever.h"
 #include "DoorMood.h"
+
+/**
+ * This function gives all the identifiers related with the rooms:
+ * checking for Enemies, orientation for the player.checking for objects
+ */
+
 
 class Room : public Object {
  public:
