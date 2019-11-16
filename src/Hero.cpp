@@ -148,6 +148,7 @@ void Hero::command(std::string s, Room** world) {
                   }
                 } else {
                   std::cout << "this key can't be used right now\n";
+                  break;
                 }
               } else {
                 if (op == "forest map") {
@@ -162,6 +163,7 @@ void Hero::command(std::string s, Room** world) {
                     }
                   } else {
                     std::cout << "this key can't be used right now\n";
+                    break;
                   }
                 } else {
                   std::cout<<"not a usable item" << std::endl;
