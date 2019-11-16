@@ -486,9 +486,9 @@ void Hero::win(Room** world) {
             << " the wizard coughs as he stumbles over to Firequacker. \n\n\"H"
             << "ow big do you think we can make him this time Norris?\" asks t"
             << "he wizard as he picks Firequacker up from the cave floor";
-for (int i = 0; i < 5; i++) 
-  delete [] world[i];
-delete world;
-world = nullptr;
-exit(0);
+  for (int i = 0; i < 5; i++) 
+    delete [] world[i];
+  delete world;
+  world = nullptr;
+  exit(0);
 }

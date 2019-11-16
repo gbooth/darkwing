@@ -114,10 +114,6 @@ void loadGame(Hero* const h, Room** const world) {
 //    l.loadGame(h, world);
 }
 
-void exitGame() {
-  exit(0);
-}
-
 void combat(Hero& h, Room** world) {
   int turnCount = 0;
   bool stupidUser = false;
@@ -161,7 +157,7 @@ void combat(Hero& h, Room** world) {
     std::transform(line.begin(), line.end(), line.begin(), ::tolower);
     comd = line.substr(0, line.find(' '));
     oper = line.substr(line.find(' ') + 1);
-    if (comd  != "attack" && comd != "run") {
+    if (comd  != "attack" && comd != "run" && comd != "use") {
       if(stupidUser) {
         std::cout << e->getName() << " has managed to get his dagger to your n"
                   << "eck while you've been standing there. \"All too easy Duc"
@@ -179,6 +175,14 @@ void combat(Hero& h, Room** world) {
       stupidUser = false;
       if(comd == "attack") {
         h.attack(e, world);
+        if(e->getHealth() < 1) {
+	        std::cout << "The duck crumbles at your feet sucumbing to the wounds you"
+                << "'ve inflicted. \"You win this time Duck Norris.\" sputters"
+                << " " << e->getName() << " as he coughs up blood and exhales "
+                << "one last time" << std::endl;
+	        world[i][j].setHasEnemy();
+          break;
+        }
         e->attack(&h, world);
         turnCount++;
         if(world[i][j].getID() == 1015) {
@@ -189,12 +193,11 @@ void combat(Hero& h, Room** world) {
               break;
             }
             case 2:{
-	       //std::cout << "You hear "
-	       break;
+	            break;
             }
-	     case 3:{
-		break;
-	     } 
+	          case 3:{
+	          	break;
+	          } 
             case 4:{
               std::cout << "Stalactites start falling all around you and your "
                         << "opponent. As they slam against the ground echos bo"
@@ -219,10 +222,12 @@ void combat(Hero& h, Room** world) {
             }
           }
         }
-      } else {
+      } else if(comd == "run") {
         h.mv(west, world);
         e->setHealth(eOrigHP);
         break;
+      } else {
+        h.command(line, world);
       }
     }
   }
@@ -230,13 +235,5 @@ void combat(Hero& h, Room** world) {
     std::cout << "The duck has triumphed over you. You lay there contemplating"
               << " your life as you bleed to death." << std:: endl;
     h.lose(ducked, world);
-  } else {
-     if(e->getHealth() < 1) {
-	std::cout << "The duck crumbles at your feet sucumbing to the wounds you"
-                << "'ve inflicted. \"You win this time Duck Norris.\" sputters"
-                << " " << e->getName() << " as he coughs up blood and exhales "
-                << "one last time" << std::endl;
-	world[i][j].setHasEnemy();
-     }
   }
 }
