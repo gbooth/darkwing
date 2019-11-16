@@ -5,6 +5,7 @@
 #ifndef PERSON_H
 #define PERSON_H
 #include "Object.h"
+#include "Room.h"
 #include <utility>
 
 /**
