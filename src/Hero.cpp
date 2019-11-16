@@ -49,8 +49,13 @@ void Hero::mv(Direction a, Room** world) {
 
   switch (iPos) {
   case -1:
-    std::cout << "The Door wont open and there is no keyhole." <<std::endl;
-    break;
+    if (pos.first == 4 && pos.second == 0) {
+      std::cout << "The drawbridge is raised, you cant pass it" << std::endl;
+      break;
+    } else {
+      std::cout << "The Door wont open and there is no keyhole." <<std::endl;
+      break;
+    }
   case -2:
     if (pos.first == 3 && pos.second == 1) {
       std::cout << "You are in the forest." <<std::endl;
@@ -141,6 +146,7 @@ void Hero::command(std::string s, Room** world) {
                 }
               } else {
                 std::cout << "this key can't be used right now\n";
+                break;
               }
             } else {
               if (op == "blue key") {
@@ -190,6 +196,18 @@ void Hero::command(std::string s, Room** world) {
             && world[i][j].checkForObj(it->second)) {
           RoomObject* const robj = world[i][j].getObj(it->second);
           this->interact(robj);
+          if (op == "stone lever") {
+              std::cout << "The bridge is down." << std::endl;
+          } else if (op == "bone lever") {
+            std::cout <<
+                      "You hear the distinct sound of heavy rocks moving on \nthe opposite side of the lake. Perhaps a door has opened?"
+                      << std::endl;
+          } else if (op == "mossy lever") {
+            std::cout << "That sound again...you suspect a door might be open else where."
+                      << std::endl;
+          } else {
+            std::cout  << "Hmm, that's strange, you don't hear anything happen." << std::endl;
+          }
         } else {
           std::cout <<"you can't flip that" << std::endl;
         }
@@ -267,7 +285,12 @@ void Hero::command(std::string s, Room** world) {
             && (it->second/100 == 32)) {
           Person* prn = world[i][j].getNPC(it->second);
           Villager* v = static_cast<Villager*>(prn);
-          this->talk(v, world);
+          if(v->getID() == 3207 && this->getHealth() < MAX_HEALTH){
+            this->setHealth(MAX_HEALTH);
+            std::cout << "You now have full health." << std::endl;
+          }
+          this->talk(v);
+
         } else if (it->second/100 == 31 || it->second/100 == 33) {
           std::cout << "you can't talk to this person" << std::endl;
         } else {
