@@ -1,8 +1,18 @@
+/**
+ *@author Ben Hunt
+ *@date 2019-11
+ */
+
+
+
 #ifndef VILLAGER_H
 #define VILLAGER_H
 
 #include "Person.h"
 
+/**
+ *This function gives the idntification for the Villagers.
+ */
 
 class Villager : public Person {
  public:

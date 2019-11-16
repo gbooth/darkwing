@@ -1,5 +1,5 @@
 /**
- *@autor Wesley Waldern
+ *@author Wesley Waldern
  * @date 2019-11
  */
 

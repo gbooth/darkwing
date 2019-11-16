@@ -1,5 +1,5 @@
 /**
- *@autor Ben Hunt
+ *@author Ben Hunt
  *@date 2019-11git a
  */
 
@@ -9,7 +9,7 @@
 #include <stdexcept>
 
 /**
-* Exception for when an ID doesn't match the expected ID type
+* Exception for when an ID doesn't match the expected ID type.
 */
 class invalid_id: public std::runtime_error {
  public:
