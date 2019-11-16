@@ -183,7 +183,7 @@ void combat(Hero& h, Room** world) {
 	        world[i][j].setHasEnemy();
           break;
         }
-        std::cout << e->getName << " still stands." << std::endl;
+        std::cout << e->getName() << " still stands." << std::endl;
         e->attack(&h, world);
         turnCount++;
         if(world[i][j].getID() == 1015) {
