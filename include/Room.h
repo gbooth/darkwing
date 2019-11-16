@@ -28,6 +28,7 @@ class Room : public Object {
   virtual ~Room();
 
   bool checkForEnemy();
+  void setHasEnemy();
   bool checkForNPC(int);
   bool checkForObj(int);
 

@@ -160,6 +160,10 @@ bool Room::checkForEnemy() {
   return hasEnemy;
 }
 
+void Room::setHasEnemy() {
+  hasEnemy = false;
+}
+
 bool Room::checkForNPC(int id) {
   if (id/1000 == 3)
     if (npcInRoom.end() != npcInRoom.find(id))
