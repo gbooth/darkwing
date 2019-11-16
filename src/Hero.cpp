@@ -43,8 +43,13 @@ void Hero::mv(Direction a, Room** world) {
 
   switch (iPos) {
   case -1:
-    std::cout << "The Door wont open and there is no keyhole." <<std::endl;
-    break;
+    if (pos.first == 4 && pos.second == 0) {
+      std::cout << "The drawbridge is raised, you cant pass it" << std::endl;
+      break;
+    } else {
+      std::cout << "The Door wont open and there is no keyhole." <<std::endl;
+      break;
+    }
   case -2:
     if (pos.first == 3 && pos.second == 1) {
       std::cout << "You are in the forest." <<std::endl;
