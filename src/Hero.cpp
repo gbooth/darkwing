@@ -148,6 +148,7 @@ void Hero::command(std::string s, Room** world) {
                   }
                 } else {
                   std::cout << "this key can't be used right now\n";
+                  break;
                 }
               } else {
                 if (op == "forest map") {
@@ -162,6 +163,7 @@ void Hero::command(std::string s, Room** world) {
                     }
                   } else {
                     std::cout << "this key can't be used right now\n";
+                    break;
                   }
                 } else {
                   std::cout<<"not a usable item" << std::endl;
@@ -187,7 +189,7 @@ void Hero::command(std::string s, Room** world) {
         break;
       }
       case Command::inspect: {
-        if(op == "room") {
+        if (op == "room") {
           std::cout << this->inspect(&world[i][j]) << std::endl;
           break;
         }
@@ -211,7 +213,7 @@ void Hero::command(std::string s, Room** world) {
             auto itr = inventory.find(it->second);
             if (itr!= inventory.end()) {
               Object* pt = itr->second.first; //item*
-              this->inspect(pt);
+              std::cout<<this->inspect(pt) << std::endl;
             }
           }
         } else {
@@ -311,12 +313,12 @@ void Hero::command(std::string s, Room** world) {
 }
 
 void Hero::getInventory() {
-  std::cout << "Items" << std::setw(30) << "Amount" << std::endl;
+  std::cout << "Items" << std::setw(30) << std::setfill(' ') << "Amount" << "\n";
+  std::cout << std::setw(36) << std::setfill('v') << "\n";
   for (auto it: inventory)
     std::cout << std::left << std::setw(20) << std::setfill('-') <<
               it.second.first->getName() << std::setw(15) << std::setfill('-') << std::right
-              <<
-              it.second.second << std::endl;
+              << it.second.second << std::endl;
 }
 
 void Hero::addInventory(Item* a) {
@@ -350,7 +352,7 @@ void Hero::setRef() {
   if (file.is_open()) {
     while (!file.eof()) {
       std::getline(file, line, ':');
-      if(std::stoi(line)/1000 == 1){
+      if (std::stoi(line)/1000 == 1) {
         file.ignore(1000, '\n');
         continue;
       }
@@ -387,7 +389,9 @@ void Hero::useKey(Item* a, Lock* l) {
 void Hero::talk(Villager* v) {
   if (v->getID() == 3208 && inventory.find(4303) == inventory.end()) {
     if (v->riddle()) {
-      std::cout << "Correct! Here, take this map to the woods. You'll likely get lost without it." << std::endl;
+      std::cout <<
+                "Correct! Here, take this map to the woods. You'll likely get lost without it."
+                << std::endl;
       Item* mapKey = new Item(4303);
       this->addInventory(mapKey);
     } else {
