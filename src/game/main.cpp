@@ -2,6 +2,7 @@
 #include "Hero.h"
 #include "Load.h"
 #include "Enemy.h"
+#include "Exceptions.h"
 #include <stdlib.h>
 #include <cstdlib>
 #include <string>
@@ -166,12 +167,12 @@ void combat(Hero& h, Room** world) {
     std::transform(line.begin(), line.end(), line.begin(), ::tolower);
     comd = line.substr(0, line.find(' '));
     oper = line.substr(line.find(' ') + 1);
-    if (comd  != "attack" || comd != "go") {
+    if (comd  != "attack" || comd != "run") {
       if(stupidUser) {
-        std::cout << e->getName() " has managed to get his dagger to your neck"
-                  << " while you've been standing there. \"All too easy Duck N"
-                  << "orris\" " << e->getName() << " chuckles as he slits your"
-                  << " throat." << std::endl;
+        std::cout << e->getName() << " has managed to get his dagger to your n"
+                  << "eck while you've been standing there. \"All too easy Duc"
+                  << "k Norris\" " << e->getName() << " chuckles as he slits y"
+                  << "our throat." << std::endl;
         //h.lose();
       } else {
         std::cout << "You really shouldn't do that right now. You kind of have m"
@@ -182,21 +183,60 @@ void combat(Hero& h, Room** world) {
       }
     } else {
       stupidUser = false;
-      if(comd == "attack")
-    }
-      h.command(line, world);
-      e->attack(&h);
-      if (world[i][j].getID() == 1015 && turnCount == 5) {
-        std::cout << "The cave collapses on you and a stalactite impales you" <<
-                  std::endl;
+      if(comd == "attack") {
+        h.attack(e);
+        e->attack(&h);
+        turnCount++;
+        if(world[i][j].getID() == 1015) {
+          switch(turnCount){
+            /* case 1:{
+              std::cout << "Your above shake a little" << std::endl;
+              break;
+            }
+            case 2:{
+              std::cout << "You hear "
+            }
+            case 3:{} */
+            case 4:{
+              std::cout << "Stalactites start falling all around you and your "
+                        << "opponent. As they slam against the ground echos bo"
+                        << "unce around the cave causing more stalactites to f"
+                        << "all." << std::endl;
+              break;
+            }
+            case 5:{
+              std::cout << "A large stalactite falls and squishes the duck. Wh"
+                        << "at luck! You raise your sword and cheer at your vi"
+                        << "tory. You hear your cheer echo throughout the cave"
+                        << "and look up just in time to see a massive stalacti"
+                        << "te that is about to fall on your head. You quickly"
+                        << " leap aside as the stalactite lands on your legs "
+                        << "crushing your legs and pinning you to the ground."
+                        << " You screech out in pain and everything goes blac"
+                        << "k." << std::endl;
+              //h.lose();
+            }
+            default:{
+              throw combat_error("Something really broke when you did or didn't hit that guy");
+            }
+          }
+        }
+      } else {
+        h.mv(west, world);
+        e->setHealth(eOrigHP);
+        break;
       }
     }
-    if (comd == "go" && oper == "west") {
-      e->setHealth(eOrigHP);
-      h.command(line, world);
-      if (world[i]->getID() == 1015) {
-        turnCount = 1;
-      }
-    }
+  }
+  if (h.getHealth() < 1) {
+    std::cout << "The duck has triumphed over you. You lay there contemplating"
+              << " your life as you bleed to death." << std:: endl;
+    //h.lose();
+  } else {
+    if(e->getHealth() < 1)
+      std::cout << "The duck crumbles at your feet sucumbing to the wounds you"
+                << "'ve inflicted. \"You win this time Duck Norris.\" The duck"
+                << "sputters as he coughs up blood and exhales one last time"
+                << std::endl;
   }
 }
