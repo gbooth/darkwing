@@ -48,9 +48,9 @@ std::string Hero::inspect(Object* a) {
 	if(a->getID()/100 == 23){
 		std::string str = a->getDesc();
 		if(static_cast<Lever*>(a)->getState())
-			str += "The lever is currently flipped down.\n";
+			str += " The lever is currently flipped down.\n";
 		else
-			str += "The lever is currently flipped up.\n";
+			str += " The lever is currently flipped up.\n";
 		return str;
 	} else {		
 		return a->getDesc();
@@ -224,7 +224,7 @@ void Hero::command(std::string s, Room** world) {
 						world[i][j].objChanged(it->second);
 					if (op == "bone lever") {
 						std::cout <<
-						          "You hear the sound of heavy rocks moving on \nsomewhere south of you and the sound of splashing in the distance";
+						          "You hear the sound of heavy rocks moving \nsomewhere south of you and the sound of splashing in the distance";
 						if(robj->getState())
 							std::cout << " stops.\n";
 						else
@@ -232,7 +232,7 @@ void Hero::command(std::string s, Room** world) {
 					} else if (op == "mossy lever") {
 						std::cout << "That sound again...you suspect a door might be open else where."
 						          << std::endl;
-					} else {
+					} else if(op != "stone lever"){
 						std::cout  << "Hmm, that's strange, you don't hear anything happen." << std::endl;
 					}
 				} else {
@@ -579,7 +579,8 @@ void Hero::win(Room** world) {
 	          << "o a wooden duck. \n\n\"Thank you for freeing me Duck Norris.\""
 	          << " the wizard coughs as he stumbles over to Firequacker. \n\n\"H"
 	          << "ow big do you think we can make him this time Norris?\" asks t"
-	          << "he wizard as he picks Firequacker up from the cave floor";
+	          << "he wizard as he picks Firequacker up from the cave floor\n"
+			  << "You Win. Congratulations!!\n";
 	for (int i = 0; i < 5; i++)
 		delete [] world[i];
 	delete world;
