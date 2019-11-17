@@ -15,6 +15,7 @@
 
 class Save {
 public:
+ Save();
  /**
  *Constructor
  *@param h the pointer to the hero to save

@@ -2,6 +2,10 @@
 #include "Exceptions.h"
 #include<list>
 
+Save::Save(){
+  throw save_error("Some fool be callin' a default constructor");
+}
+
 Save::Save(Hero* const h, Room** const r) {
  std::string fname;
  std::string out;
