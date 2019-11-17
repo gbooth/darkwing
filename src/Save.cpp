@@ -22,8 +22,11 @@ Save::Save(Hero* h, Room** r) {
     std::string posit = std::to_string(h->getPos().first)+std::to_string(h->getPos().second);
     std::string invStr = "";
     std::list<std::pair<int, int>> invS = h->invSave();
-    for(auto it = invS.begin(); it != invS.end(); ++it, invStr += ",")
-        invStr += it->first + it->second;
+    for(auto it = invS.begin(); it != invS.end(); ++it){
+      invStr += std::to_string(it->first + it->second);
+      if(it++ != invS.end())
+        invStr += ",";
+    }
     
 
  //all the attributes of a hero
@@ -51,7 +54,8 @@ Save::Save(Hero* h, Room** r) {
       if(rID == 1004 || rID == 1005 || rID == 1011 || rID == 1012 || rID == 1015)
         if(!r[i][j].checkForEnemy())
           out += "f";
-      roomObj[rID] = out;
+      if(out != "")
+        roomObj[rID] = out;
     }
   }
 }
