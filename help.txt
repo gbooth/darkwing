@@ -9,4 +9,5 @@ attack                                                                         n
 flip                                                                         name of lever
 open                                                                         name of chest
 help                                                                            no operand
+equip       the name of the weapon you want, no operand shows your current equipped weapon
 *
