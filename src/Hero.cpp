@@ -372,7 +372,7 @@ void Hero::command(std::string s, Room** world) {
 
 void Hero::getInventory() {
 	std::cout << "Items" << std::setw(30) << std::setfill(' ') << "Amount" << "\n";
-	std::cout << std::setw(36) << std::setfill('v') << "\n";
+	std::cout << std::setw(36) << std::setfill('*') << "\n";
 	for (auto it: inventory)
 		std::cout << std::left << std::setw(20) << std::setfill('-') <<
 		          it.second.first->getName() << std::setw(15) << std::setfill('-') << std::right
