@@ -191,10 +191,6 @@ bool Room::checkDirection(Direction d) {
     return true;
 }
 
-void Room::setDoorMood(Direction d, DoorMood m) {
-  std::get<0>(adjRooms[d]) = m;
-}
-
 std::pair<int, int> Room::getDirection(Direction d) {
   if (this->checkDirection(d)) {
     switch (std::get<0>(adjRooms[d])) {
@@ -204,7 +200,6 @@ std::pair<int, int> Room::getDirection(Direction d) {
     case blocked:{
       if(std::get<1>(adjRooms[d])) {
         if(std::get<1>(adjRooms[d])->getState()) {
-          //this->setDoorMood(d, ajar);
           return std::make_pair(std::get<2>(adjRooms[d]), std::get<3>(adjRooms[d]));
         }
         else {
@@ -215,7 +210,6 @@ std::pair<int, int> Room::getDirection(Direction d) {
     case locked: {
       if(std::get<1>(adjRooms[d])){
         if(std::get<1>(adjRooms[d])->getState()){
-          //this->setDoorMood(d, ajar);
           return std::make_pair(std::get<2>(adjRooms[d]), std::get<3>(adjRooms[d]));
         } else {
           return std::make_pair(0, -2);

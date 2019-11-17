@@ -56,16 +56,11 @@ class Room : public Object {
  private:
   std::map<int, Person*> npcInRoom;
   std::map<int, RoomObject*> objInRoom;
-
   std::map<Direction, std::tuple<DoorMood, RoomObject*, int, int>> adjRooms;
-
   bool hasEnemy;
-
   std::list<int> changedObj;
   std::string roomMessage;
-
   bool checkDirection(Direction);
-  void setDoorMood(Direction, DoorMood);
 };
 
 #endif // ROOM_H
