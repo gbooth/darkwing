@@ -230,23 +230,10 @@ std::pair<int, int> Room::getDirection(Direction d) {
 }
 
 void Room::objChanged(int id) {
-  switch(id/1000){
-  case 2:
-    if (this->checkForObj(id))
-      changedObj.push_back(id);
-    else
-      throw invalid_id("obj not in this room");
-  // case 3:
-  //   if (id/100%10 == 3)
-  //     if (this->checkForNPC(id))
-  //       changedObj.push_back(id);
-  //     else
-  //       throw invalid_id("NPC not in this room");
-  //   else
-  //     throw invalid_id("ID not for enemy");
-  default:
-    throw invalid_id("ID not for RoomObject or NPC");
-  }
+  if (this->checkForObj(id))
+    changedObj.push_back(id);
+  else
+    throw invalid_id("obj not in this room");
 }
 
 std::string Room::getMessage() {
