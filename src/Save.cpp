@@ -6,7 +6,7 @@ Save::Save(){
   throw save_error("Some fool be callin' a default constructor");
 }
 
-Save::Save(Hero* h, Room** r) {
+Save::Save(Hero h, Room** r) {
  std::string fname;
  std::string out;
  bool goodFileName = true;
@@ -23,18 +23,18 @@ Save::Save(Hero* h, Room** r) {
  
     fileName = fname + ".txt";
 
-    std::string posit = std::to_string(h->getPos().first)+std::to_string(h->getPos().second);
+    std::string posit = std::to_string(h.getPos().first)+std::to_string(h.getPos().second);
     std::string invStr = "";
-    std::list<std::pair<int, int>> invS = h->invSave();
+    std::list<std::pair<int, int>> invS = h.invSave();
     for(auto it = invS.begin(); it != invS.end(); ++it, invStr += ",")
         invStr += it->first + it->second;
     
 
  //all the attributes of a hero
- heroSaveMap[HP] = std::to_string(h->getHealth());
+ heroSaveMap[HP] = std::to_string(h.getHealth());
  heroSaveMap[pos] = posit;
  heroSaveMap[invnty] = invStr;
- heroSaveMap[equipWep] = std::to_string(h->getWeapon()->getID());
+ heroSaveMap[equipWep] = std::to_string(h.getWeapon()->getID());
 
  //all the attributes of a room and its objects
  int rID = 0;
