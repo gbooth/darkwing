@@ -103,9 +103,18 @@ Room** newGame(Room** world) {
   for (int i = 0; i < 5; i++) {
     world[i] = new Room[5] {i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
   }
+  Lever* bridge1 = static_cast<Lever*>(world[0][4].getObj(2305));
+  Lever* bridge2 = static_cast<Lever*>(world[0][3].getObj(2306));
+  Lever* bridge3 = static_cast<Lever*>(world[1][3].getObj(2302));
   for (int i = 0; i < 5; i++)
-    for (int j = 0; j < 5; j++)
+    for (int j = 0; j < 5; j++) {
       world[i][j].setDoor(world);
+      if(world[i][j].getID == 1005) {
+        static_cast<Lever*>(world[i][j].getObj(2301))->setDepLever(bridge1);
+        static_cast<Lever*>(world[i][j].getObj(2301))->setDepLever(bridge2);
+        static_cast<Lever*>(world[i][j].getObj(2301))->setDepLever(bridge3);
+      }
+    }
   return world;
 }
 
