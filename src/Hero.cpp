@@ -399,9 +399,11 @@ void Hero::usePotion(Item* a) {
 	} else if (health + a->getItemValue() > MAX_HERO_HP) {
 		health = MAX_HERO_HP;
 		inventory[potionID].second--;
+		std::cout << "The potion healed you for " << a->getItemValue() << std::endl;
 	} else {
 		health += a->getItemValue();
 		inventory[potionID].second--;
+    std::cout << "The potion healed you for " << a->getItemValue() << std::endl;
 	}
 	if(inventory[potionID].second == 0) {
 		delete a;
