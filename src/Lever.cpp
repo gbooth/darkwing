@@ -14,3 +14,11 @@ Lever::Lever(int ident, bool mode)
 }
 
 Lever::~Lever() {}
+
+void Lever::setDepLever(Lever* l) {
+  depLever.push_back(l);
+}
+
+std::list<Lever*> Lever::getDepLever() {
+  return depLever;
+}

@@ -6,6 +6,7 @@
 #ifndef LEVER_H
 #define LEVER_H
 #include "RoomObject.h"
+#include <list>
 
 /**
  *This class gives the identifier for the levers
@@ -25,7 +26,12 @@ class Lever : public RoomObject {
   /**
   *destructor
   */
-  virtual ~Lever();
+  ~Lever();
+
+  void setDepLever(Lever*);
+  std::list<Lever*> getDepLever();
+ private:
+  std::list<Lever*> depLever;
 };
 
 #endif // LEVER_H
