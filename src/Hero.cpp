@@ -214,9 +214,7 @@ void Hero::command(std::string s, Room** world) {
 				        && world[i][j].checkForObj(it->second)) {
 					RoomObject* const robj = world[i][j].getObj(it->second);
 					this->interact(robj);
-					if (op == "stone lever") {
-						std::cout << "The bridge is down." << std::endl;
-					} else if (op == "bone lever") {
+					if (op == "bone lever") {
 						std::cout <<
 						          "You hear the distinct sound of heavy rocks moving on \nthe opposite side of the lake. Perhaps a door has opened?"
 						          << std::endl;
@@ -503,6 +501,7 @@ void Hero::interact(RoomObject* const r) {
 		if((depLever[0].first->getState() && depLever[0].second) && (depLever[1].first->getState() && depLever[1].second) && (depLever[2].first->getState() && depLever[2].second)){
 			lev->setState(!lev->getState());
 			std::cout << "The Lever has been flipped" << std::endl;
+			std::cout << "The draw bridge lowers." << std::endl;
 		} else {
 			std::cout << "When you attempt to flip the lever it feels as though something is preventing the lever from flipping. Perhaps you need to do something else first?\n";
 		}
