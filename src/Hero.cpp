@@ -14,503 +14,518 @@
 const int MAX_HERO_HP = 20;
 
 Hero::Hero(): Person{3101} {
-  pos = std::make_pair(0, 0);
-  Item* fist = new Item(4205);
-  this->addInventory(fist);
-  this->setWeapon(fist);
-  this->setRef();
-  this->setCommand();
+	pos = std::make_pair(0, 0);
+	Item* fist = new Item(4205);
+	this->addInventory(fist);
+	this->setWeapon(fist);
+	this->setRef();
+	this->setCommand();
 }
 
 Hero::~Hero() {
-  for (auto it: inventory) {
-    delete it.second.first;
-  }
+	for (auto it: inventory) {
+		delete it.second.first;
+	}
 }
 
 void Hero::setWeapon(Item* w) {
-  if (inventory.find(w->getID()) != inventory.end() && (w->getID()/100 % 10 == 2))
-    weaponOfChoice = w;
-  else
-    std::cout << "You don't have this weapon" << std::endl;
+	if (inventory.find(w->getID()) != inventory.end() && (w->getID()/100 % 10 == 2)) {
+		if(weaponOfChoice == w) {
+			std::cout << weaponOfChoice->getName() << " already equipped." << std::endl;
+		} else {
+			weaponOfChoice = w;
+//			std::cout << "you equipped " << weaponOfChoice->getName() << std::endl;
+		}
+	} else {
+		std::cout << "You don't have this weapon" << std::endl;
+	}
 }
 
 Item* Hero::getWeapon() {
-  return weaponOfChoice;
+	return weaponOfChoice;
 }
 
 std::string Hero::inspect(Object* a) {
-  return a->getDesc();
+	return a->getDesc();
 }
 
 void Hero::mv(Direction a, Room** world) {
-  int iPos = world[pos.first][pos.second].getDirection(a).second;
-  iPos += (world[pos.first][pos.second].getDirection(a).first * 10);
+	int iPos = world[pos.first][pos.second].getDirection(a).second;
+	iPos += (world[pos.first][pos.second].getDirection(a).first * 10);
 
-  switch (iPos) {
-  case -1:
-    if (pos.first == 4 && pos.second == 0) {
-      std::cout << "The drawbridge is raised, you cant pass it" << std::endl;
-      break;
-    } else {
-      std::cout << "The Door wont open and there is no keyhole." <<std::endl;
-      break;
-    }
-  case -2:
-    if (pos.first == 3 && pos.second == 1) {
-      std::cout << "You are in the forest." <<std::endl;
-      break;
-    } else {
-      std::cout << "The Door is locked" << std::endl;
-      break;
-    }
-  case -11:
-    std::cout << "You can't go that way" << std::endl;
-    break;
-  default:
-    pos = world[pos.first][pos.second].getDirection(a);
-    std::cout << "You are in the " << world[pos.first][pos.second].getMessage() <<
-              std::endl;
-    break;
-  }
+	switch (iPos) {
+	case -1:
+		if (pos.first == 4 && pos.second == 0) {
+			std::cout << "The drawbridge is raised, you cant pass it" << std::endl;
+			break;
+		} else {
+			std::cout << "The Door wont open and there is no keyhole." <<std::endl;
+			break;
+		}
+	case -2:
+		if (pos.first == 3 && pos.second == 1) {
+			std::cout << "You are in the forest." <<std::endl;
+			break;
+		} else {
+			std::cout << "The Door is locked" << std::endl;
+			break;
+		}
+	case -11:
+		std::cout << "You can't go that way" << std::endl;
+		break;
+	default:
+		pos = world[pos.first][pos.second].getDirection(a);
+		std::cout << "You are in the " << world[pos.first][pos.second].getMessage() <<
+		          std::endl;
+		break;
+	}
 }
 
 void Hero::setPosition (std::pair<uint, uint> posi) {
-  if (pos.first > 4  || pos.second > 4)
-    throw invalid_pos("ERROR: position out of bounds");
-  pos = posi;
+	if (pos.first > 4  || pos.second > 4)
+		throw invalid_pos("ERROR: position out of bounds");
+	pos = posi;
 }
 
 std::pair<uint, uint> Hero::getPos() {
-  return pos;
+	return pos;
 }
 
 void Hero::attack(Person* npc, Room** world) {
-  int npcHealth = npc->getHealth();
-  damageValue = 1 + weaponOfChoice->getItemValue();
-  if (npc->getID() / 100 == 32) {
-    std::cout << "The villagers take you off to jail for attacking one of them"
-              << std::endl;
-    this->lose(jail, world);
-  }
-  if (npc->getID() / 100 == 33) {
-    if (npcHealth <= 0) {
-      std::cout << "The enemy is dead" << std::endl;
-    } else if (npcHealth > 0 && health > 0) {
-      npcHealth -= damageValue;
-      std::cout << "You deal " << damageValue << " points of damage.\n";
-      npc->setHealth(npcHealth);
-    }
-  }
+	int npcHealth = npc->getHealth();
+	damageValue = 1 + weaponOfChoice->getItemValue();
+	if (npc->getID() / 100 == 32) {
+		std::cout << "The villagers take you off to jail for attacking one of them"
+		          << std::endl;
+		this->lose(jail, world);
+	}
+	if (npc->getID() / 100 == 33) {
+		if (npcHealth <= 0) {
+			std::cout << "The enemy is dead" << std::endl;
+		} else if (npcHealth > 0 && health > 0) {
+			npcHealth -= damageValue;
+			std::cout << "You deal " << damageValue << " points of damage.\n";
+			npc->setHealth(npcHealth);
+		}
+	}
 }
 
 std::list<std::pair<int, int>> Hero::invSave() {
-  std::list<std::pair<int, int>> l;
-  std::pair<int, int> stuff;
-  for (auto it : inventory) {
-    stuff = std::make_pair(it.first, it.second.second);
-    l.push_back(stuff);
-  }
-  return l;
+	std::list<std::pair<int, int>> l;
+	std::pair<int, int> stuff;
+	for (auto it : inventory) {
+		stuff = std::make_pair(it.first, it.second.second);
+		l.push_back(stuff);
+	}
+	return l;
 }
 
 void Hero::command(std::string s, Room** world) {
-  std::transform(s.begin(), s.end(), s.begin(), ::tolower);
-  std::string cmd = "", op = "";
-  int i = this->getPos().first;
-  int j = this->getPos().second;
-  cmd = s.substr(0, s.find(' '));
-  op = s.substr(s.find(' ')+1);
-  if (!s.empty()) {
-    if (cRefs.find(cmd) != cRefs.end()) {
-      switch (cRefs[cmd]) {
-      case Command::use: {
-        auto it = refs.find(op);
-        if (it != refs.end()) {
-          if (it->second/100 == 41) { //its a potion
-            auto itr = inventory.find(it->second);
-            if (itr != inventory.end()) {
-              this->usePotion(itr->second.first);
-              break;
-            }
-          } else {
-            if (op == "orange key") {
-              auto it = refs.find(op);
-              if (it != refs.end() && world[i][j].checkForObj(2201)) {
-                RoomObject* lck = world[i][j].getObj(2201);
-                Lock* l = static_cast<Lock*>(lck);
-                auto itr = inventory.find(it->second);
-                if (itr != inventory.end()) {
-                  this->useKey(itr->second.first, l);
-                  break;
-                }
-              } else {
-                std::cout << "this key can't be used right now\n";
-                break;
-              }
-            } else {
-              if (op == "blue key") {
-                auto it = refs.find(op);
-                if (it != refs.end()&& world[i][j].checkForObj(2202)) {
-                  RoomObject* lck = world[i][j].getObj(2202);
-                  Lock* l = static_cast<Lock*>(lck);
-                  auto itr = inventory.find(it->second);
-                  if (itr != inventory.end()) {
-                    this->useKey(itr->second.first, l);
-                    break;
-                  }
-                } else {
-                  std::cout << "this key can't be used right now\n";
-                  break;
-                }
-              } else {
-                if (op == "forest map") {
-                  auto it = refs.find(op);
-                  if (it != refs.end() && world[i][j].checkForObj(2203)) {
-                    RoomObject* lck = world[i][j].getObj(2203);
-                    Lock* l = static_cast<Lock*>(lck);
-                    auto itr = inventory.find(it->second);
-                    if (itr != inventory.end()) {
-                      this->useKey(itr->second.first, l);
-                      break;
-                    }
-                  } else {
-                    std::cout << "this key can't be used right now\n";
-                    break;
-                  }
-                } else {
-                  std::cout<<"not a usable item" << std::endl;
-                  break;
-                }
-              }
-            }
-          }
-        } else {
-          std::cout << "That is not the name of an item" << std::endl;
-          break;
-        }
-      }
-      case Command::flip: {
-        auto it = refs.find(op);
-        if (it->second/100 == 23 &&  it != refs.end()
-            && world[i][j].checkForObj(it->second)) {
-          RoomObject* const robj = world[i][j].getObj(it->second);
-          this->interact(robj);
-          if (op == "stone lever") {
-              std::cout << "The bridge is down." << std::endl;
-          } else if (op == "bone lever") {
-            std::cout <<
-                      "You hear the distinct sound of heavy rocks moving on \nthe opposite side of the lake. Perhaps a door has opened?"
-                      << std::endl;
-          } else if (op == "mossy lever") {
-            std::cout << "That sound again...you suspect a door might be open else where."
-                      << std::endl;
-          } else {
-            std::cout  << "Hmm, that's strange, you don't hear anything happen." << std::endl;
-          }
-        } else {
-          std::cout <<"you can't flip that" << std::endl;
-        }
-        break;
-      }
-      case Command::inspect: {
-        if (op == "room") {
-          std::cout << this->inspect(&world[i][j]) << std::endl;
-          break;
-        }
-        auto it = refs.find(op);
-        if (it != refs.end()) {
-          if (it->second/100 == 32) { //its a villager
-            Person* const p = world[i][j].getNPC(it->second);
-            Object* o = p;
-            std::cout << this->inspect(o) << std::endl;
-            break;
-          } else if (it->second/1000 == 2) { //its a roomobject
-            if (world[i][j].checkForObj(it->second)) {
-              RoomObject* r = world[i][j].getObj(it->second);
-              Object* a = r;
-              std::cout << this->inspect(a) << std::endl;
-            } else {
-              std::cout << "this "<< op << " is not in the room\n";
-            }
-            break;
-          } else { //its an item
-            auto itr = inventory.find(it->second);
-            if (itr!= inventory.end()) {
-              Object* pt = itr->second.first; //item*
-              std::cout<<this->inspect(pt) << std::endl;
-            }
-          }
-        } else {
-          std::cout << "you can't inspect that" << std::endl;
-        }
-        break;
-      }
-      case Command::attack: {
-        auto it = refs.find(op);
-        if (it->second/1000 == 3 && it != refs.end()
-            && world[i][j].checkForNPC(it->second)) {
-          Person* const eny = world[i][j].getNPC(it->second);
-          this->attack(eny, world);
-        } else if (it->second/1000 == 1 || it->second /1000 == 2 || it->second == 4) {
-          std::cout << "your " << weaponOfChoice->getName() <<
-                    " bounces off the object and hits you in the face.\n";
-          this->setHealth(this->getHealth() - 1);
-        } else {
-          std::cout << op << " is not in the area." << std::endl;
-        }
-        break;
-      }
-      case Command::go: {
-        if (op == "north") {
-          mv(north, world);
-          break;
-        } else if (op == "south") {
-          mv(south, world);
-          break;
-        } else if (op == "east") {
-          mv(east, world);
-          break;
-        } else if (op == "west") {
-          mv(west, world);
-          break;
-        } else {
-          std::cout << "That is not a direction" << std::endl;
-          break;
-        }
-      }
-      case Command::talk: {
-        auto it = refs.find(op);
-        if (it != refs.end() && world[i][j].checkForNPC(it->second)
-            && (it->second/100 == 32)) {
-          Person* prn = world[i][j].getNPC(it->second);
-          Villager* v = static_cast<Villager*>(prn);
-          if(v->getID() == 3207 && this->getHealth() < MAX_HERO_HP){
-            this->setHealth(MAX_HERO_HP);
-            std::cout << "You now have full health." << std::endl;
-          }
-          this->talk(v, world);
+	std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+	std::string cmd = "", op = "";
+	int i = this->getPos().first;
+	int j = this->getPos().second;
+	cmd = s.substr(0, s.find(' '));
+	op = s.substr(s.find(' ')+1);
+	if (!s.empty()) {
+		if (cRefs.find(cmd) != cRefs.end()) {
+			switch (cRefs[cmd]) {
+			case Command::use: {
+				auto it = refs.find(op);
+				if (it != refs.end()) {
+					if (it->second/100 == 41) { //its a potion
+						auto itr = inventory.find(it->second);
+						if (itr != inventory.end()) {
+							this->usePotion(itr->second.first);
+							break;
+						}
+					} else {
+						if (op == "orange key") {
+							auto it = refs.find(op);
+							if (it != refs.end() && world[i][j].checkForObj(2201)) {
+								RoomObject* lck = world[i][j].getObj(2201);
+								Lock* l = static_cast<Lock*>(lck);
+								auto itr = inventory.find(it->second);
+								if (itr != inventory.end()) {
+									this->useKey(itr->second.first, l);
+									break;
+								}
+							} else {
+								std::cout << "this key can't be used right now\n";
+								break;
+							}
+						} else {
+							if (op == "blue key") {
+								auto it = refs.find(op);
+								if (it != refs.end()&& world[i][j].checkForObj(2202)) {
+									RoomObject* lck = world[i][j].getObj(2202);
+									Lock* l = static_cast<Lock*>(lck);
+									auto itr = inventory.find(it->second);
+									if (itr != inventory.end()) {
+										this->useKey(itr->second.first, l);
+										break;
+									}
+								} else {
+									std::cout << "this key can't be used right now\n";
+									break;
+								}
+							} else {
+								if (op == "forest map") {
+									auto it = refs.find(op);
+									if (it != refs.end() && world[i][j].checkForObj(2203)) {
+										RoomObject* lck = world[i][j].getObj(2203);
+										Lock* l = static_cast<Lock*>(lck);
+										auto itr = inventory.find(it->second);
+										if (itr != inventory.end()) {
+											this->useKey(itr->second.first, l);
+											break;
+										}
+									} else {
+										std::cout << "this key can't be used right now\n";
+										break;
+									}
+								} else {
+									std::cout<<"not a usable item" << std::endl;
+									break;
+								}
+							}
+						}
+					}
+				} else {
+					std::cout << "That is not the name of an item" << std::endl;
+					break;
+				}
+			}
+			case Command::flip: {
+				auto it = refs.find(op);
+				if (it->second/100 == 23 &&  it != refs.end()
+				        && world[i][j].checkForObj(it->second)) {
+					RoomObject* const robj = world[i][j].getObj(it->second);
+					this->interact(robj);
+					if (op == "stone lever") {
+						std::cout << "The bridge is down." << std::endl;
+					} else if (op == "bone lever") {
+						std::cout <<
+						          "You hear the distinct sound of heavy rocks moving on \nthe opposite side of the lake. Perhaps a door has opened?"
+						          << std::endl;
+					} else if (op == "mossy lever") {
+						std::cout << "That sound again...you suspect a door might be open else where."
+						          << std::endl;
+					} else {
+						std::cout  << "Hmm, that's strange, you don't hear anything happen." << std::endl;
+					}
+				} else {
+					std::cout <<"you can't flip that" << std::endl;
+				}
+				break;
+			}
+			case Command::inspect: {
+				if (op == "room") {
+					std::cout << this->inspect(&world[i][j]) << std::endl;
+					break;
+				}
+				auto it = refs.find(op);
+				if (it != refs.end()) {
+					if (it->second/100 == 32) { //its a villager
+						Person* const p = world[i][j].getNPC(it->second);
+						Object* o = p;
+						std::cout << this->inspect(o) << std::endl;
+						break;
+					} else if (it->second/1000 == 2) { //its a roomobject
+						if (world[i][j].checkForObj(it->second)) {
+							RoomObject* r = world[i][j].getObj(it->second);
+							Object* a = r;
+							std::cout << this->inspect(a) << std::endl;
+						} else {
+							std::cout << "this "<< op << " is not in the room\n";
+						}
+						break;
+					} else { //its an item
+						auto itr = inventory.find(it->second);
+						if (itr!= inventory.end()) {
+							Object* pt = itr->second.first; //item*
+							std::cout<<this->inspect(pt) << std::endl;
+						}
+					}
+				} else {
+					std::cout << "you can't inspect that" << std::endl;
+				}
+				break;
+			}
+			case Command::attack: {
+				auto it = refs.find(op);
+				if (it->second/1000 == 3 && it != refs.end()
+				        && world[i][j].checkForNPC(it->second)) {
+					Person* const eny = world[i][j].getNPC(it->second);
+					this->attack(eny, world);
+				} else if (it->second/1000 == 1 || it->second /1000 == 2 || it->second == 4) {
+					std::cout << "your " << weaponOfChoice->getName() <<
+					          " bounces off the object and hits you in the face.\n";
+					this->setHealth(this->getHealth() - 1);
+				} else {
+					std::cout << op << " is not in the area." << std::endl;
+				}
+				break;
+			}
+			case Command::go: {
+				if (op == "north") {
+					mv(north, world);
+					break;
+				} else if (op == "south") {
+					mv(south, world);
+					break;
+				} else if (op == "east") {
+					mv(east, world);
+					break;
+				} else if (op == "west") {
+					mv(west, world);
+					break;
+				} else {
+					std::cout << "That is not a direction" << std::endl;
+					break;
+				}
+			}
+			case Command::talk: {
+				auto it = refs.find(op);
+				if (it != refs.end() && world[i][j].checkForNPC(it->second)
+				        && (it->second/100 == 32)) {
+					Person* prn = world[i][j].getNPC(it->second);
+					Villager* v = static_cast<Villager*>(prn);
+					if(v->getID() == 3207 && this->getHealth() < MAX_HERO_HP) {
+						this->setHealth(MAX_HERO_HP);
+						std::cout << "You now have full health." << std::endl;
+					}
+					this->talk(v, world);
 
-        } else if (it->second/100 == 31 || it->second/100 == 33) {
-          std::cout << "you can't talk to this person" << std::endl;
-        } else {
-          std::cout << "this person isn't here" << std::endl;
-        }
-        break;
-      }
-      case Command::open: {
-        auto it = refs.find(op);
-        if (it != refs.end() && (it->second/100 == 21)
-            && world[i][j].checkForObj(it->second)) {
-          RoomObject* const rmb = world[i][j].getObj(it->second);
-          this->interact(rmb);
-        } else {
-          std::cout << "you can't open that" << std::endl;
-        }
-        break;
-      }
-      case Command::equip: {
-        auto it = refs.find(op);
-        if (it != refs.end()) {
-          auto ptr = inventory.find(it->second);
-          setWeapon(ptr->second.first);
-          std::cout<<"your weapon of choice is now: " << this->getWeapon()->getName() <<
-                   std::endl;
-        }
-        break;
-      }
-      case Command::help: {
-        this->help();
-        break;
-      }
-      case Command::inv: {
-        this->getInventory();
-        break;
-      }
+				} else if (it->second/100 == 31 || it->second/100 == 33) {
+					std::cout << "you can't talk to this person" << std::endl;
+				} else {
+					std::cout << "this person isn't here" << std::endl;
+				}
+				break;
+			}
+			case Command::open: {
+				auto it = refs.find(op);
+				if (it != refs.end() && (it->second/100 == 21)
+				        && world[i][j].checkForObj(it->second)) {
+					RoomObject* const rmb = world[i][j].getObj(it->second);
+					this->interact(rmb);
+				} else {
+					std::cout << "you can't open that" << std::endl;
+				}
+				break;
+			}
+			case Command::equip: {
+				if(op == "equip") {
+					std::cout  << "your weapon: "<< this->getWeapon()->getName() << std::endl;
+					break;
+				} else {
+					auto it = refs.find(op);
+					if (it != refs.end()) {
+						auto ptr = inventory.find(it->second);
+						if(this->getWeapon()->getName() == op){
+                            this->setWeapon(ptr->second.first);
+                           // std::cout << "weapon already equipped" << std::endl;
+						}else{
+						this->setWeapon(ptr->second.first);
+						std::cout << "your weapon of choice is: " << this->getWeapon()->getName() << std::endl;
+						}
+					}
+					break;
+				}
+			}
+			case Command::help: {
+				this->help();
+				break;
+			}
+			case Command::inv: {
+				this->getInventory();
+				break;
+			}
 //  case Command::save: {
 //    Save s(*this, world);
 //    s.saveGame();
 //  }
-      default: {
-        std::cout << "not a possible command" << std::endl;
-        break;
-      }
-      }
-    } else {
-      std::cout << "not a valid command" << std::endl;
-    }
-  }
+			default: {
+				std::cout << "not a possible command" << std::endl;
+				break;
+			}
+			}
+		} else {
+			std::cout << "not a valid command" << std::endl;
+		}
+	}
 }
 
 void Hero::getInventory() {
-  std::cout << "Items" << std::setw(30) << std::setfill(' ') << "Amount" << "\n";
-  std::cout << std::setw(36) << std::setfill('v') << "\n";
-  for (auto it: inventory)
-    std::cout << std::left << std::setw(20) << std::setfill('-') <<
-              it.second.first->getName() << std::setw(15) << std::setfill('-') << std::right
-              << it.second.second << std::endl;
+	std::cout << "Items" << std::setw(30) << std::setfill(' ') << "Amount" << "\n";
+	std::cout << std::setw(36) << std::setfill('v') << "\n";
+	for (auto it: inventory)
+		std::cout << std::left << std::setw(20) << std::setfill('-') <<
+		          it.second.first->getName() << std::setw(15) << std::setfill('-') << std::right
+		          << it.second.second << std::endl;
 }
 
 void Hero::addInventory(Item* a) {
-   if(a->getID() != 4205)
-   std::cout << a->getName() << " has been added to your inventory!" << std::endl;
-  int itemID = a->getID();
-  if (inventory.find(itemID) == inventory.end())
-    inventory[itemID] = std::make_pair(a, 1);
-  else
-    inventory[itemID].second++;
+	if(a->getID() != 4205)
+		std::cout << a->getName() << " has been added to your inventory!" << std::endl;
+	int itemID = a->getID();
+	if (inventory.find(itemID) == inventory.end())
+		inventory[itemID] = std::make_pair(a, 1);
+	else
+		inventory[itemID].second++;
 }
 
 void Hero::usePotion(Item* a) {
-  int potionID = a->getID();
-  if (health == MAX_HERO_HP) {
-    std::cout << "You are already at full health" << std::endl;
-  } else if (health + a->getItemValue() > MAX_HERO_HP) {
-    health = MAX_HERO_HP;
-    inventory[potionID].second--;
-  } else {
-    health += a->getItemValue();
-    inventory[potionID].second--;
-  }
-  if(inventory[potionID].second == 0){
-     delete a;
-     inventory.erase(potionID);
-  }
+	int potionID = a->getID();
+	if (health == MAX_HERO_HP) {
+		std::cout << "You are already at full health" << std::endl;
+	} else if (health + a->getItemValue() > MAX_HERO_HP) {
+		health = MAX_HERO_HP;
+		inventory[potionID].second--;
+	} else {
+		health += a->getItemValue();
+		inventory[potionID].second--;
+	}
+	if(inventory[potionID].second == 0) {
+		delete a;
+		inventory.erase(potionID);
+	}
 }
 
 void Hero::setRef() {
-  std::ifstream file;
-  std::string line;
-  std::string name;
-  int idVar;
-  file.open("identifierMap.csv");
-  if (file.is_open()) {
-    while (!file.eof()) {
-      std::getline(file, line, ':');
-      if (std::stoi(line)/1000 == 1) {
-        file.ignore(1000, '\n');
-        continue;
-      }
-      idVar = std::stoi(line);
-      std::getline(file, line, ':');
-      std::transform(line.begin(), line.end(), line.begin(), ::tolower);
-      name = line;
-      refs[name] = idVar;
-      std::getline(file, line);
-      //file.ignore(1000, '\n');
-    }
-  } else {
-    std::cout <<"file not open" << std::endl;
-  }
+	std::ifstream file;
+	std::string line;
+	std::string name;
+	int idVar;
+	file.open("identifierMap.csv");
+	if (file.is_open()) {
+		while (!file.eof()) {
+			std::getline(file, line, ':');
+			if (std::stoi(line)/1000 == 1) {
+				file.ignore(1000, '\n');
+				continue;
+			}
+			idVar = std::stoi(line);
+			std::getline(file, line, ':');
+			std::transform(line.begin(), line.end(), line.begin(), ::tolower);
+			name = line;
+			refs[name] = idVar;
+			std::getline(file, line);
+			//file.ignore(1000, '\n');
+		}
+	} else {
+		std::cout <<"file not open" << std::endl;
+	}
 }
 
 void Hero::setCommand() {
-  cRefs["use"] = Command::use;
-  cRefs["inspect"] = Command::inspect;
-  cRefs["inventory"] = Command::inv;
-  cRefs["talk"] = Command::talk;
-  cRefs["go"] = Command::go;
-  cRefs["attack"] = Command::attack;
-  cRefs["flip"] = Command::flip;
-  cRefs["open"] = Command::open;
-  cRefs["help"] = Command::help;
-  cRefs["equip"] = Command::equip;
+	cRefs["use"] = Command::use;
+	cRefs["inspect"] = Command::inspect;
+	cRefs["inventory"] = Command::inv;
+	cRefs["talk"] = Command::talk;
+	cRefs["go"] = Command::go;
+	cRefs["attack"] = Command::attack;
+	cRefs["flip"] = Command::flip;
+	cRefs["open"] = Command::open;
+	cRefs["help"] = Command::help;
+	cRefs["equip"] = Command::equip;
 }
 
 void Hero::useKey(Item* a, Lock* l) {
-  l->unlock(a->getID());
+	l->unlock(a->getID());
 }
 
 void Hero::talk(Villager* v, Room** world) {
-  if (v->getID() == 3208 && inventory.find(4303) == inventory.end()) {
-    if (v->riddle()) {
-      std::cout <<
-                "Correct! Here, take this map to the woods. You'll likely get lost without it."
-                << std::endl;
-      Item* mapKey = new Item(4303);
-      this->addInventory(mapKey);
-    } else {
-      std::cout << v->getName() <<
-                " looks at you with great disappointment. A wave of his hands opens the ground beneath your flippers and you die!\n";
-      this->lose(riddle, world);
-    }
+	if (v->getID() == 3208 && inventory.find(4303) == inventory.end()) {
+		if (v->riddle()) {
+			std::cout <<
+			          "Correct! Here, take this map to the woods. You'll likely get lost without it."
+			          << std::endl;
+			Item* mapKey = new Item(4303);
+			this->addInventory(mapKey);
+		} else {
+			std::cout << v->getName() <<
+			          " looks at you with great disappointment. A wave of his hands opens the ground beneath your flippers and you die!\n";
+			this->lose(riddle, world);
+		}
 
-  } else {
-    v->response();
-  }
+	} else {
+		v->response();
+	}
 }
 
 void Hero::help() {
-  std::string output;
-  std::ifstream helpFile("help.txt");
+	std::string output;
+	std::ifstream helpFile("help.txt");
 
-  if (helpFile.is_open())
-    getline(helpFile, output, '*');
-  else
-    throw file_error("help file missing");
-  std::cout << output;
+	if (helpFile.is_open())
+		getline(helpFile, output, '*');
+	else
+		throw file_error("help file missing");
+	std::cout << output;
 }
 
 void Hero::interact(RoomObject* const r) {
-  if (r->getID() / 100 % 10 == 3 && r->getID() / 1000 == 2) {
-    r->setState(!r->getState());
-    std::cout << "The Lever has been flipped" << std::endl;
-  } else if (r->getID() / 100 % 10 == 1 && r->getID() / 1000 == 2) {
-    if (!r->getState()) {
-      Item* a = static_cast<Chest*>(r)->getContents();
-      this->addInventory(a);
-    }
-  } else {
-    std::cout << "This is not a Chest, nor is it a Lever" << std::endl;
-  }
+	if (r->getID() / 100 % 10 == 3 && r->getID() / 1000 == 2) {
+		r->setState(!r->getState());
+		std::cout << "The Lever has been flipped" << std::endl;
+	} else if (r->getID() / 100 % 10 == 1 && r->getID() / 1000 == 2) {
+		if (!r->getState()) {
+			Item* a = static_cast<Chest*>(r)->getContents();
+			this->addInventory(a);
+		}
+	} else {
+		std::cout << "This is not a Chest, nor is it a Lever" << std::endl;
+	}
 }
 
 void Hero::lose(GitGud l, Room** world) {
-  switch(l){
-    case riddle:{
-      std::cout << "You've offended Sirius Quack and he is very serious about "
-                << "that.\n\nGame Over.\n";
-      break;
-    }
-    case ducked:{
-      std::cout << "You've been slain by a duck.\n\nGame Over.\n";
-      break;
-    }
-    case moronUser:{
-      std::cout << "Standing around when fighting a duck can get you killed..."
-                << " and it did.\n\nGame Over.\n";
-      break;
-    }
-    case stalactite:{
-      std::cout << "You've been impaled by a falling stalactite. How unfortuna"
-                << "te.\n\nGame Over.\n";
-      break;
-    }
-    case jail:{
-      std::cout << "Who would've ever thought attempted murder would land you "
-                << "in jail?\n\nGame Over.\n";
-      break;
-    }
-  }
-  for (int i = 0; i < 5; i++)
-    delete [] world[i];
-  delete world;
-  world = nullptr;
-  exit(0);
+	switch(l) {
+	case riddle: {
+		std::cout << "You've offended Sirius Quack and he is very serious about "
+		          << "that.\n\nGame Over.\n";
+		break;
+	}
+	case ducked: {
+		std::cout << "You've been slain by a duck.\n\nGame Over.\n";
+		break;
+	}
+	case moronUser: {
+		std::cout << "Standing around when fighting a duck can get you killed..."
+		          << " and it did.\n\nGame Over.\n";
+		break;
+	}
+	case stalactite: {
+		std::cout << "You've been impaled by a falling stalactite. How unfortuna"
+		          << "te.\n\nGame Over.\n";
+		break;
+	}
+	case jail: {
+		std::cout << "Who would've ever thought attempted murder would land you "
+		          << "in jail?\n\nGame Over.\n";
+		break;
+	}
+	}
+	for (int i = 0; i < 5; i++)
+		delete [] world[i];
+	delete world;
+	world = nullptr;
+	exit(0);
 }
 
 void Hero::win(Room** world) {
-  std::cout << "As you stike your final blow, Firequacker shrieks a terrible r"
-            << "oar quack and falls to the floor. You rush over to free your c"
-            << "aptive mentor in the corner of the chamber. As you help him to"
-            << " his feet you both notice Firequacker has transformed back int"
-            << "o a wooden duck. \n\n\"Thank you for freeing me Duck Norris.\""
-            << " the wizard coughs as he stumbles over to Firequacker. \n\n\"H"
-            << "ow big do you think we can make him this time Norris?\" asks t"
-            << "he wizard as he picks Firequacker up from the cave floor";
-  for (int i = 0; i < 5; i++) 
-    delete [] world[i];
-  delete world;
-  world = nullptr;
-  exit(0);
+	std::cout << "As you stike your final blow, Firequacker shrieks a terrible r"
+	          << "oar quack and falls to the floor. You rush over to free your c"
+	          << "aptive mentor in the corner of the chamber. As you help him to"
+	          << " his feet you both notice Firequacker has transformed back int"
+	          << "o a wooden duck. \n\n\"Thank you for freeing me Duck Norris.\""
+	          << " the wizard coughs as he stumbles over to Firequacker. \n\n\"H"
+	          << "ow big do you think we can make him this time Norris?\" asks t"
+	          << "he wizard as he picks Firequacker up from the cave floor";
+	for (int i = 0; i < 5; i++)
+		delete [] world[i];
+	delete world;
+	world = nullptr;
+	exit(0);
 }
