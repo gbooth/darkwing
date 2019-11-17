@@ -359,6 +359,7 @@ void Hero::command(std::string s, Room** world) {
   			case Command::save: {
     			Save s(this, world);
     			s.saveGame();
+				break;
   			}
 			default: {
 				std::cout << "not a possible command" << std::endl;
