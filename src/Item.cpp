@@ -1,7 +1,7 @@
-    /**
-     *@autor Wesley Waldern
-     *@date 2019-11
-     */
+/**
+ *@author Wesley Waldern
+ *@date 2019-11
+ */
 
 #include <Item.h>
 #include <string>
