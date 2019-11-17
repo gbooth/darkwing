@@ -74,17 +74,72 @@ class Hero : public Person {
    */
   std::pair<unsigned int, unsigned int> getPos();
 
+  /**
+   *This function gives the inventory saved.
+   */
   std::list<std::pair<int, int>> invSave();
+
+  /**
+   *This function gives the current inventory any time during the game.
+   */
   void getInventory();
+
+  /**
+   *This function tell you what object has been added to your inventory.
+   */
   void addInventory(Item*);
+
+  /**
+   * This function give you the health when using potions.
+   */
   void usePotion(Item*);
+
+  /**
+   *This function unlock when using the right key.
+   */
   void useKey(Item*, Lock*);
+
+  /**
+   *This function let you know to talk with the Villager whe you are in the room.
+   */
   void talk(Villager*, Room**);
+
+  /**
+   *This function gives all the commands that you can use during the game and messages related with
+   *messages that the hero will received every when asked for.
+   */
   void command(std::string, Room**);
+
+
+  /**
+   * This function interact giving the state of the objects in the rooms.
+   */
   bool interact(RoomObject* const);
+
+  /**
+   *This function gives the conditions in which the game will be over.
+   */
   void lose(GitGud, Room**);
+
+  /**
+   *This function gives message when the Hero wins the game.
+   */
   void win(Room**);
+
+  /**
+   *This function contains the file to help he player from any room.
+   */
   void help();
+
+  /**
+   *@param inventory  gives the status of the inventory.
+   *@param weaponOfChoice give the weapon selected.
+   *@param pos give the position of the Hero
+   *@param refs to actions that ake place during the game.
+   *@param cref these are the references for the the actions used in the commands.
+   */
+
+
  private:
   void setRef();
   void setCommand();

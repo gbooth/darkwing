@@ -32,7 +32,7 @@ class Chest: public RoomObject {
    */
   Item* getContents();
   /**
-   *@parameter contents give the objects inside the specfic chest.
+   *@param contents give the objects inside the specific chest.
    */
 
 
