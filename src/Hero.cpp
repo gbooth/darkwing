@@ -591,3 +591,15 @@ void Hero::win(Room** world) {
 	world = nullptr;
 	exit(0);
 }
+
+void Hero::reset() {
+  this->setPosition(std::make_pair(0, 0));
+  this->setHealth(MAX_HERO_HP);
+  this->setWeapon(inventory[4205].first);
+  for(auto it : inventory){
+    if(it.first != 4205){
+      delete it.second.first;
+      inventory.erase(it.first);
+    }
+  }
+}

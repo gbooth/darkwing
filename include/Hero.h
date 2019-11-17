@@ -94,6 +94,7 @@ class Hero : public Person {
   bool interact(RoomObject* const);
   void lose(GitGud, Room**);
   void win(Room**);
+  void reset();
   void help();
  private:
   void setRef();

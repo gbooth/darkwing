@@ -66,6 +66,7 @@ int main() {
         }
         delete world;
         world = nullptr;
+        h.reset();
         break;
       }
       h.command(inStr, world);
