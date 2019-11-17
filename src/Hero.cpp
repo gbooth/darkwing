@@ -286,6 +286,7 @@ void Hero::command(std::string s, Room** world) {
 					std::cout << "your " << weaponOfChoice->getName() <<
 					          " bounces off the object and hits you in the face.\n";
 					this->setHealth(this->getHealth() - 1);
+					std::cout << "You take 1 point of damage.\n";
 				} else {
 					std::cout << op << " is not in the area." << std::endl;
 				}
