@@ -485,7 +485,7 @@ void Hero::help() {
 }
 
 void Hero::interact(RoomObject* const r) {
-	if(r->getID != 2301) {
+	if(r->getID() != 2301) {
 		if (r->getID() / 100 % 10 == 3 && r->getID() / 1000 == 2) {
 			r->setState(!r->getState());
 			std::cout << "The Lever has been flipped" << std::endl;
