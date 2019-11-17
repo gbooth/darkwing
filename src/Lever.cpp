@@ -15,10 +15,10 @@ Lever::Lever(int ident, bool mode)
 
 Lever::~Lever() {}
 
-void Lever::setDepLever(Lever* l) {
+void Lever::setDepLever(std::pair<Lever*, bool> l) {
   depLever.push_back(l);
 }
 
-std::list<Lever*> Lever::getDepLever() {
+std::vector<std::pair<Lever*, bool>> Lever::getDepLever() {
   return depLever;
 }

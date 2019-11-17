@@ -6,7 +6,7 @@
 #ifndef LEVER_H
 #define LEVER_H
 #include "RoomObject.h"
-#include <list>
+#include <vector>
 
 /**
  *This class gives the identifier for the levers
@@ -28,10 +28,10 @@ class Lever : public RoomObject {
   */
   ~Lever();
 
-  void setDepLever(Lever*);
-  std::list<Lever*> getDepLever();
+  void setDepLever(std::pair<Lever*, bool>);
+  std::vector<std::pair<Lever*, bool>> getDepLever();
  private:
-  std::list<Lever*> depLever;
+  std::vector<std::pair<Lever*, bool>> depLever;
 };
 
 #endif // LEVER_H

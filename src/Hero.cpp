@@ -485,16 +485,27 @@ void Hero::help() {
 }
 
 void Hero::interact(RoomObject* const r) {
-	if (r->getID() / 100 % 10 == 3 && r->getID() / 1000 == 2) {
-		r->setState(!r->getState());
-		std::cout << "The Lever has been flipped" << std::endl;
-	} else if (r->getID() / 100 % 10 == 1 && r->getID() / 1000 == 2) {
-		if (!r->getState()) {
-			Item* a = static_cast<Chest*>(r)->getContents();
-			this->addInventory(a);
+	if(r->getID != 2301) {
+		if (r->getID() / 100 % 10 == 3 && r->getID() / 1000 == 2) {
+			r->setState(!r->getState());
+			std::cout << "The Lever has been flipped" << std::endl;
+		} else if (r->getID() / 100 % 10 == 1 && r->getID() / 1000 == 2) {
+			if (!r->getState()) {
+				Item* a = static_cast<Chest*>(r)->getContents();
+				this->addInventory(a);
+			}
+		} else {
+			std::cout << "This is not a Chest, nor is it a Lever" << std::endl;
 		}
 	} else {
-		std::cout << "This is not a Chest, nor is it a Lever" << std::endl;
+		Lever* lev = static_cast<Lever*>(r);
+		std::vector<std::pair<Lever*, bool>> depLever = lev->getDepLever();
+		if((depLever[0].first->getState() && depLever[0].second) && (depLever[1].first->getState() && depLever[1].second) && (depLever[2].first->getState() && depLever[2].second)){
+			lev->setState(!lev->getState());
+			std::cout << "The Lever has been flipped" << std::endl;
+		} else {
+			std::cout << "When you attempt to flip the lever it feels as though something is preventing the lever from flipping. Perhaps you need to do something else first?\n";
+		}
 	}
 }
 
