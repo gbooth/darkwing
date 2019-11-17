@@ -150,6 +150,9 @@ void Hero::command(std::string s, Room** world) {
 									this->useKey(itr->second.first, l);
 									break;
 								}
+							} else if(inventory.find(it->second) == inventory.end()) {
+								std::cout << "you don't have that key" << std::endl;
+								break;
 							} else {
 								std::cout << "this key can't be used right now\n";
 								break;
@@ -165,6 +168,9 @@ void Hero::command(std::string s, Room** world) {
 										this->useKey(itr->second.first, l);
 										break;
 									}
+								} else if(inventory.find(it->second) == inventory.end()) {
+									std::cout << "you don't have that key" << std::endl;
+									break;
 								} else {
 									std::cout << "this key can't be used right now\n";
 									break;
@@ -180,6 +186,9 @@ void Hero::command(std::string s, Room** world) {
 											this->useKey(itr->second.first, l);
 											break;
 										}
+									} else if(inventory.find(it->second) == inventory.end()) {
+										std::cout << "you don't have that key" << std::endl;
+										break;
 									} else {
 										std::cout << "this key can't be used right now\n";
 										break;
@@ -323,12 +332,12 @@ void Hero::command(std::string s, Room** world) {
 					auto it = refs.find(op);
 					if (it != refs.end()) {
 						auto ptr = inventory.find(it->second);
-						if(this->getWeapon()->getName() == op){
-                            this->setWeapon(ptr->second.first);
-                           // std::cout << "weapon already equipped" << std::endl;
-						}else{
-						this->setWeapon(ptr->second.first);
-						std::cout << "your weapon of choice is: " << this->getWeapon()->getName() << std::endl;
+						if(this->getWeapon()->getName() == op) {
+							this->setWeapon(ptr->second.first);
+							// std::cout << "weapon already equipped" << std::endl;
+						} else {
+							this->setWeapon(ptr->second.first);
+							std::cout << "your weapon of choice is: " << this->getWeapon()->getName() << std::endl;
 						}
 					}
 					break;
