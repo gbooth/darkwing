@@ -17,8 +17,7 @@ class Chest: public RoomObject {
 
  public:
   /**
-   *Default constructor ,that identify the objects inside the chest.
-   * @param int that is the identifier of the  objects inside the chest.
+   * Default constructor ,that identify the objects inside the chest.
    */
   Chest(int);
 

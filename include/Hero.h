@@ -27,7 +27,6 @@ class Hero : public Person {
  public:
   /**
    *Default Constructor
-   *@param identifier of the Hero and his position.
    */
   Hero();
 
@@ -38,7 +37,6 @@ class Hero : public Person {
 
   /**
    *This function define the npc by the hero.
-   * @param represent the npc with be related with the hero.
    */
   void attack(Person*, Room**);
 
@@ -76,15 +74,9 @@ class Hero : public Person {
 
   /**
    *this function access the position of the player.
-   * return the position of the player.
    */
   std::pair<unsigned int, unsigned int> getPos();
 
-  /**
-   *@param map will associate the item with the identifier in the inventory.
-   *@param weaponOfChoice provides the identifier of the weapons.
-   *@param pos will give the coordinates of the position of the hero.
-   */
   std::list<std::pair<int, int>> invSave();
   void getInventory();
   void addInventory(Item*);
