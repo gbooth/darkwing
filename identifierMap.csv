@@ -23,6 +23,15 @@
 1023:cram room:a red velvet room with a plinth in the middle holding a major chest. You can move south.
 1024:void:void
 1025:void:void
+2101:golden chest:a large chest with golden filigry about the handle
+2102:jade chest:a boring old chest but perhaps there's treasure inside
+2103:blue chest:a chest as blue as the sea?
+2104:orange chest:a chest as orange an...orange
+2105:spikey chest:a super spikey chest...like a porcupine
+2106:sandy chest:a very sandy and dirty chest
+2107:small chest: a really tiny chest
+2108:major chest:massive chest the size of your...house
+2109:broken chest:a really rusty chest probably from all the water around.
 2201:orange lock:its an orange lock kind of like other orange locks you've seen
 2202:blue lock:a blue lock so pretty and blue
 2203:brown lock:the way is barred you shall not pass
@@ -33,11 +42,7 @@
 2305:wooden lever:you pull this like a tree branch except it doesn't break...and its not a tree
 2306:flimsy lever:its sword hilt sticking out of a wall...maybe you should pull it?
 2307:cram lever:a lever made of cram, yuck.
-3301:Quacker Jack:he's dead
-3302:Muddlefoot:he's dead
-3303:Macawbre:dead duck
-3304:Quackmire:he's dead
-3305:Firequacker:he's dead
+3101:Duck Norris:legends have it, he has a second beak under his beard
 3201:Quackie Chan:a very athletic small man 
 3202:King Eider:A man with an orange face and mole on his nose.
 3203:James Pond:A man who could very well not have worked a day in his life.
@@ -47,25 +52,20 @@
 3207:Duke of Duckworth:The local healer. You might visit him in a pinch.
 3208:Sirius Quack:A tall brooding man in rags. Though quite likeable once you get to know him.
 3209:Duck Rogers:A stud if ever you saw one.
-3210:Waddles:A hermit well renound for living in the Quacksand Desert. 
-4301:orange key:a key that might go with the orange lock
-4302:blue key:similar to the orange key but its blue
-4303:Forest Map:you know the way
+3210:Waddles:A hermit well renound for living in the Quacksand Desert.
+3301:Quacker Jack:he's dead
+3302:Muddlefoot:he's dead
+3303:Macawbre:dead duck
+3304:Quackmire:he's dead
+3305:Firequacker:he's dead
 4101:major health potion:a pretty nice potion capable of healing 20 HP
 4102:minor health potion:an ok health potion capable of healing 10 HP
-2101:golden chest:a large chest with golden filigry about the handle
-2102:jade chest:a boring old chest but perhaps there's treasure inside
-2103:blue chest:a chest as blue as the sea?
-2104:orange chest:a chest as orange an...orange
-2105:spikey chest:a super spikey chest...like a porcupine
-2106:sandy chest:a very sandy and dirty chest
-2107:small chest: a really tiny chest
-2108:major chest:massive chest the size of your...house
-2109:broken chest:a really rusty chest probably from all the water around.
 4201:sword:its a sword...kinda sharp..the pointy end goes away from you. Deals 6 damage points.
 4202:golden sword:its super duper nice sword with gold all around it. Deals 8 damage points.
 4203:dagger:meh...its a dagger what more can you ask for? Deals 3 damage points.
 4204:golden dagger:a super duper nice dagger...kinda like a super duper nice sword. Deals 5 damage points.
-4206:cram sword:a sword made of cram, left out in the sun for a fortnight. It's harder than steel. Deals 10 damage points.
-3101:Duck Norris:legends have it, he has a second beak under his beard
 4205:fists:A rather nice pair of fists if you do say so yourself. Deals 1 damage point.
+4206:cram sword:a sword made of cram, left out in the sun for a fortnight. It's harder than steel. Deals 10 damage points.
+4301:orange key:a key that might go with the orange lock
+4302:blue key:similar to the orange key but its blue
+4303:Forest Map:you know the way

@@ -45,7 +45,16 @@ Item* Hero::getWeapon() {
 }
 
 std::string Hero::inspect(Object* a) {
-	return a->getDesc();
+	if(a->getID()/100 == 23){
+		std::string str = a->getDesc();
+		if(static_cast<Lever*>(a)->getState())
+			str += "The lever is currently flipped down.\n";
+		else
+			str += "The lever is currently flipped up.\n";
+		return str;
+	} else {		
+		return a->getDesc();
+	}
 }
 
 void Hero::mv(Direction a, Room** world) {
@@ -215,8 +224,11 @@ void Hero::command(std::string s, Room** world) {
 						world[i][j].objChanged(it->second);
 					if (op == "bone lever") {
 						std::cout <<
-						          "You hear the distinct sound of heavy rocks moving on \nthe opposite side of the lake. Perhaps a door has opened?"
-						          << std::endl;
+						          "You hear the sound of heavy rocks moving on \nsomewhere south of you and the sound of splashing in the distance";
+						if(robj->getState())
+							std::cout << " stops.\n";
+						else
+							std::cout << " starts.\n";
 					} else if (op == "mossy lever") {
 						std::cout << "That sound again...you suspect a door might be open else where."
 						          << std::endl;
@@ -503,7 +515,7 @@ bool Hero::interact(RoomObject* const r) {
 	} else {
 		Lever* lev = static_cast<Lever*>(r);
 		std::vector<std::pair<Lever*, bool>> depLever = lev->getDepLever();
-		if((depLever[0].first->getState() && depLever[0].second) && (depLever[1].first->getState() && depLever[1].second) && (depLever[2].first->getState() && depLever[2].second)){
+		if((!depLever[0].first->getState() && !depLever[0].second) && (depLever[1].first->getState() && depLever[1].second) && (depLever[2].first->getState() && depLever[2].second)){
 			lev->setState(!lev->getState());
 			std::cout << "The Lever has been flipped" << std::endl;
 			std::cout << "The draw bridge lowers." << std::endl;
