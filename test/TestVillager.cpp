@@ -43,6 +43,7 @@ TEST(TestVillager, attackTest) {
   Villager* p = new Villager(3210);
   EXPECT_EQ(10, p->getHealth());
   Villager v(3208);
+  v.setDamage(0);
   v.attack(p, world);
   EXPECT_EQ(10, p->getHealth());
   delete p;
