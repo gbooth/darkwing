@@ -56,8 +56,9 @@ compile: $(PROGRAM_GAME)
 tests: $(PROGRAM_TEST)
 	$(PROGRAM_TEST)
 
-memory: $(PROGRAM_TEST)
-	valgrind --tool=memcheck --leak-check=yes $(PROGRAM_TEST)
+memory: $(PROGRAM_GAME) #$(PROGRAM_TEST)
+#	valgrind --tool=memcheck --leak-check=yes $(PROGRAM_TEST)
+	valgrind --tool=memcheck --leak-check=yes $(PROGRAM_GAME)
 
 coverage: $(PROGRAM_TEST)
 	$(PROGRAM_TEST)
