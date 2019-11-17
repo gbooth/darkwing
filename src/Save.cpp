@@ -6,7 +6,7 @@ Save::Save(){
   throw save_error("Some fool be callin' a default constructor");
 }
 
-Save::Save(Hero* const h, Room** const r) {
+Save::Save(Hero* h, Room** r) {
  std::string fname;
  std::string out;
  bool goodFileName = true;

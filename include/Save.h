@@ -21,7 +21,7 @@ public:
  *@param h the pointer to the hero to save
  *@param r the pointer to the world that needs to be saved
  */
- Save(Hero* const, Room** const);
+ Save(Hero*, Room**);
 
  /**
  *virtual destructor
