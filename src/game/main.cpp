@@ -109,7 +109,7 @@ Room** newGame(Room** world) {
   for (int i = 0; i < 5; i++)
     for (int j = 0; j < 5; j++) {
       world[i][j].setDoor(world);
-      if(world[i][j].getID == 1005) {
+      if(world[i][j].getID() == 1005) {
         static_cast<Lever*>(world[i][j].getObj(2301))->setDepLever(bridge1);
         static_cast<Lever*>(world[i][j].getObj(2301))->setDepLever(bridge2);
         static_cast<Lever*>(world[i][j].getObj(2301))->setDepLever(bridge3);
