@@ -19,9 +19,9 @@ class Person : public Object {
 
   /**
   * Constructor
-  * @parameter id the identifer of the person.
-  * @parameter damageVal the damage value of the person.
-  * @parameter hp the health of the person.
+  * @param id the identifier of the person.
+  * @param damageVal the damage value of the person.
+  * @param hp the health of the person.
   * @throw throw an error if id doesn't match a  person.
   */
   Person(int id);
@@ -56,10 +56,10 @@ class Person : public Object {
   */
   int getDamage()const;
 
-  /**
-   *@parameter health will give the health points for the person.
-   *@parameter damageValue will give the damage for the person during the game.
-   */
+/**
+*@param health will give the health points for the person.
+*@param damageValue will give the damage for the person during the game
+*/
  protected:
   int health;
   int damageValue;

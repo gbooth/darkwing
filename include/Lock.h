@@ -19,9 +19,9 @@
 class Lock : public RoomObject {
  public:
   /** the constructor verify the key identifier.
-  *@Parameter Identifier id. which send us to the Identifier list verification.
-  *@Parameter State stat which give us the state of the lock.
-  *@Parameter lockValue which give the verification for the lock.
+  *@param Identifier id. which send us to the Identifier list verification.
+  *@param State stat which give us the state of the lock.
+  *@param lockValue which give the verification for the lock.
   */
   Lock (int);
 
@@ -32,7 +32,7 @@ class Lock : public RoomObject {
 
   /**
    *This function will give the option to continue if the key identifier is the right one .
-   * @parameter key will take to the identifier ,which will access to continue.
+   * @param key will take to the identifier ,which will access to continue.
    */
   void unlock(Item key);
 

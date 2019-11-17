@@ -18,6 +18,7 @@
 #include "Command.h"
 #include "Save.h"
 #include "GitGud.h"
+
 /**
  *This class will provide to the Hero or player, all the conditions that he is involve with ,during the whole game as: Weapons,Enemy identifier,position,
  *Directions,inventory.
@@ -26,7 +27,7 @@ class Hero : public Person {
  public:
   /**
    *Default Constructor
-   * @parameter identifier of the Hero and his position.
+   *@param identifier of the Hero and his position.
    */
   Hero();
 
@@ -37,7 +38,7 @@ class Hero : public Person {
 
   /**
    *This function define the npc by the hero.
-   * @parameter represent the npc with be related with the hero.
+   * @param represent the npc with be related with the hero.
    */
   void attack(Person*, Room**);
 
@@ -61,8 +62,8 @@ class Hero : public Person {
 
   /**
   *This function will give the direction and the position of the hero.
-  *@parameter a will give the direction of the hero.
-  *@parameter world give the room position.
+  *@param a will give the direction of the hero.
+  *@param world give the room position.
   */
   void mv(Direction, Room**);
 

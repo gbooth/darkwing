@@ -16,7 +16,7 @@ class Object {
  public:
   /**
   *constructor
-  *@throws invalid_id error if invalid id is passed in or if file is missing
+  *@throw invalid_id error if invalid id is passed in or if file is missing
   */
   Object(int);
 
@@ -41,9 +41,9 @@ class Object {
   std::string getName();
 
   /**
-   * @parameter id what is the identifier of the objects.
-   * @parameter name give name of the objects.
-   * @parameter description according to the identifier ob the objects.
+   * @param id what is the identifier of the objects.
+   * @param name give name of the objects.
+   * @param description according to the identifier ob the objects.
    */
 
 
