@@ -63,7 +63,7 @@ Save::Save(Hero* h, Room** r) {
 Save::~Save() {}
 
 void Save::saveGame() {
- saveFile.open(fileName, std::ios_base::app);
+ saveFile.open(fileName, std::ios_base::trunc);
  if(saveFile.is_open()){
    saveHero();
    saveRoom();
