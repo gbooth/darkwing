@@ -34,7 +34,6 @@ void Hero::setWeapon(Item* w) {
 			std::cout << weaponOfChoice->getName() << " already equipped." << std::endl;
 		} else {
 			weaponOfChoice = w;
-//			std::cout << "you equipped " << weaponOfChoice->getName() << std::endl;
 		}
 	} else {
 		std::cout << "You don't have this weapon" << std::endl;
@@ -115,10 +114,9 @@ void Hero::attack(Person* npc, Room** world) {
 
 std::list<std::pair<int, int>> Hero::invSave() {
 	std::list<std::pair<int, int>> l;
-	std::pair<int, int> stuff;
 	for (auto it : inventory) {
-		stuff = std::make_pair(it.first, it.second.second);
-		l.push_back(stuff);
+		if(it.first != 4205)
+			l.push_back(std::make_pair(it.first, it.second.second));
 	}
 	return l;
 }
@@ -213,7 +211,8 @@ void Hero::command(std::string s, Room** world) {
 				if (it->second/100 == 23 &&  it != refs.end()
 				        && world[i][j].checkForObj(it->second)) {
 					RoomObject* const robj = world[i][j].getObj(it->second);
-					this->interact(robj);
+					if(this->interact(robj))
+						world[i][j].objChanged(it->second);
 					if (op == "bone lever") {
 						std::cout <<
 						          "You hear the distinct sound of heavy rocks moving on \nthe opposite side of the lake. Perhaps a door has opened?"
@@ -324,6 +323,7 @@ void Hero::command(std::string s, Room** world) {
 						break;
 					}
 					this->interact(rmb);
+					world[i][j].objChanged(it->second);
 				} else {
 					std::cout << "you can't open that" << std::endl;
 				}
@@ -356,10 +356,10 @@ void Hero::command(std::string s, Room** world) {
 				this->getInventory();
 				break;
 			}
-//  case Command::save: {
-//    Save s(*this, world);
-//    s.saveGame();
-//  }
+  			case Command::save: {
+    			Save s(this, world);
+    			s.saveGame();
+  			}
 			default: {
 				std::cout << "not a possible command" << std::endl;
 				break;
@@ -482,18 +482,21 @@ void Hero::help() {
 	std::cout << output;
 }
 
-void Hero::interact(RoomObject* const r) {
+bool Hero::interact(RoomObject* const r) {
 	if(r->getID() != 2301) {
 		if (r->getID() / 100 % 10 == 3 && r->getID() / 1000 == 2) {
 			r->setState(!r->getState());
 			std::cout << "The Lever has been flipped" << std::endl;
+			return true;
 		} else if (r->getID() / 100 % 10 == 1 && r->getID() / 1000 == 2) {
 			if (!r->getState()) {
 				Item* a = static_cast<Chest*>(r)->getContents();
 				this->addInventory(a);
+				return true;
 			}
 		} else {
 			std::cout << "This is not a Chest, nor is it a Lever" << std::endl;
+			return false;
 		}
 	} else {
 		Lever* lev = static_cast<Lever*>(r);
@@ -502,8 +505,10 @@ void Hero::interact(RoomObject* const r) {
 			lev->setState(!lev->getState());
 			std::cout << "The Lever has been flipped" << std::endl;
 			std::cout << "The draw bridge lowers." << std::endl;
+			return true;
 		} else {
 			std::cout << "When you attempt to flip the lever it feels as though something is preventing the lever from flipping. Perhaps you need to do something else first?\n";
+			return false;
 		}
 	}
 }

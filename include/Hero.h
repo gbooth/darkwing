@@ -45,7 +45,7 @@ class Hero : public Person {
    *This function give the description of the object selected by the hero.
    * @return the description of the object.
    */
-  std:: string inspect(Object*);
+  std::string inspect(Object*);
 
   /**
    *This function gives the weapon identifier.
@@ -91,7 +91,7 @@ class Hero : public Person {
   void useKey(Item*, Lock*);
   void talk(Villager*, Room**);
   void command(std::string, Room**);
-  void interact(RoomObject* const);
+  bool interact(RoomObject* const);
   void lose(GitGud, Room**);
   void win(Room**);
   void help();
