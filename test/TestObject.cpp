@@ -22,7 +22,7 @@ TEST(TestObject, getNameTest) {
 
 TEST(TestObject, getDescTest) {
   Object a(1001);
-  EXPECT_EQ("the home of the renowned wizard whom you serve loyally",
+  EXPECT_EQ("the home of the renowned wizard whom you serve loyally. A spikey chest lies in the corner. You can go north, east or south.",
             a.getDesc());
 }
 
