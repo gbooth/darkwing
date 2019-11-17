@@ -357,7 +357,7 @@ void Hero::command(std::string s, Room** world) {
 				break;
 			}
   			case Command::save: {
-    			Save s(*this, world);
+    			Save s(*this);
     			s.saveGame();
   			}
 			default: {
