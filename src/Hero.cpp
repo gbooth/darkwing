@@ -318,6 +318,10 @@ void Hero::command(std::string s, Room** world) {
 				if (it != refs.end() && (it->second/100 == 21)
 				        && world[i][j].checkForObj(it->second)) {
 					RoomObject* const rmb = world[i][j].getObj(it->second);
+					if(rmb->getState()) {
+						std::cout << "That chest is already open.\n";
+						break;
+					}
 					this->interact(rmb);
 				} else {
 					std::cout << "you can't open that" << std::endl;
