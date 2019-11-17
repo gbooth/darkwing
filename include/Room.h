@@ -27,16 +27,12 @@ class Person;
 class Room : public Object {
  public:
   /**
-  *constructor
-  *@param int for the identifier that corresponds to the room
-  *@throw if ID doesnt describe a room
-  *@throw if file data is not formatted correctly to be read
-  *@throw if room file cannot be opened
+  *Default constructor
   */
   Room(int);
 
   /**
-  *destructor
+  *Destructor
   */
   virtual ~Room();
 

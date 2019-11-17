@@ -18,11 +18,7 @@ class Person : public Object {
  public:
 
   /**
-  * Constructor
-  * @param id the identifier of the person.
-  * @param damageVal the damage value of the person.
-  * @param hp the health of the person.
-  * @throw throw an error if id doesn't match a  person.
+  * Default Constructor
   */
   Person(int id);
 

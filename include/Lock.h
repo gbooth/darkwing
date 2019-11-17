@@ -18,10 +18,8 @@
 
 class Lock : public RoomObject {
  public:
-  /** the constructor verify the key identifier.
-  *@param Identifier id. which send us to the Identifier list verification.
-  *@param State stat which give us the state of the lock.
-  *@param lockValue which give the verification for the lock.
+  /**
+  * Default constructor
   */
   Lock (int);
 

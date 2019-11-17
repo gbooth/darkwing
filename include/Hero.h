@@ -59,15 +59,12 @@ class Hero : public Person {
   void setWeapon(Item*);
 
   /**
-  *This function will give the direction and the position of the hero.
-  *@param a will give the direction of the hero.
-  *@param world give the room position.
+  *This function will gives the direction and the position of the hero.
   */
   void mv(Direction, Room**);
 
   /**
    *This function gives you the position of the hero.
-   * @param pair for the coordinates of the hero.
    * @throw "ERROR: position out of bounds" if the firs and second position is > 4.
    */
   void setPosition(std::pair<unsigned int, unsigned int>);
