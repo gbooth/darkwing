@@ -144,7 +144,7 @@ void combat(Hero& h, Room** world) {
     }
   }
   int eOrigHP = e->getHealth();
-  if(e->getID != 3305) {
+  if(e->getID() != 3305) {
     std::cout << "A cow sized duck blocks your path wielding a dagger in his bil"
               << "l. He appears to be rather angry. Firequacker must have enchan"
               << "ted him, perhaps with the help of the captive wizard."
@@ -209,7 +209,7 @@ void combat(Hero& h, Room** world) {
         if(world[i][j].getID() == 1015) {
           switch(turnCount){
              case 1:{
-		          std::cout << "Your blows at each other echo throughout the cave." 
+		          std::cout << "Your blows at each other echo throughout the cave."
                         << std::endl;
               break;
             }
@@ -218,7 +218,7 @@ void combat(Hero& h, Room** world) {
             }
 	          case 3:{
 	          	break;
-	          } 
+	          }
             case 4:{
               std::cout << "Stalactites start falling all around you and your "
                         << "opponent. As they slam against the ground echos bo"
