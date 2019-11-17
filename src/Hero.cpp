@@ -190,7 +190,7 @@ void Hero::command(std::string s, Room** world) {
 										std::cout << "you don't have that key" << std::endl;
 										break;
 									} else {
-										std::cout << "this key can't be used right now\n";
+										std::cout << "this map can't be used right now\n";
 										break;
 									}
 								} else {
