@@ -25,6 +25,7 @@ Hero::Hero(): Person{3101} {
 Hero::~Hero() {
 	for (auto it: inventory) {
 		delete it.second.first;
+		it.second.first = nullptr;
 	}
 }
 
