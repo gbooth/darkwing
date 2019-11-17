@@ -52,7 +52,7 @@ std::string Hero::inspect(Object* a) {
 		else
 			str += " The lever is currently flipped up.\n";
 		return str;
-	} else {		
+	} else {
 		return a->getDesc();
 	}
 }
@@ -121,8 +121,8 @@ void Hero::attack(Person* npc, Room** world) {
 	}
 }
 
-std::list<std::pair<int, int>> Hero::invSave() {
-	std::list<std::pair<int, int>> l;
+std::vector<std::pair<int, int>> Hero::invSave() {
+	std::vector<std::pair<int, int>> l;
 	for (auto it : inventory) {
 		if(it.first != 4205)
 			l.push_back(std::make_pair(it.first, it.second.second));
@@ -158,6 +158,7 @@ void Hero::command(std::string s, Room** world) {
 								auto itr = inventory.find(it->second);
 								if (itr != inventory.end()) {
 									this->useKey(itr->second.first, l);
+									world[i][j].objChanged(l->getID());
 									break;
 								}
 							} else if(inventory.find(it->second) == inventory.end()) {
@@ -176,6 +177,7 @@ void Hero::command(std::string s, Room** world) {
 									auto itr = inventory.find(it->second);
 									if (itr != inventory.end()) {
 										this->useKey(itr->second.first, l);
+										world[i][j].objChanged(l->getID());
 										break;
 									}
 								} else if(inventory.find(it->second) == inventory.end()) {
@@ -194,6 +196,7 @@ void Hero::command(std::string s, Room** world) {
 										auto itr = inventory.find(it->second);
 										if (itr != inventory.end()) {
 											this->useKey(itr->second.first, l);
+                      world[i][j].objChanged(l->getID());
 											break;
 										}
 									} else if(inventory.find(it->second) == inventory.end()) {

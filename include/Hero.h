@@ -84,7 +84,7 @@ class Hero : public Person {
    *@param weaponOfChoice provides the identifier of the weapons.
    *@param pos will give the coordinates of the position of the hero.
    */
-  std::list<std::pair<int, int>> invSave();
+  std::vector<std::pair<int, int>> invSave();
   void getInventory();
   void addInventory(Item*);
   void usePotion(Item*);
