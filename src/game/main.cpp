@@ -144,13 +144,31 @@ void combat(Hero& h, Room** world) {
     }
   }
   int eOrigHP = e->getHealth();
-
-  std::cout << "A cow sized duck blocks your path wielding a dagger in his bil"
-            << "l. He appears to be rather angry. Firequacker must have enchan"
-            << "ted him, perhaps with the help of the captive wizard."
-            << std::endl << "\"Hello Duck Norris. I'm " << e->getName() << "\""
-            << " the duck rasps through his clenched bill. \"I'm going to enjo"
-            << "y killing you\"" << std::endl;
+  if(e->getID != 3305) {
+    std::cout << "A cow sized duck blocks your path wielding a dagger in his bil"
+              << "l. He appears to be rather angry. Firequacker must have enchan"
+              << "ted him, perhaps with the help of the captive wizard."
+              << std::endl << "\"Hello Duck Norris. I'm " << e->getName() << "\""
+              << " the duck rasps through his clenched bill. \"I'm going to enjo"
+              << "y killing you\"" << std::endl;
+  }
+  else {
+    std::cout << "Firequacker is standing in the middle of the chamber.\n\"I've been expecting you Duck Norris.\" growled Firequacker.\n\"I've always liked you but if you're here to rescue this jerk wizard we are going to have a problem.\" huffed Firequacker.\n";
+    while(true) {
+      std::cout << "\n\"Are you here to rescue this jerky pants?\" asked Firequacker\n";
+      std::cout << "(yes/no)--";
+      std::getline(std::cin, line);
+      if(line == "no") {
+        std::cout << "\n\"Well then I have no quarrel with you Duck Norris\" chuffed Firequacker\n \"Lets go back to the castle and we can study potions and magic together. As long as the wizard rots here I'm good\" quacked Firequacker.\n";
+        h.lose(friends, world);
+      } else if(line == "yes") {
+        std::cout << "\n\"Then prepare yourself for death Duck Norris!\" hissed Firequacker.\n\n";
+        break;
+      } else {
+        std::cout << "\n\"A simple yes or no will do Norris\" growls Firequacker.\n\n";
+      }
+    }
+  }
   while (h.getHealth() > 0 && e->getHealth() > 0) {
     std::cout << "Enter a command--";
     std::getline(std::cin, line);
@@ -176,7 +194,9 @@ void combat(Hero& h, Room** world) {
       if(comd == "attack") {
         h.attack(e, world);
         if(e->getHealth() < 1) {
-	        std::cout << "The duck crumbles at your feet sucumbing to the wounds you"
+          if(e->getID() == 3305)
+            h.win(world);
+	        std::cout << e->getName() << " crumbles at your feet sucumbing to the wounds you"
                 << "'ve inflicted. \"You win this time Duck Norris.\" sputters"
                 << " " << e->getName() << " as he coughs up blood and exhales "
                 << "one last time" << std::endl;

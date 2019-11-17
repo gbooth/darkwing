@@ -495,26 +495,36 @@ void Hero::lose(GitGud l, Room** world) {
 		std::cout << "You've offended Sirius Quack and he is very serious about "
 		          << "that.\n\nGame Over.\n";
 		break;
-	}
+		}
 	case ducked: {
 		std::cout << "You've been slain by a duck.\n\nGame Over.\n";
 		break;
-	}
+		}
 	case moronUser: {
 		std::cout << "Standing around when fighting a duck can get you killed..."
 		          << " and it did.\n\nGame Over.\n";
 		break;
-	}
+		}
 	case stalactite: {
 		std::cout << "You've been impaled by a falling stalactite. How unfortuna"
 		          << "te.\n\nGame Over.\n";
 		break;
-	}
+		}
 	case jail: {
-		std::cout << "Who would've ever thought attempted murder would land you "
-		          << "in jail?\n\nGame Over.\n";
+		std::cout << "Who would've ever thought attempted murder would land you"
+		          << " in jail?\n\nGame Over.\n";
 		break;
-	}
+		}
+	case friends: {
+		std::cout << "You and Firequacker walk back to the castle exchanging a"
+				  << "necdotes of instances the wizard had been a jerky pants."
+				  << "\n Upon arriving at the castle the guards attack and kil"
+				  << "l you and Firequacker with a barrage of arrows, ballista"
+				  << "e, and spears.\n I guess the guards dont like wooden duc"
+				  << "ks the size of a dragon nor their friends.\n\nGame over."
+				  << "\n";
+		break;
+		}
 	}
 	for (int i = 0; i < 5; i++)
 		delete [] world[i];
