@@ -8,6 +8,7 @@ talk                                                                      name o
 attack                                                                         name of NPC
 flip                                                                         name of lever
 open                                                                         name of chest
+exit                             use it when you want to go to the main menu from any room                          
 help                                                                            no operand
 equip       the name of the weapon you want, no operand shows your current equipped weapon
 *
