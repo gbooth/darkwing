@@ -446,6 +446,7 @@ void Hero::setCommand() {
 	cRefs["open"] = Command::open;
 	cRefs["help"] = Command::help;
 	cRefs["equip"] = Command::equip;
+	cRefs["save"] = Command::save;
 }
 
 void Hero::useKey(Item* a, Lock* l) {
