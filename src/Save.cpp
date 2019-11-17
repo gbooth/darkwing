@@ -2,7 +2,7 @@
 #include "Exceptions.h"
 #include<list>
 
-Save::Save(Hero* h, Room**r) {
+Save::Save(Hero* const h, Room** const r) {
  std::string fname;
  std::string out;
  bool goodFileName = true;
