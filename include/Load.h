@@ -1,5 +1,5 @@
 ///**
-// *@autor Gavin Booth
+// *@author Gavin Booth
 // * @date 2019-11
 // */
 //
