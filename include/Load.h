@@ -1,6 +1,6 @@
 /**
  *@author Gavin Booth
- * @date 2019-11
+ *@date 2019-11
  */
 
 #ifndef LOAD_H
@@ -19,10 +19,8 @@ class Load {
  public:
   /**
    *Default Constructor
-   *@parameter readIn, objData
-   *@parameter roomID, objID, objState representing the Id for rooms,objects and objects state.
    *In the Constructor will be asked the player for the save filename without the typefilename.
-  *providing the options for health,position,inventory and weapon.
+   *providing the options for health,position,inventory and weapon.
    */
   Load();
 
@@ -33,16 +31,15 @@ class Load {
 
   /**
    *Function that load the game.
-   *Parameter const h that load the Hero.
-   *@parameter const world that will load the room position.
    */
   void loadGame(Hero&, Room**);
 
   /**
    *@param loadfile that will hold the information at the time of load.
    *@param heroLoadMap will provide the map for the Hero.
-   *@parameter roomLoadState will give the room state at load for the Hero.
-   *@parameter filename provides the name for the file.
+   *@param roomLoadState will give the room state at load for the Hero.
+   *@param filename provides the name for the file.
+   * @param roomEnemy
    */
  private:
   std::ifstream loadFile;
@@ -53,8 +50,7 @@ class Load {
 
   /**
    *This function considering private,will give the condition for the Hero at the load time as Health
-   * Position,Inventory and Weapon.
-   * @parameter const h for the conditions mentioned before for the
+   *Position,Inventory and Weapon.
    *Hero at loading time.
    */
   void loadHero(Hero&);
@@ -62,7 +58,6 @@ class Load {
   /**
    *This function,considering private will give the condition for the room when loading as state,
    * npc,health,objects.
-   * @parameter throw file_error("Load file has corrupted or invalid data")
    * in case of file misreading.
    */
   void loadRooms(Room**);

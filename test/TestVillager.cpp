@@ -1,6 +1,7 @@
 #include "Villager.h"
 #include "Exceptions.h"
 #include "gtest/gtest.h"
+#include <sstream>
 
 TEST(TestVillager, ctorTest) {
   EXPECT_THROW(Villager v(3306), invalid_id);
@@ -32,6 +33,10 @@ TEST(TestVillager, responseTest) {
 
 TEST(TestVillager, riddleTest){
   Villager v(3208);
+  std::streambuf *backup;
+  std::istringstream oss("chuck norris");
+  backup = std::cin.rdbuf();
+  std::cin.rdbuf(oss.rdbuf());
   v.riddle();
 }
 
