@@ -1,6 +1,7 @@
 #include "Lever.h"
 #include "Exceptions.h"
 #include <utility>
+#include <vector>
 #include "gtest/gtest.h"
 
 TEST(TestLever, ctorTest) {

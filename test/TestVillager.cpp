@@ -1,7 +1,7 @@
 #include "Villager.h"
 #include "Exceptions.h"
-#include "gtest/gtest.h"
 #include <sstream>
+#include "gtest/gtest.h"
 
 TEST(TestVillager, ctorTest) {
   EXPECT_THROW(Villager v(3306), invalid_id);
@@ -43,7 +43,7 @@ TEST(TestVillager, riddleTest) {
 TEST(TestVillager, attackTest) {
   Room** world;
   world = new Room*[5];
-  for (int i = 0; i<5; i++)
+  for (int i = 0; i < 5; i++)
     world[i] = new Room[5] {i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
   Villager* p = new Villager(3210);
   EXPECT_EQ(10, p->getHealth());

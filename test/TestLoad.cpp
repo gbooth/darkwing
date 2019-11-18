@@ -1,7 +1,7 @@
 #include "Load.h"
 #include "Exceptions.h"
-#include "gtest/gtest.h"
 #include <sstream>
+#include "gtest/gtest.h"
 
 TEST(TestLoad, loadGameTest) {
   Hero a;

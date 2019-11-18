@@ -4,6 +4,9 @@
 */
 #include "Room.h"
 #include "Exceptions.h"
+#include <utility>
+#include <list>
+#include <string>
 #include "gtest/gtest.h"
 
 TEST(TestRoom, CtorTest) {
@@ -115,11 +118,13 @@ TEST(TestRoom, getMessage) {
   Room wizardsTower(1001);
   Room quartz(1016);
   Room stalagmite(1019);
+  std::string s = "cave. This chamber sparkles with Quartz ";
+  std::string t = "crystals that seem to have sprouted from every wall.";
+  std::string u = "cave. This chamber has large Stalagmites ";
+  std::string y = "yet no stalactites, how strange.";
   EXPECT_EQ("Wizard’s Tower.", wizardsTower.getMessage());
-  EXPECT_EQ("cave. This chamber sparkles with Quartz crystals that seem to have sprouted from every wall.",
-            quartz.getMessage());
-  EXPECT_EQ("cave. This chamber has large Stalagmites yet no stalactites, how strange.",
-            stalagmite.getMessage());
+  EXPECT_EQ(s + t, quartz.getMessage());
+  EXPECT_EQ(u + y, stalagmite.getMessage());
 }
 
 TEST(TestRoom, objToSave) {

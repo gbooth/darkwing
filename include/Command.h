@@ -9,6 +9,8 @@
 /**
  *This class is related with all the actions that will be executed during the game.
  */
-enum Command {use, inspect, inv, talk, attack, go, flip, open, help, equip, save};
+enum Command {use, inspect, inv, talk, attack,
+              go, flip, open, help, equip, save
+             };
 
 #endif // COMMAND_H_INCLUDED
