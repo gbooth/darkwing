@@ -164,5 +164,5 @@ TEST(TestRoom, getNPC) {
   Person* const ptr = a.getNPC(3305);
   Person* const ptr2 = a.getNPC(3304);
   EXPECT_EQ(nullptr, ptr2);
-  EXPECT_EQ("firequacker",ptr->getName());
+  EXPECT_EQ("firequacker", ptr->getName());
 }

@@ -1,7 +1,7 @@
-#include "gtest/gtest.h"
 #include "Lever.h"
 #include "Exceptions.h"
 #include <utility>
+#include "gtest/gtest.h"
 
 TEST(TestLever, ctorTest) {
   Lever l(2303);
