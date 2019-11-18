@@ -29,16 +29,15 @@ Room::Room(int id) : Object{id} {
   if (in.is_open()) {
     //find the appropriate line in the reference file that corresponds to the id
     for (std::getline(in, readIn, ':'); id != std::stoi(readIn, nullptr, 10);
-         in.ignore(1000, '\n'), std::getline(in, readIn, ':'));
-
+         in.ignore(1000, '\n'), std::getline(in, readIn, ':')) {}
     std::getline(in, readIn, ':');
     roomMessage = readIn;
-
     //map directions
     std::getline(in, readIn, ':');
     Direction tempDir = north;
     for (int i = 0; i < 4;
-         std::getline(in, readIn, ':'), i++, tempDir = static_cast<Direction>(i)) {
+         std::getline(in, readIn, ':'),
+         i++, tempDir = static_cast<Direction>(i)) {
       if (readIn == "|")
         continue;
       tempX = readIn[0] - '0';
@@ -165,23 +164,27 @@ void Room::setHasEnemy() {
 }
 
 bool Room::checkForNPC(int id) {
-  if (id/1000 == 3)
-    if (npcInRoom.end() != npcInRoom.find(id))
+  if (id/1000 == 3) {
+    if (npcInRoom.end() != npcInRoom.find(id)) {
       return true;
-    else
+    } else {
       return false;
-  else
+    }
+  } else {
     throw invalid_id("id not for a person");
+  }
 }
 
 bool Room::checkForObj(int id) {
-  if (id/1000 == 2)
-    if (objInRoom.end() != objInRoom.find(id))
+  if (id/1000 == 2) {
+    if (objInRoom.end() != objInRoom.find(id)) {
       return true;
-    else
+    } else {
       return false;
-  else
+    }
+  } else {
     throw invalid_id("id not for room object");
+  }
 }
 
 bool Room::checkDirection(Direction d) {
@@ -194,31 +197,31 @@ bool Room::checkDirection(Direction d) {
 std::pair<int, int> Room::getDirection(Direction d) {
   if (this->checkDirection(d)) {
     switch (std::get<0>(adjRooms[d])) {
-    case ajar:{
+    case ajar: {
       return std::make_pair(std::get<2>(adjRooms[d]), std::get<3>(adjRooms[d]));
     }
-    case blocked:{
-      if(std::get<1>(adjRooms[d])) {
-        if(std::get<1>(adjRooms[d])->getState()) {
-          return std::make_pair(std::get<2>(adjRooms[d]), std::get<3>(adjRooms[d]));
-        }
-        else {
+    case blocked: {
+      if (std::get<1>(adjRooms[d])) {
+        if (std::get<1>(adjRooms[d])->getState()) {
+          return std::make_pair(std::get<2>(adjRooms[d]),
+                                std::get<3>(adjRooms[d]));
+        } else {
           return std::make_pair(0, -1);
         }
       }
     }
     case locked: {
-      if(std::get<1>(adjRooms[d])){
-        if(std::get<1>(adjRooms[d])->getState()){
-          return std::make_pair(std::get<2>(adjRooms[d]), std::get<3>(adjRooms[d]));
+      if (std::get<1>(adjRooms[d])) {
+        if (std::get<1>(adjRooms[d])->getState()) {
+          return std::make_pair(std::get<2>(adjRooms[d]),
+                                std::get<3>(adjRooms[d]));
         } else {
           return std::make_pair(0, -2);
-          }
         }
       }
     }
-  }
-  else {
+    }
+  } else {
     return std::make_pair(-1, -1);
   }
 }
@@ -246,10 +249,10 @@ void Room::setDoor(Room** world) {
   Direction dir;
   int x, y, roomObjID;
 
-  if(in.is_open()){
+  if (in.is_open()) {
     getline(in, readIn, ':');
-    while(!in.eof()){
-      if(this->getID() == std::stoi(readIn)){
+    while (!in.eof()) {
+      if (this->getID() == std::stoi(readIn)) {
         getline(in, readIn, ':');
         dir = static_cast<Direction>(std::stoi(readIn));
         std::getline(in, readIn, ':');
@@ -257,27 +260,25 @@ void Room::setDoor(Room** world) {
         y = readIn[1] - '0';
         std::getline(in, readIn);
         std::get<1>(adjRooms[dir]) = world[x][y].getObj(std::stoi(readIn));
-      }
-      else{
+      } else {
         in.ignore(1000, '\n');
       }
       std::getline(in, readIn, ':');
     }
-  }
-  else {
+  } else {
     throw file_error("door depend file is missing");
   }
 }
 
 Person* const Room::getNPC(int id) {
-  if(this->checkForNPC(id))
+  if (this->checkForNPC(id))
     return npcInRoom[id];
   else
     return nullptr;
 }
 
 RoomObject* const Room::getObj(int id) {
-  if(this->checkForObj(id))
+  if (this->checkForObj(id))
     return objInRoom[id];
   else
     return nullptr;

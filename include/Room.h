@@ -7,17 +7,19 @@
 #define ROOM_H
 
 #include "Object.h"
-#include <map>
-#include <list>
 #include "Direction.h"
 #include "Person.h"
 #include "Chest.h"
 #include "Lock.h"
 #include "Lever.h"
 #include "DoorMood.h"
+#include <map>
+#include <list>
+#include <tuple>
+#include <utility>
+#include <string>
 
 class Person;
-
 /**
  * This function gives all the identifiers related with the rooms:
  * checking for Enemies, orientation for the player.checking for objects

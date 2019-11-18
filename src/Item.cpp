@@ -7,7 +7,6 @@
 #include <string>
 #include <Exceptions.h>
 #include <fstream>
-#include <string>
 
 Item::Item(int id): Object{id} {
   std::string line;

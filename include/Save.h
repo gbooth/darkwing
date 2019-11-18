@@ -8,10 +8,11 @@
 
 #include "HeroAtt.h"
 #include "Room.h"
+#include "Hero.h"
 #include <fstream>
 #include <map>
 #include <list>
-#include "Hero.h"
+#include <string>
 
 /**
  *This function help the Hero to save all the condition during the game.

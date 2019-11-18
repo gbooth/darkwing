@@ -14,7 +14,6 @@
  */
 
 class Chest: public RoomObject {
-
  public:
   /**
    * Default constructor ,that identify the objects inside the chest.
@@ -31,14 +30,12 @@ class Chest: public RoomObject {
    *@return the contents of the objects inside the chest.
    */
   Item* getContents();
+
   /**
    *@param contents give the objects inside the specific chest.
    */
-
-
  private:
   Item* contents;
-
 };
 
 #endif // CHEST_H_INCLUDED

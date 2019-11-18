@@ -17,7 +17,7 @@
 */
 Lock::Lock(int id) : RoomObject{id} {
   std::string line;
-  std::string idStr=std::to_string(id);
+  std::string idStr = std::to_string(id);
   std::fstream lockData;
   lockData.open("Locks.csv");
   if (lockData.is_open()) {
@@ -25,7 +25,7 @@ Lock::Lock(int id) : RoomObject{id} {
       getline(lockData, line, ',');
       if (line == idStr) {
         getline(lockData, line);
-        lockValue=std ::stoi(line);
+        lockValue = std::stoi(line);
         break;
       } else {
         lockData.ignore(1000, '\n');
@@ -34,27 +34,28 @@ Lock::Lock(int id) : RoomObject{id} {
         throw invalid_id("ERROR:the ID specified is not on file");
         lockData.close();
       }
-
     }
   } else {
-    throw file_error ("ERROR: the file you are trying to open is missing") ;
+    throw file_error("ERROR: the file you are trying to open is missing");
   }
 }
 
 Lock::~Lock() {}
 
 void Lock::unlock(Item key) {
-  if(this->getID() == 2203) {
-    if(this->checkKey(key))
-      std::cout << "The map clearly shows the way out of the forest is east" << std::endl;
+  if (this->getID() == 2203) {
+    if (this->checkKey(key))
+      std::cout << "The map clearly shows the way out of the forest is east" <<
+                std::endl;
+    this->setState(true);
+  } else {
+    if (this->checkKey(key)) {
+      std::cout <<
+                "The key fits perfectly into "
+                << "the lock and turns, unlocking the door"
+                << std::endl;
       this->setState(true);
-  }
-  else {
-    if(this->checkKey(key)) {
-      std::cout << "The key fits perfectly into the lock and turns, unlocking the door" << std::endl;
-      this->setState(true);
-    }
-    else {
+    } else {
       std::cout << "The key fits into the lock but wont turn" << std::endl;
     }
   }

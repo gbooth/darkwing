@@ -6,6 +6,8 @@
 
 #include "Lever.h"
 #include "Exceptions.h"
+#include <utility>
+#include <vector>
 
 Lever::Lever(int ident, bool mode)
   : RoomObject{ident, mode} {

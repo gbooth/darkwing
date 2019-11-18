@@ -4,10 +4,10 @@
  */
 #include "Load.h"
 #include "Exceptions.h"
-#include<iostream>
-#include<string>
-#include<map>
-
+#include <iostream>
+#include <string>
+#include <map>
+#include <utility>
 Load::Load() {
   std::string readIn, objData;
   int roomID, objID;
@@ -59,13 +59,14 @@ Load::Load() {
     objData = readIn;
 
     while (true) {
-      if (objData.size() == 1)
+      if (objData.size() == 1) {
         if (objData == "f") {
           roomEnemy[roomID] = false;
           break;
         } else {
           throw file_error("File data corrupt:hasEnemy");
         }
+      }
       objID = std::stoi(objData.substr(0, 4));
       objData.erase(0, 4);
       if (objData[0] - '0' == 1)
@@ -79,8 +80,7 @@ Load::Load() {
     }
     getline(loadFile, readIn, ':');
   }
-endLoad:
-  ;
+endLoad:;
 }
 
 Load::~Load() {}
@@ -99,7 +99,8 @@ void Load::loadHero(Hero& h) {
       break;
     }
     case pos: {
-      h.setPosition(std::make_pair(heroMap.second[0] - '0', heroMap.second[1] - '0'));
+      h.setPosition(std::make_pair(heroMap.second[0] - '0'
+                                   , heroMap.second[1] - '0'));
       break;
     }
     case invnty: {

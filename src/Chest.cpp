@@ -5,6 +5,7 @@
 
 #include <Chest.h>
 #include <Exceptions.h>
+#include <string>
 
 Chest::Chest(int id): RoomObject{id} {
   std::string line;

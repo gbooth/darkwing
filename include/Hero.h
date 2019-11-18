@@ -7,17 +7,19 @@
 #define HERO_H
 
 #include "Person.h"
-#include <string>
-#include "Room.h"
-#include "Item.h"
-#include <map>
-#include "Direction.h"
-#include <list>
 #include "RoomObject.h"
 #include "Villager.h"
 #include "Command.h"
 #include "Save.h"
 #include "GitGud.h"
+#include "Direction.h"
+#include "Room.h"
+#include "Item.h"
+#include <string>
+#include <map>
+#include <list>
+#include <utility>
+#include <vector>
 
 /**
  *This class will provide to the Hero or player, all the conditions that he is involve with ,during the whole game as: Weapons,Enemy identifier,position,
@@ -110,7 +112,6 @@ class Hero : public Person {
    */
   bool command(std::string, Room**);
 
-
   /**
    * This function interact giving the state of the objects in the rooms.
    */
@@ -138,8 +139,6 @@ class Hero : public Person {
    *@param refs to actions that ake place during the game.
    *@param cref these are the references for the the actions used in the commands.
    */
-
-
  private:
   void setRef();
   void setCommand();
