@@ -31,7 +31,7 @@ TEST(TestVillager, responseTest) {
   j.response();
 }
 
-TEST(TestVillager, riddleTest){
+TEST(TestVillager, riddleTest) {
   Villager v(3208);
   std::streambuf *backup;
   std::istringstream oss("chuck norris");

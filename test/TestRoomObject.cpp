@@ -8,8 +8,8 @@ TEST(TestRoomObject, getStateTest) {
   EXPECT_EQ(true, b.getState());
 }
 
-TEST(TestRoomObject, setStateTest){
-RoomObject a(2101);
-a.setState(true);
-EXPECT_EQ(true, a.getState());
+TEST(TestRoomObject, setStateTest) {
+  RoomObject a(2101);
+  a.setState(true);
+  EXPECT_EQ(true, a.getState());
 }
