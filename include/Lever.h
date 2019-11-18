@@ -36,6 +36,7 @@ class Lever : public RoomObject {
    */
 
   std::vector<std::pair<Lever*, bool>> getDepLever();
+
  private:
   std::vector<std::pair<Lever*, bool>> depLever;
 };

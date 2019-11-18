@@ -141,6 +141,7 @@ class Hero : public Person {
    *This function contains the file to help he player from any room.
    */
   void help();
+
  private:
   void setRef();
   void setCommand();
