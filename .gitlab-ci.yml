@@ -17,7 +17,7 @@ pages:
    dependencies:
       - test
    script:
-      - make memcheck
+      - make memory
       - make coverage
       - make static
       - make style
