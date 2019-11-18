@@ -16,20 +16,37 @@ class RoomObject : public Object {
  public:
   /**
   *constructor
-  *@throw invalid_id error if id is not on file and id is not correct type
+  *@param id  identifier ofr on=bject in the room.
+  *@param state default to false.
+  *@throw invalid_id error "ERROR: invalid ID for room object"
   */
   RoomObject(int id, bool state = false);
+
+  /**
+   * Destructor.
+   */
+
 
   virtual ~RoomObject();
 
   /**
-  *@return the state of the room object
+  *Gives the state of the objects in the room
+  *@return state of the room object.
   */
   bool getState();
 
+  /**
+   *sets the state of the object in the room.
+   * @return state. If the object exist or no in the room.
+   */
   void setState(bool);
 
  private:
+   /**
+    *Gives the state of the the room.
+    * @param state  ..
+    */
+
   bool state;
 };
 

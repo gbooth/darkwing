@@ -125,6 +125,7 @@ class Room : public Object {
   std::list<int> changedObj;
   std::string roomMessage;
   bool checkDirection(Direction);
+  void setDoorMood(Direction, DoorMood);
 };
 
 #endif // ROOM_H
