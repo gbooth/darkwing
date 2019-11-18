@@ -19,9 +19,6 @@ class Item : public Object {
    *@param itemValue will give the status of the value for the item
    */
  private:
-  /**
-   *@param itemValue will give the status of the value for the item
-   */
   int itemValue;
 };
 

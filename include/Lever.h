@@ -25,8 +25,16 @@ class Lever : public RoomObject {
   *destructor
   */
   ~Lever();
-
+  /**
+   * sets the depLever vector
+   * @param a pair of lever* and bool
+   */
   void setDepLever(std::pair<Lever*, bool>);
+
+  /**
+   * @returns depLever vector
+   */
+
   std::vector<std::pair<Lever*, bool>> getDepLever();
  private:
   std::vector<std::pair<Lever*, bool>> depLever;

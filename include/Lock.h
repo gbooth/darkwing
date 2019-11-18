@@ -34,12 +34,7 @@ class Lock : public RoomObject {
   void unlock(Item key);
 
  private:
-  /**
-   *This private variable gives the lock value to know if is the right key.
-   *@param lockValue is the value for the key.
-   */
   int lockValue;
-
   /** This function verify if the player is using the right key.
   *@return true is the key and lock matches.
   */

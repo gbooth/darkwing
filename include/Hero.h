@@ -131,19 +131,16 @@ class Hero : public Person {
    *This function gives message when the Hero wins the game.
    */
   void win(Room**);
+
+  /**
+   *resets all of the data attributes of the hero to default state
+   */
   void reset();
+
   /**
    *This function contains the file to help he player from any room.
    */
   void help();
-
-  /**
-   *@param inventory  gives the status of the inventory.
-   *@param weaponOfChoice give the weapon selected.
-   *@param pos give the position of the Hero
-   *@param refs to actions that ake place during the game.
-   *@param cref these are the references for the the actions used in the commands.
-   */
  private:
   void setRef();
   void setCommand();
