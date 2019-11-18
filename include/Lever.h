@@ -7,12 +7,10 @@
 #define LEVER_H
 #include "RoomObject.h"
 #include <vector>
-
+#include <utility>
 /**
  *This class gives the identifier for the levers
  */
-
-
 class Lever : public RoomObject {
  public:
   /**

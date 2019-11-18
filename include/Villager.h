@@ -42,8 +42,6 @@ class Villager : public Person {
    *@return true.
    */
   bool riddle();
-
-
 };
 
 #endif // VILLAGER_H

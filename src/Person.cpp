@@ -3,9 +3,10 @@
  */
 
 #include "Person.h"
+#include "Exceptions.h"
+#include <string>
 #include <fstream>
 #include <utility>
-#include "Exceptions.h"
 
 Person::Person(int ident)
   : Object{ident} {
@@ -39,10 +40,10 @@ Person::Person(int ident)
 Person::~Person() {}
 
 void Person::setHealth(int hp) {
-  health=hp;
+  health = hp;
 }
 
-int Person::getHealth () {
+int Person::getHealth() {
   return health;
 }
 

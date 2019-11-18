@@ -20,7 +20,7 @@ class Lock : public RoomObject {
   /**
   * Default constructor
   */
-  Lock (int);
+  Lock(int);
 
   /**
    *Default Destructor

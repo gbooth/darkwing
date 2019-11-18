@@ -16,7 +16,6 @@ class Room;
  */
 class Person : public Object {
  public:
-
   /**
   * Default Constructor
   *@param id gives the identifier for a person.
@@ -33,7 +32,7 @@ class Person : public Object {
   *@param npc gives the identification of the npc.
   *@param world gives the room position for the npc.
   */
-  virtual bool attack (Person* npc, Room** world) = 0;
+  virtual bool attack(Person* npc, Room** world) = 0;
 
   /**
   *set health of the person.

@@ -1,6 +1,7 @@
 #include "Hero.h"
-#include "gtest/gtest.h"
 #include "Exceptions.h"
+#include <utility>
+#include "gtest/gtest.h"
 
 TEST(TestHero, inspectTest) {
   Object a(4205);
@@ -12,7 +13,7 @@ TEST(TestHero, mvTest) {
   Hero h;
   Room** world;
   world = new Room*[5];
-  for (int i = 0; i<5; i++)
+  for (int i = 0; i < 5; i++)
     world[i] = new Room[5] {i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
   h.mv(east, world);
   EXPECT_EQ(1, h.getPos().first);
@@ -20,7 +21,7 @@ TEST(TestHero, mvTest) {
   for (int i = 0; i < 5; i++) {
     delete [] world[i];
   }
-  delete world;
+  delete [] world;
   world = nullptr;
 }
 
@@ -73,14 +74,14 @@ TEST(TestHero, talkTest) {
   std::cin.rdbuf(oss.rdbuf());
   Room** world;
   world = new Room*[5];
-  for (int i = 0; i<5; i++)
+  for (int i = 0; i < 5; i++)
     world[i] = new Room[5] {i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
   h.talk(&v, world);
   h.talk(&w, world);
   for (int i = 0; i < 5; i++) {
     delete [] world[i];
   }
-  delete world;
+  delete [] world;
   world = nullptr;
 }
 
@@ -229,24 +230,24 @@ TEST(TestHero, commandTest) {
   h.command("hello", world);
   h.command("go esat", world);
   h.command("inspect king eider", world);
-  h.setPosition(std::make_pair(2,0));
+  h.setPosition(std::make_pair(2, 0));
   h.command("inspect room", world);
   h.command("talk sirius quack", world);
   std::cin.clear();
-  h.setPosition(std::make_pair(3,1));
+  h.setPosition(std::make_pair(3, 1));
   h.command("go east", world);
   h.command("use forest map", world);
-  h.setPosition(std::make_pair(3,0));
+  h.setPosition(std::make_pair(3, 0));
   h.command("use blue key", world);
   h.command("use orange key", world);
   h.command("attack quacker jack", world);
   h.command("attack quacker jack", world);
-  h.setPosition(std::make_pair(3,3));
+  h.setPosition(std::make_pair(3, 3));
   h.command("flip cram lever", world);
   h.command("flip dagger", world);
   h.command("go south", world);
   h.command("flip stone lever", world);
-  h.setPosition(std::make_pair(4,3));
+  h.setPosition(std::make_pair(4, 3));
   h.command("flip mossy lever", world);
   h.command("use forest map", world);
   h.command("use blue key", world);
@@ -254,21 +255,27 @@ TEST(TestHero, commandTest) {
   h.addInventory(key1, true);
   h.addInventory(key2, true);
   h.addInventory(key3, true);
+  h.addInventory(hpPot, true);
   h.command("inventory", world);
-  h.setPosition(std::make_pair(0,2));
+  h.setPosition(std::make_pair(0, 2));
   h.command("use orange key", world);
-  h.setPosition(std::make_pair(2,3));
+  h.setPosition(std::make_pair(2, 3));
   h.command("use blue key", world);
   h.command("use orange key", world);
   h.command("save", world);
-  h.setPosition(std::make_pair(3,2));
+  h.setPosition(std::make_pair(3, 2));
   h.command("go west", world);
-  h.setPosition(std::make_pair(2,3));
+  h.setPosition(std::make_pair(2, 3));
   h.command("flip bone lever", world);
-  h.setPosition(std::make_pair(0,3));
+  h.setPosition(std::make_pair(0, 3));
   h.command("flip flimsy lever", world);
-  h.setPosition(std::make_pair(1,3));
+  h.setPosition(std::make_pair(1, 3));
   h.command("flip gold lever", world);
-  h.setPosition(std::make_pair(4,0));
+  h.setPosition(std::make_pair(4, 0));
   h.command("flip stone lever", world);
+  for (int i = 0; i < 5; i++) {
+    delete [] world[i];
+  }
+  delete [] world;
+  world = nullptr;
 }
