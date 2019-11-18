@@ -40,12 +40,13 @@ int main() {
                 << "d the Wizard grows\nincreasingly frustrated to the point o"
                 << "f him throwing the duck into\nthe bubbling cauldron. Upon "
                 << "the duck touching the surface of the\npotion it comes aliv"
-                << "e and grows to the size of a dragon. \"You have\nused me f"
-                << "or debugging for the last time wizard!\" thundered the gia"
-                << "nt\nduck. The duck swoops a wooden wing down and picks up "
-                << "the wizard\nand storms out of the castle leaving a giant d"
-                << "uck-sized hole in the\nwall. As Duck Norris, you stand awes"
-                << "truck in the wizard room you must\nsave your master.\n\n";
+                << "e and grows to the size of a dragon. \"I AM FIREQUACKER\" "
+                << "thundered the duck. \"You have\nused me for debugging for "
+                << "the last time wizard!\" bellowed the giant\nduck. The duck"
+                << " swoops a wooden wing down and picks up the wizard\nand st"
+                << "orms out of the castle leaving a giant duck-sized hole in "
+                << "the\nwall. As Duck Norris, you stand awestruck in the wiza"
+                << "rd room you must\nsave your master.\n\n";
       std::cout << "what will you do now?(type for help for commands)\n";
       std::cin.ignore(1000, '\n');
     } else if (title == 2) {
