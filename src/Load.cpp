@@ -80,7 +80,7 @@ Load::Load() {
     }
     getline(loadFile, readIn, ':');
   }
-endLoad:;
+endLoad: {}
 }
 
 Load::~Load() {}

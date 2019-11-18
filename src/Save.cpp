@@ -54,7 +54,8 @@ Save::Save(Hero* h, Room** r) {
             out += "0,";
         }
       }
-      if (rID == 1004 || rID == 1005 || rID == 1011 || rID == 1012 || rID == 1015)
+      if (rID == 1004 || rID == 1005
+          || rID == 1011 || rID == 1012 || rID == 1015)
         if (!r[i][j].checkForEnemy())
           out += "f";
       roomObj[rID] = out;

@@ -54,7 +54,6 @@ class Load {
    *Hero at loading time.
    */
   void loadHero(Hero&);
-
   /**
    *This function,considering private will give the condition for the room when loading as state,
    * npc,health,objects.
