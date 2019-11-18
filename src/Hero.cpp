@@ -330,8 +330,11 @@ bool Hero::command(std::string s, Room** world) {
       }
       case Command::talk: {
         auto it = refs.find(op);
-        if (it != refs.end() && world[i][j].checkForNPC(it->second)
-            && (it->second/100 == 32)) {
+        if (it != refs.end() && world[i][j].checkForNPC(it->second)) {
+          if (it->second/100 == 31 || it->second/100 == 33) {
+            std::cout << "you can't talk to this person" << std::endl;
+            break;
+          }
           Person* prn = world[i][j].getNPC(it->second);
           Villager* v = static_cast<Villager*>(prn);
           if (v->getID() == 3207 && this->getHealth() < MAX_HERO_HP) {
@@ -340,11 +343,9 @@ bool Hero::command(std::string s, Room** world) {
           }
           if (this->talk(v, world))
             return true;
-
-        } else if (it->second/100 == 31 || it->second/100 == 33) {
-          std::cout << "you can't talk to this person" << std::endl;
         } else {
           std::cout << "this person isn't here" << std::endl;
+          break;
         }
         break;
       }
