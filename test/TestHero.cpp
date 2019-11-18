@@ -20,7 +20,7 @@ TEST(TestHero, mvTest) {
   for (int i = 0; i < 5; i++) {
     delete [] world[i];
   }
-  delete world;
+  delete [] world;
   world = nullptr;
 }
 
@@ -80,7 +80,7 @@ TEST(TestHero, talkTest) {
   for (int i = 0; i < 5; i++) {
     delete [] world[i];
   }
-  delete world;
+  delete [] world;
   world = nullptr;
 }
 
@@ -271,4 +271,9 @@ TEST(TestHero, commandTest) {
   h.command("flip gold lever", world);
   h.setPosition(std::make_pair(4, 0));
   h.command("flip stone lever", world);
+  for (int i = 0; i < 5; i++) {
+    delete [] world[i];
+  }
+  delete [] world;
+  world = nullptr;
 }
