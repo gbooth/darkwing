@@ -28,8 +28,9 @@ class Enemy : public Person {
   virtual ~Enemy();
 
   /**
-  * @param h person to attack.
-  * @param world array for the world to call lose function with
+  *@param h person to attack.
+  *@param world array for the world to call lose function with
+  *@return false.
   */
   bool attack(Person* h, Room** world);
 };
