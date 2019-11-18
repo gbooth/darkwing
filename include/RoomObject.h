@@ -25,8 +25,6 @@ class RoomObject : public Object {
   /**
    * Destructor.
    */
-
-
   virtual ~RoomObject();
 
   /**
@@ -37,16 +35,12 @@ class RoomObject : public Object {
 
   /**
    *sets the state of the object in the room.
+   * @param bool value to set the state to
    * @return state. If the object exist or no in the room.
    */
   void setState(bool);
 
  private:
-   /**
-    *Gives the state of the the room.
-    * @param state  ..
-    */
-
   bool state;
 };
 

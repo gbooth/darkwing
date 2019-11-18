@@ -31,9 +31,6 @@ class Chest: public RoomObject {
    */
   Item* getContents();
 
-  /**
-   *@param contents give the objects inside the specific chest.
-   */
  private:
   Item* contents;
 };

@@ -54,11 +54,6 @@ class Person : public Object {
   */
   int getDamage()const;
 
-  /**
-  *These variablesn give the health and damage to the Hero.
-  *@param health will give the health points for the person.
-  *@param damageValue will give the damage for the person during the game
-  */
  protected:
   int health;
   int damageValue;

@@ -40,20 +40,7 @@ class Object {
   */
   std::string getName();
 
-  /**
-   * @param id what is the identifier of the objects.
-   * @param name give name of the objects.
-   * @param description according to the identifier ob the objects.
-   */
-
-
  protected:
-  /**
-   * These variables give the id,name and description of the objects.
-   * @param id gives the identifier of the object.
-   * @param name give the name of the object.
-   * @param description give the description of the object.
-   */
   int id;
   std::string name;
   std::string description;

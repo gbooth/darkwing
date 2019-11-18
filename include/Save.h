@@ -33,6 +33,7 @@ class Save {
   *Virtual destructor
   */
   virtual ~Save();
+
   /**
   *The function to save the game entirely.
   * @throw file_error "ERROR: save file not open"
@@ -44,8 +45,6 @@ class Save {
    * helper function to save Hero
    */
   void saveHero();
-
-
   /**
    *helper function to save room .
   */

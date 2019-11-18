@@ -98,6 +98,8 @@ class Room : public Object {
 
   /**
    *Detects if there is an NPC in the room.
+   *@param int that is the id to build
+   *@return constant person pointer
    */
   Person* const getNPC(int);
 
@@ -107,18 +109,6 @@ class Room : public Object {
   RoomObject* const getObj(int);
 
  private:
-  /**
-   *These variables give data according to the following parameters.
-   *@param npcInRoom if there is an npc in the room.
-   *@param objInRoom  if there is an object in the room.
-   *@param adjRoom give you the direction,door state,objects in the room.
-   *@param  hasEnemy let you know if there Enemy.
-   *@param changedObj   option to change the object.
-   *@param roomMessage message received in the room.
-   *@param Direction will give you the next position.
-   *@param DoorMood give s the state of the door.
-   */
-
   std::map<int, Person*> npcInRoom;
   std::map<int, RoomObject*> objInRoom;
   std::map<Direction, std::tuple<DoorMood, RoomObject*, int, int>> adjRooms;
