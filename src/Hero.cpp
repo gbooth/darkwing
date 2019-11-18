@@ -528,8 +528,6 @@ bool Hero::interact(RoomObject* const r) {
     Lever* lev = static_cast<Lever*>(r);
     std::vector<std::pair<Lever*, bool>> depLever = lev->getDepLever();
 		if((!depLever[0].first->getState() && !depLever[0].second) && (depLever[1].first->getState() && depLever[1].second) && (depLever[2].first->getState() && depLever[2].second)){
-        && (depLever[1].first->getState() && depLever[1].second)
-        && (depLever[2].first->getState() && depLever[2].second)) {
       lev->setState(!lev->getState());
       std::cout << "The Lever has been flipped" << std::endl;
       std::cout << "The draw bridge lowers." << std::endl;
