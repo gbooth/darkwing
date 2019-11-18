@@ -27,8 +27,8 @@ class Villager : public Person {
   virtual ~Villager();
 
   /**
-  * It does nothing; implemented in Hero and enemy
-  *
+  *It does nothing; implemented in Hero and enemy
+  *@return false.
   */
   bool attack(Person* npc, Room**);
 
@@ -39,7 +39,7 @@ class Villager : public Person {
 
   /**
    *it will give a riddle
-   *
+   *@return true.
    */
   bool riddle();
 

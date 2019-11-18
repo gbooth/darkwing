@@ -37,6 +37,7 @@ class Hero : public Person {
 
   /**
    *This function define the npc by the hero.
+   *@return true
    */
   bool attack(Person*, Room**);
 
@@ -48,7 +49,7 @@ class Hero : public Person {
 
   /**
    *This function gives the weapon identifier.
-   * @return the identifier of the chosen weapon.
+   * @return weaponOfChoice .the identifier of the chosen weapon.
    */
   Item* getWeapon();
 
@@ -65,6 +66,7 @@ class Hero : public Person {
 
   /**
    *This function gives you the position of the hero.
+   *@return pos  position
    * @throw "ERROR: position out of bounds" if the firs and second position is > 4.
    */
   void setPosition(std::pair<unsigned int, unsigned int>);
@@ -101,18 +103,21 @@ class Hero : public Person {
 
   /**
    *This function let you know to talk with the Villager whe you are in the room.
+   *return true.
    */
   bool talk(Villager*, Room**);
 
   /**
    *This function gives all the commands that you can use during the game and messages related with
    *messages that the hero will received every when asked for.
+   *@return true.
    */
   bool command(std::string, Room**);
 
 
   /**
    * This function interact giving the state of the objects in the rooms.
+   *@return true.
    */
   bool interact(RoomObject* const);
 

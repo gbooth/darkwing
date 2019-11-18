@@ -48,12 +48,14 @@ class Room : public Object {
   /**
    *This function gives if NPC in the room or not.
    *@throw invalid_id error"id not for a person"
+   *@return true
    */
   bool checkForNPC(int);
 
   /**
    *Function that give ,if there is an object in the room.
    *@throw invalid_id Error:"id not for room object"
+   *@return true.
    */
   bool checkForObj(int);
 
