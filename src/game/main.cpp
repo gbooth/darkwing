@@ -13,7 +13,7 @@
 
 int titleScreen();
 Room** newGame(Room**);
-void loadGame(Hero* const, Room** const);
+void loadGame(Hero&, Room**);
 void combat(Hero&, Room**);
 
 int main() {
@@ -45,13 +45,14 @@ int main() {
                 << "the wizard\nand storms out of the castle leaving a giant d"
                 << "uck-sized hole in the\nwall. As Duck Norris, you stand awes"
                 << "truck in the wizard room you must\nsave your master.\n\n";
+      std::cout << "what will you do now?(type for help for commands)\n";
+          std::cin.ignore(1000, '\n');
     }
-//    else {
-//      newGame(h, world);
-//      loadGame(h, world);
-//    }
-    std::cout << "what will you do now?(type for help for commands)\n";
-    std::cin.ignore(1000, '\n');
+    else {
+      world = newGame(world);
+      loadGame(h, world);
+      std::cout << "Game loaded\n";
+    }
     while (true) {
       if (world[h.getPos().first][h.getPos().second].checkForEnemy()) {
         combat(h, world);
@@ -66,6 +67,7 @@ int main() {
         }
         delete world;
         world = nullptr;
+        h.reset();
         break;
       }
       h.command(inStr, world);
@@ -119,9 +121,9 @@ Room** newGame(Room** world) {
   return world;
 }
 
-void loadGame(Hero* const h, Room** const world) {
-//    Load l;
-//    l.loadGame(h, world);
+void loadGame(Hero& h, Room** world) {
+    Load l;
+    l.loadGame(h, world);
 }
 
 void combat(Hero& h, Room** world) {

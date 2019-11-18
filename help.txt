@@ -1,14 +1,15 @@
-Command							                           Operand
-------------------------------------------------------------------------------------------
-go					                             north/south/east/west
-use							      name of potion or key to use
-inspect                            name of entity to inspect(room to inspect current room)
-inventory                                                                       no operand
-talk                                                                      name of villager
-attack                                                                         name of NPC
-flip                                                                         name of lever
-open                                                                         name of chest
-exit                             use it when you want to go to the main menu from any room                          
-help                                                                            no operand
-equip       the name of the weapon you want, no operand shows your current equipped weapon
+Command							                                  Operand
+-------------------------------------------------------------------------------------------------
+go			                                                    north/south/east/west
+use						                     name of potion or key to use
+inspect                                   name of entity to inspect(room to inspect current room)
+inventory                                                                              no operand
+talk                                                                             name of villager
+attack                                                                   name of object to attack
+flip                                                                                name of lever
+open                                                                                name of chest
+equip         name of the weapon you want to equip, no operand shows your current equipped weapon
+exit                                                                                   no operand
+help                                                                                   no operand
+save										       no operand
 *

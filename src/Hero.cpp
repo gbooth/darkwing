@@ -16,7 +16,7 @@ const int MAX_HERO_HP = 20;
 Hero::Hero(): Person{3101} {
 	pos = std::make_pair(0, 0);
 	Item* fist = new Item(4205);
-	this->addInventory(fist);
+	this->addInventory(fist, false);
 	this->setWeapon(fist);
 	this->setRef();
 	this->setCommand();
@@ -45,7 +45,16 @@ Item* Hero::getWeapon() {
 }
 
 std::string Hero::inspect(Object* a) {
-	return a->getDesc();
+	if(a->getID()/100 == 23){
+		std::string str = a->getDesc();
+		if(static_cast<Lever*>(a)->getState())
+			str += " The lever is currently flipped down.\n";
+		else
+			str += " The lever is currently flipped up.\n";
+		return str;
+	} else {
+		return a->getDesc();
+	}
 }
 
 void Hero::mv(Direction a, Room** world) {
@@ -112,8 +121,8 @@ void Hero::attack(Person* npc, Room** world) {
 	}
 }
 
-std::list<std::pair<int, int>> Hero::invSave() {
-	std::list<std::pair<int, int>> l;
+std::vector<std::pair<int, int>> Hero::invSave() {
+	std::vector<std::pair<int, int>> l;
 	for (auto it : inventory) {
 		if(it.first != 4205)
 			l.push_back(std::make_pair(it.first, it.second.second));
@@ -149,6 +158,7 @@ void Hero::command(std::string s, Room** world) {
 								auto itr = inventory.find(it->second);
 								if (itr != inventory.end()) {
 									this->useKey(itr->second.first, l);
+									world[i][j].objChanged(l->getID());
 									break;
 								}
 							} else if(inventory.find(it->second) == inventory.end()) {
@@ -167,6 +177,7 @@ void Hero::command(std::string s, Room** world) {
 									auto itr = inventory.find(it->second);
 									if (itr != inventory.end()) {
 										this->useKey(itr->second.first, l);
+										world[i][j].objChanged(l->getID());
 										break;
 									}
 								} else if(inventory.find(it->second) == inventory.end()) {
@@ -185,6 +196,7 @@ void Hero::command(std::string s, Room** world) {
 										auto itr = inventory.find(it->second);
 										if (itr != inventory.end()) {
 											this->useKey(itr->second.first, l);
+                      world[i][j].objChanged(l->getID());
 											break;
 										}
 									} else if(inventory.find(it->second) == inventory.end()) {
@@ -215,12 +227,15 @@ void Hero::command(std::string s, Room** world) {
 						world[i][j].objChanged(it->second);
 					if (op == "bone lever") {
 						std::cout <<
-						          "You hear the distinct sound of heavy rocks moving on \nthe opposite side of the lake. Perhaps a door has opened?"
-						          << std::endl;
+						          "You hear the sound of heavy rocks moving \nsomewhere south of you and the sound of splashing in the distance";
+						if(robj->getState())
+							std::cout << " stops.\n";
+						else
+							std::cout << " starts.\n";
 					} else if (op == "mossy lever") {
 						std::cout << "That sound again...you suspect a door might be open else where."
 						          << std::endl;
-					} else {
+					} else if(op != "stone lever"){
 						std::cout  << "Hmm, that's strange, you don't hear anything happen." << std::endl;
 					}
 				} else {
@@ -271,6 +286,7 @@ void Hero::command(std::string s, Room** world) {
 					std::cout << "your " << weaponOfChoice->getName() <<
 					          " bounces off the object and hits you in the face.\n";
 					this->setHealth(this->getHealth() - 1);
+					std::cout << "You take 1 point of damage.\n";
 				} else {
 					std::cout << op << " is not in the area." << std::endl;
 				}
@@ -381,8 +397,8 @@ void Hero::getInventory() {
 		          << it.second.second << std::endl;
 }
 
-void Hero::addInventory(Item* a) {
-	if(a->getID() != 4205)
+void Hero::addInventory(Item* a, bool messSup) {
+	if(messSup)
 		std::cout << a->getName() << " has been added to your inventory!" << std::endl;
 	int itemID = a->getID();
 	if (inventory.find(itemID) == inventory.end())
@@ -461,7 +477,7 @@ void Hero::talk(Villager* v, Room** world) {
 			          "Correct! Here, take this map to the woods. You'll likely get lost without it."
 			          << std::endl;
 			Item* mapKey = new Item(4303);
-			this->addInventory(mapKey);
+			this->addInventory(mapKey, true);
 		} else {
 			std::cout << v->getName() <<
 			          " looks at you with great disappointment. A wave of his hands opens the ground beneath your flippers and you die!\n";
@@ -493,7 +509,7 @@ bool Hero::interact(RoomObject* const r) {
 		} else if (r->getID() / 100 % 10 == 1 && r->getID() / 1000 == 2) {
 			if (!r->getState()) {
 				Item* a = static_cast<Chest*>(r)->getContents();
-				this->addInventory(a);
+				this->addInventory(a, true);
 				return true;
 			}
 		} else {
@@ -503,7 +519,7 @@ bool Hero::interact(RoomObject* const r) {
 	} else {
 		Lever* lev = static_cast<Lever*>(r);
 		std::vector<std::pair<Lever*, bool>> depLever = lev->getDepLever();
-		if((depLever[0].first->getState() && depLever[0].second) && (depLever[1].first->getState() && depLever[1].second) && (depLever[2].first->getState() && depLever[2].second)){
+		if((!depLever[0].first->getState() && !depLever[0].second) && (depLever[1].first->getState() && depLever[1].second) && (depLever[2].first->getState() && depLever[2].second)){
 			lev->setState(!lev->getState());
 			std::cout << "The Lever has been flipped" << std::endl;
 			std::cout << "The draw bridge lowers." << std::endl;
@@ -567,10 +583,24 @@ void Hero::win(Room** world) {
 	          << "o a wooden duck. \n\n\"Thank you for freeing me Duck Norris.\""
 	          << " the wizard coughs as he stumbles over to Firequacker. \n\n\"H"
 	          << "ow big do you think we can make him this time Norris?\" asks t"
-	          << "he wizard as he picks Firequacker up from the cave floor";
+	          << "he wizard as he picks Firequacker up from the cave floor\n"
+			  << "You Win. Congratulations!!\n";
 	for (int i = 0; i < 5; i++)
 		delete [] world[i];
 	delete world;
 	world = nullptr;
 	exit(0);
+}
+
+void Hero::reset() {
+  this->setPosition(std::make_pair(0, 0));
+  this->setHealth(MAX_HERO_HP);
+  if(this->getWeapon()->getID() != 4205)
+    this->setWeapon(inventory[4205].first);
+  for(auto it : inventory){
+    if(it.first != 4205){
+      delete it.second.first;
+      inventory.erase(it.first);
+    }
+  }
 }

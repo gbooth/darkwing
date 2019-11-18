@@ -84,9 +84,9 @@ class Hero : public Person {
    *@param weaponOfChoice provides the identifier of the weapons.
    *@param pos will give the coordinates of the position of the hero.
    */
-  std::list<std::pair<int, int>> invSave();
+  std::vector<std::pair<int, int>> invSave();
   void getInventory();
-  void addInventory(Item*);
+  void addInventory(Item*, bool);
   void usePotion(Item*);
   void useKey(Item*, Lock*);
   void talk(Villager*, Room**);
@@ -94,11 +94,12 @@ class Hero : public Person {
   bool interact(RoomObject* const);
   void lose(GitGud, Room**);
   void win(Room**);
+  void reset();
   void help();
  private:
   void setRef();
   void setCommand();
-  std::map<int, std::pair<Item*, int>>  inventory;
+  std::map<int, std::pair<Item*, int>> inventory;
   Item* weaponOfChoice;
   std::pair<uint, uint> pos;
   std::map<std::string, int> refs;
