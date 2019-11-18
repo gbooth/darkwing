@@ -11,5 +11,5 @@ TEST(TestChest, getContentsTest){
 Chest a(2101);
 Chest b(2102);
 EXPECT_EQ(4204, a.getContents()->getID());
-EXPECT_NE(4201, b.getContents()->getID());
+EXPECT_NE(4204, b.getContents()->getID());
 }

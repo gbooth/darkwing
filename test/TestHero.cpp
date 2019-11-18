@@ -17,6 +17,11 @@ TEST(TestHero, mvTest) {
   h.mv(east, world);
   EXPECT_EQ(1, h.getPos().first);
   EXPECT_EQ(0, h.getPos().second);
+  for (int i = 0; i < 5; i++) {
+    delete [] world[i];
+  }
+  delete world;
+  world = nullptr;
 }
 
 TEST(TestHero, inventoryTest) {
@@ -46,6 +51,10 @@ TEST(TestHero, usePotionTest) {
   h.setHealth(10);
   h.usePotion(c);
   std::cout << h.getHealth() << std::endl;
+  delete b;
+  delete c;
+  b = nullptr;
+  c = nullptr;
 }
 
 TEST(TestHero, weaponTest) {
@@ -54,33 +63,48 @@ TEST(TestHero, weaponTest) {
   h.addInventory(a);
   h.setWeapon(a);
   std::cout << h.getWeapon()->getName() << std::endl;
+  delete a;
+  a = nullptr;
 }
 
-TEST(TestHero, talkTest){
-Hero h;
-Villager v(3207);
-h.talk(&v);
+TEST(TestHero, talkTest) {
+  Hero h;
+  Villager v(3207);
+  Room** world;
+  world = new Room*[5];
+  for (int i = 0; i<5; i++)
+    world[i] = new Room[5] {i + 1001, i + 1006, i + 1011, i + 1016, i + 1021};
+  h.talk(&v, world);
+  for (int i = 0; i < 5; i++) {
+    delete [] world[i];
+  }
+  delete world;
+  world = nullptr;
 }
 
-TEST(TestHero, useKeyTest){
-Hero h;
-Lock* l = new Lock(2201);
-Lock* m = new Lock(2202);
-Item* a = new Item(4301);
-h.useKey(a,l);
-h.useKey(a,m);
-delete l, m, a;
-l = nullptr;
-m = nullptr;
-a = nullptr;
+TEST(TestHero, useKeyTest) {
+  Hero h;
+  Lock* l = new Lock(2201);
+  Lock* m = new Lock(2202);
+  Item* a = new Item(4301);
+  h.useKey(a, l);
+  h.useKey(a, m);
+  delete l;
+  delete m;
+  delete a;
+  l = nullptr;
+  m = nullptr;
+  a = nullptr;
 }
 
-TEST(TestHero, interactTest){
-Hero h;
-RoomObject* r = new Lever(2302);
-RoomObject* s = new Chest(2101);
-h.interact(r);
-h.interact(s);
-delete r,s;
-r = s = nullptr;
+TEST(TestHero, interactTest) {
+  Hero h;
+  RoomObject* r = new Lever(2302);
+  RoomObject* s = new Chest(2101);
+  h.interact(r);
+  h.interact(s);
+  delete r;
+  delete s;
+  r = nullptr;
+  s = nullptr;
 }

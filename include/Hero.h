@@ -18,6 +18,7 @@
 #include "Command.h"
 #include "Save.h"
 #include "GitGud.h"
+
 /**
  *This class will provide to the Hero or player, all the conditions that he is involve with ,during the whole game as: Weapons,Enemy identifier,position,
  *Directions,inventory.
@@ -26,7 +27,6 @@ class Hero : public Person {
  public:
   /**
    *Default Constructor
-   * @parameter identifier of the Hero and his position.
    */
   Hero();
 
@@ -37,7 +37,6 @@ class Hero : public Person {
 
   /**
    *This function define the npc by the hero.
-   * @parameter represent the npc with be related with the hero.
    */
   void attack(Person*, Room**);
 
@@ -60,42 +59,87 @@ class Hero : public Person {
   void setWeapon(Item*);
 
   /**
-  *This function will give the direction and the position of the hero.
-  *@parameter a will give the direction of the hero.
-  *@parameter world give the room position.
+  *This function will gives the direction and the position of the hero.
   */
   void mv(Direction, Room**);
 
   /**
    *This function gives you the position of the hero.
-   * @param pair for the coordinates of the hero.
    * @throw "ERROR: position out of bounds" if the firs and second position is > 4.
    */
   void setPosition(std::pair<unsigned int, unsigned int>);
 
   /**
    *this function access the position of the player.
-   * return the position of the player.
    */
   std::pair<unsigned int, unsigned int> getPos();
 
   /**
-   *@param map will associate the item with the identifier in the inventory.
-   *@param weaponOfChoice provides the identifier of the weapons.
-   *@param pos will give the coordinates of the position of the hero.
+   *This function gives the inventory saved.
    */
   std::vector<std::pair<int, int>> invSave();
+
+  /**
+   *This function gives the current inventory any time during the game.
+   */
   void getInventory();
+
+  /**
+   *This function tell you what object has been added to your inventory.
+   */
   void addInventory(Item*, bool);
+
+  /**
+   * This function give you the health when using potions.
+   */
   void usePotion(Item*);
+
+  /**
+   *This function unlock when using the right key.
+   */
   void useKey(Item*, Lock*);
+
+  /**
+   *This function let you know to talk with the Villager whe you are in the room.
+   */
   void talk(Villager*, Room**);
+
+  /**
+   *This function gives all the commands that you can use during the game and messages related with
+   *messages that the hero will received every when asked for.
+   */
   void command(std::string, Room**);
+
+
+  /**
+   * This function interact giving the state of the objects in the rooms.
+   */
   bool interact(RoomObject* const);
+
+  /**
+   *This function gives the conditions in which the game will be over.
+   */
   void lose(GitGud, Room**);
+
+  /**
+   *This function gives message when the Hero wins the game.
+   */
   void win(Room**);
   void reset();
+  /**
+   *This function contains the file to help he player from any room.
+   */
   void help();
+
+  /**
+   *@param inventory  gives the status of the inventory.
+   *@param weaponOfChoice give the weapon selected.
+   *@param pos give the position of the Hero
+   *@param refs to actions that ake place during the game.
+   *@param cref these are the references for the the actions used in the commands.
+   */
+
+
  private:
   void setRef();
   void setCommand();

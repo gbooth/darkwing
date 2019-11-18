@@ -18,14 +18,12 @@ class Hero;
 class Save {
 public:
  /**
- *Constructor
- *@param h the pointer to the hero to save
- *@param r the pointer to the world that needs to be saved
+ *Default constructor
  */
  Save(Hero*, Room**);
 
  /**
- *virtual destructor
+ *Virtual destructor
  */
  virtual ~Save();
  /**

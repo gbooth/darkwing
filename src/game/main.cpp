@@ -206,8 +206,10 @@ void combat(Hero& h, Room** world) {
       if(comd == "attack") {
         h.attack(e, world);
         if(e->getHealth() < 1) {
-          if(e->getID() == 3305)
+          if(e->getID() == 3305){
             h.win(world);
+            exit(0);
+          }
 	        std::cout << e->getName() << " crumbles at your feet sucumbing to the wounds you"
                 << "'ve inflicted. \"You win this time Duck Norris.\" sputters"
                 << " " << e->getName() << " as he coughs up blood and exhales "

@@ -19,10 +19,6 @@ class Enemy : public Person {
   /**
   *constructor
   * @param id is enemy identifier
-  * @param dmg is damage value
-  * @param pos the position
-  * @param hp the health
-  * @throw if id is not of enemy type
   */
   Enemy(int id);
 
@@ -32,8 +28,8 @@ class Enemy : public Person {
   virtual ~Enemy();
 
   /**
-  * @param the hero to attack
-  * @param Room array for the world to call lose function with
+  * @param h person to attack.
+  * @param world array for the world to call lose function with
   */
   void attack(Person* h, Room** world);
 };
