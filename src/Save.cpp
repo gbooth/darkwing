@@ -1,6 +1,6 @@
 #include "Save.h"
 #include "Exceptions.h"
-#include<list>
+#include <vector>
 
 Save::Save(Hero* h, Room** r) {
  std::string fname;
@@ -20,7 +20,7 @@ Save::Save(Hero* h, Room** r) {
     fileName = fname + ".txt";
     std::string posit = std::to_string(h->getPos().first)+std::to_string(h->getPos().second);
     std::string invStr = "";
-    std::list<std::pair<int, int>> invS = h->invSave();
+    std::vector<std::pair<int, int>> invS = h->invSave();
     for(auto it = invS.begin(); it != invS.end(); ++it, invStr += ",")
         invStr += it->first + it->second;
 

@@ -29,13 +29,9 @@ TEST(TestHero, inventoryTest) {
   Item* b = new Item(4101);
   Item* c = new Item(4301);
   Hero h;
-  h.addInventory(a);
-  h.addInventory(b);
-  h.addInventory(b);
-  h.addInventory(b);
-  h.addInventory(b);
-  h.addInventory(c);
-  h.getInventory();
+  h.addInventory(a, true);
+  h.addInventory(b, true);
+  h.addInventory(c, true);
 }
 
 TEST(TestHero, usePotionTest) {
@@ -60,7 +56,7 @@ TEST(TestHero, usePotionTest) {
 TEST(TestHero, weaponTest) {
   Item* a = new Item(4205);
   Hero h;
-  h.addInventory(a);
+  h.addInventory(a, true);
   h.setWeapon(a);
   std::cout << h.getWeapon()->getName() << std::endl;
   delete a;
@@ -255,9 +251,9 @@ TEST(TestHero, commandTest) {
   h.command("use forest map", world);
   h.command("use blue key", world);
   h.command("use orange key", world);
-  h.addInventory(key1);
-  h.addInventory(key2);
-  h.addInventory(key3);
+  h.addInventory(key1, true);
+  h.addInventory(key2, true);
+  h.addInventory(key3, true);
   h.command("inventory", world);
   h.setPosition(std::make_pair(0,2));
   h.command("use orange key", world);
