@@ -86,7 +86,7 @@ class Hero : public Person {
    */
   std::vector<std::pair<int, int>> invSave();
   void getInventory();
-  void addInventory(Item*);
+  void addInventory(Item*, bool);
   void usePotion(Item*);
   void useKey(Item*, Lock*);
   void talk(Villager*, Room**);
@@ -99,7 +99,7 @@ class Hero : public Person {
  private:
   void setRef();
   void setCommand();
-  std::map<int, std::pair<Item*, int>>  inventory;
+  std::map<int, std::pair<Item*, int>> inventory;
   Item* weaponOfChoice;
   std::pair<uint, uint> pos;
   std::map<std::string, int> refs;

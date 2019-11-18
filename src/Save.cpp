@@ -27,8 +27,7 @@ Save::Save(Hero* h, Room** r) {
   std::vector<std::pair<int, int>> invS = h->invSave();
   for (uint i = 0; i < invS.size(); i++) {
     invStr += std::to_string(invS[i].first) + std::to_string(invS[i].second);
-    if (i != invS.size() - 1)
-      invStr += ",";
+    invStr += ",";
   }
 
 

@@ -16,7 +16,7 @@ const int MAX_HERO_HP = 20;
 Hero::Hero(): Person{3101} {
 	pos = std::make_pair(0, 0);
 	Item* fist = new Item(4205);
-	this->addInventory(fist);
+	this->addInventory(fist, false);
 	this->setWeapon(fist);
 	this->setRef();
 	this->setCommand();
@@ -397,8 +397,8 @@ void Hero::getInventory() {
 		          << it.second.second << std::endl;
 }
 
-void Hero::addInventory(Item* a) {
-	if(a->getID() != 4205)
+void Hero::addInventory(Item* a, bool messSup) {
+	if(messSup)
 		std::cout << a->getName() << " has been added to your inventory!" << std::endl;
 	int itemID = a->getID();
 	if (inventory.find(itemID) == inventory.end())
@@ -477,7 +477,7 @@ void Hero::talk(Villager* v, Room** world) {
 			          "Correct! Here, take this map to the woods. You'll likely get lost without it."
 			          << std::endl;
 			Item* mapKey = new Item(4303);
-			this->addInventory(mapKey);
+			this->addInventory(mapKey, true);
 		} else {
 			std::cout << v->getName() <<
 			          " looks at you with great disappointment. A wave of his hands opens the ground beneath your flippers and you die!\n";
@@ -509,7 +509,7 @@ bool Hero::interact(RoomObject* const r) {
 		} else if (r->getID() / 100 % 10 == 1 && r->getID() / 1000 == 2) {
 			if (!r->getState()) {
 				Item* a = static_cast<Chest*>(r)->getContents();
-				this->addInventory(a);
+				this->addInventory(a, true);
 				return true;
 			}
 		} else {
@@ -595,7 +595,8 @@ void Hero::win(Room** world) {
 void Hero::reset() {
   this->setPosition(std::make_pair(0, 0));
   this->setHealth(MAX_HERO_HP);
-  this->setWeapon(inventory[4205].first);
+  if(this->getWeapon()->getID() != 4205)
+    this->setWeapon(inventory[4205].first);
   for(auto it : inventory){
     if(it.first != 4205){
       delete it.second.first;
