@@ -30,7 +30,7 @@ class Villager : public Person {
   /**
   * does nothing; implemented in Hero and enemy
   */
-  void attack(Person* npc, Room**);
+  bool attack(Person* npc, Room**);
 
   /**
   * the talking aspect of a villager

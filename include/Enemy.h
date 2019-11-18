@@ -31,7 +31,7 @@ class Enemy : public Person {
   * @param h person to attack.
   * @param world array for the world to call lose function with
   */
-  void attack(Person* h, Room** world);
+  bool attack(Person* h, Room** world);
 };
 
 #endif // ENEMY_H

@@ -14,14 +14,15 @@
 int titleScreen();
 Room** newGame(Room**);
 void loadGame(Hero&, Room**);
-void combat(Hero&, Room**);
+bool combat(Hero&, Room**);
 
 int main() {
   std::string inStr;
   Hero h;
   Room** world = nullptr;
   while (true) {
-    if (titleScreen() == 1) {
+    int title = titleScreen();
+    if (title == 1) {
       world = newGame(world);
       std::cout << "It is a pleasant spring day in Anates Terra, a province in"
                 << " Avemland.\nEach province in Avemland is ruled over by a k"
@@ -46,17 +47,20 @@ int main() {
                 << "uck-sized hole in the\nwall. As Duck Norris, you stand awes"
                 << "truck in the wizard room you must\nsave your master.\n\n";
       std::cout << "what will you do now?(type for help for commands)\n";
-          std::cin.ignore(1000, '\n');
-    }
-    else {
+      std::cin.ignore(1000, '\n');
+    } else if (title == 2) {
       world = newGame(world);
       loadGame(h, world);
       std::cout << "Game loaded\n";
+    } else {
+      return 0;
     }
     while (true) {
       if (world[h.getPos().first][h.getPos().second].checkForEnemy()) {
-        combat(h, world);
-        continue;
+        if(combat(h, world))
+          return 0;
+        else
+          continue;
       }
       std::cout << "   _  " << std::endl << "__(0)>";
       std::getline(std::cin, inStr);
@@ -65,15 +69,15 @@ int main() {
         for (int i = 0; i < 5; i++) {
           delete [] world[i];
         }
-        delete world;
+        delete []world;
         world = nullptr;
         h.reset();
         break;
       }
-      h.command(inStr, world);
+      if(h.command(inStr, world))
+        return 0;
     }
   }
-  return 0;
 }
 
 int titleScreen() {
@@ -95,7 +99,7 @@ int titleScreen() {
     } else if (in == "2") {
       return 2;
     } else if (in == "3") {
-      exit(0);
+      return 3;
     }
   }
 }
@@ -111,7 +115,7 @@ Room** newGame(Room** world) {
   for (int i = 0; i < 5; i++)
     for (int j = 0; j < 5; j++) {
       world[i][j].setDoor(world);
-      if(world[i][j].getID() == 1005) {
+      if (world[i][j].getID() == 1005) {
         Lever* bridgeLever = static_cast<Lever*>(world[i][j].getObj(2301));
         bridgeLever->setDepLever(std::make_pair(bridge1, false));
         bridgeLever->setDepLever(std::make_pair(bridge2, true));
@@ -122,11 +126,11 @@ Room** newGame(Room** world) {
 }
 
 void loadGame(Hero& h, Room** world) {
-    Load l;
-    l.loadGame(h, world);
+  Load l;
+  l.loadGame(h, world);
 }
 
-void combat(Hero& h, Room** world) {
+bool combat(Hero& h, Room** world) {
   int turnCount = 0;
   bool stupidUser = false;
   std::string line, comd, oper;
@@ -137,44 +141,48 @@ void combat(Hero& h, Room** world) {
   case 1004: {
     e = static_cast<Enemy*>(world[i][j].getNPC(3301));
     break;
-    }
+  }
   case 1005: {
     e = static_cast<Enemy*>(world[i][j].getNPC(3302));
     break;
-    }
+  }
   case 1011: {
     e = static_cast<Enemy*>(world[i][j].getNPC(3303));
     break;
-    }
+  }
   case 1012: {
     e = static_cast<Enemy*>(world[i][j].getNPC(3305));
     break;
-    }
+  }
   case 1015: {
     e = static_cast<Enemy*>(world[i][j].getNPC(3304));
     break;
-    }
+  }
   }
   int eOrigHP = e->getHealth();
-  if(e->getID() != 3305) {
+  if (e->getID() != 3305) {
     std::cout << "A cow sized duck blocks your path wielding a dagger in his bil"
               << "l. He appears to be rather angry. Firequacker must have enchan"
               << "ted him, perhaps with the help of the captive wizard."
               << std::endl << "\"Hello Duck Norris. I'm " << e->getName() << "\""
               << " the duck rasps through his clenched bill. \"I'm going to enjo"
               << "y killing you\"" << std::endl;
-  }
-  else {
-    std::cout << "Firequacker is standing in the middle of the chamber.\n\"I've been expecting you Duck Norris.\" growled Firequacker.\n\"I've always liked you but if you're here to rescue this jerk wizard we are going to have a problem.\" huffed Firequacker.\n";
-    while(true) {
-      std::cout << "\n\"Are you here to rescue this jerky pants?\" asked Firequacker\n";
+  } else {
+    std::cout <<
+              "Firequacker is standing in the middle of the chamber.\n\"I've been expecting you Duck Norris.\" growled Firequacker.\n\"I've always liked you but if you're here to rescue this jerk wizard we are going to have a problem.\" huffed Firequacker.\n";
+    while (true) {
+      std::cout <<
+                "\n\"Are you here to rescue this jerky pants?\" asked Firequacker\n";
       std::cout << "(yes/no)--";
       std::getline(std::cin, line);
-      if(line == "no") {
-        std::cout << "\n\"Well then I have no quarrel with you Duck Norris\" chuffed Firequacker\n \"Lets go back to the castle and we can study potions and magic together. As long as the wizard rots here I'm good\" quacked Firequacker.\n";
+      if (line == "no") {
+        std::cout <<
+                  "\n\"Well then I have no quarrel with you Duck Norris\" chuffed Firequacker\n \"Lets go back to the castle and we can study potions and magic together. As long as the wizard rots here I'm good\" quacked Firequacker.\n";
         h.lose(friends, world);
-      } else if(line == "yes") {
-        std::cout << "\n\"Then prepare yourself for death Duck Norris!\" hissed Firequacker.\n\n";
+        return true;
+      } else if (line == "yes") {
+        std::cout <<
+                  "\n\"Then prepare yourself for death Duck Norris!\" hissed Firequacker.\n\n";
         break;
       } else {
         std::cout << "\n\"A simple yes or no will do Norris\" growls Firequacker.\n\n";
@@ -188,12 +196,13 @@ void combat(Hero& h, Room** world) {
     comd = line.substr(0, line.find(' '));
     oper = line.substr(line.find(' ') + 1);
     if (comd  != "attack" && comd != "run" && comd != "use") {
-      if(stupidUser) {
+      if (stupidUser) {
         std::cout << e->getName() << " has managed to get his dagger to your n"
                   << "eck while you've been standing there. \"All too easy Duc"
                   << "k Norris\" " << e->getName() << " chuckles as he slits y"
                   << "our throat." << std::endl;
         h.lose(moronUser, world);
+        return true;
       } else {
         std::cout << "You really shouldn't do that right now. You kind of have m"
                   << "ore pressing matters, namely a duck the size of a cow who "
@@ -203,66 +212,69 @@ void combat(Hero& h, Room** world) {
       }
     } else {
       stupidUser = false;
-      if(comd == "attack") {
+      if (comd == "attack") {
         h.attack(e, world);
-        if(e->getHealth() < 1) {
-          if(e->getID() == 3305){
+        if (e->getHealth() < 1) {
+          if (e->getID() == 3305) {
             h.win(world);
-            exit(0);
+            return true;
           }
-	        std::cout << e->getName() << " crumbles at your feet sucumbing to the wounds you"
-                << "'ve inflicted. \"You win this time Duck Norris.\" sputters"
-                << " " << e->getName() << " as he coughs up blood and exhales "
-                << "one last time" << std::endl;
-	        world[i][j].setHasEnemy();
+          std::cout << e->getName() <<
+                    " crumbles at your feet sucumbing to the wounds you"
+                    << "'ve inflicted. \"You win this time Duck Norris.\" sputters"
+                    << " " << e->getName() << " as he coughs up blood and exhales "
+                    << "one last time" << std::endl;
+          world[i][j].setHasEnemy();
           break;
         }
         std::cout << e->getName() << " still stands." << std::endl;
         e->attack(&h, world);
         turnCount++;
-        if(world[i][j].getID() == 1015) {
-          switch(turnCount){
-             case 1:{
-		          std::cout << "Your blows at each other echo throughout the cave."
-                        << std::endl;
-              break;
-            }
-            case 2:{
-	            break;
-            }
-	          case 3:{
-	          	break;
-	          }
-            case 4:{
-              std::cout << "Stalactites start falling all around you and your "
-                        << "opponent. As they slam against the ground echos bo"
-                        << "unce around the cave causing more stalactites to f"
-                        << "all." << std::endl;
-              break;
-            }
-            case 5:{
-              std::cout << "A large stalactite falls and squishes the duck. Wh"
-                        << "at luck! You raise your sword and cheer at your vi"
-                        << "tory. You hear your cheer echo throughout the cave"
-                        << "and look up just in time to see a massive stalacti"
-                        << "te that is about to fall on your head. You quickly"
-                        << " leap aside as the stalactite lands on your legs "
-                        << "crushing your legs and pinning you to the ground."
-                        << " You screech out in pain and everything goes blac"
-                        << "k." << std::endl;
-              h.lose(stalactite, world);
-            }
-            default:{
-              throw combat_error("Something really broke when you did or didn't hit that guy");
-            }
+        if (world[i][j].getID() == 1015) {
+          switch (turnCount) {
+          case 1: {
+            std::cout << "Your blows at each other echo throughout the cave."
+                      << std::endl;
+            break;
+          }
+          case 2: {
+            break;
+          }
+          case 3: {
+            break;
+          }
+          case 4: {
+            std::cout << "Stalactites start falling all around you and your "
+                      << "opponent. As they slam against the ground echos bo"
+                      << "unce around the cave causing more stalactites to f"
+                      << "all." << std::endl;
+            break;
+          }
+          case 5: {
+            std::cout << "A large stalactite falls and squishes the duck. Wh"
+                      << "at luck! You raise your sword and cheer at your vi"
+                      << "tory. You hear your cheer echo throughout the cave"
+                      << "and look up just in time to see a massive stalacti"
+                      << "te that is about to fall on your head. You quickly"
+                      << " leap aside as the stalactite lands on your legs "
+                      << "crushing your legs and pinning you to the ground."
+                      << " You screech out in pain and everything goes blac"
+                      << "k." << std::endl;
+            h.lose(stalactite, world);
+            return true;
+          }
+          default: {
+            throw combat_error("Something really broke when you did or didn't hit that guy");
+          }
           }
         }
-      } else if(comd == "run") {
+      } else if (comd == "run") {
         h.mv(west, world);
         e->setHealth(eOrigHP);
         break;
       } else {
-        h.command(line, world);
+        if(h.command(line, world))
+          return true;
       }
     }
   }
@@ -270,5 +282,7 @@ void combat(Hero& h, Room** world) {
     std::cout << "The duck has triumphed over you. You lay there contemplating"
               << " your life as you bleed to death." << std:: endl;
     h.lose(ducked, world);
+    return true;
   }
+  return false;
 }

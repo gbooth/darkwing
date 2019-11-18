@@ -13,7 +13,7 @@
 
 const int MAX_HERO_HP = 20;
 
-Hero::Hero(): Person{3101} {
+Hero::Hero(): Person{3101}, weaponOfChoice{nullptr} {
   pos = std::make_pair(0, 0);
   Item* fist = new Item(4205);
 	this->addInventory(fist, false);
@@ -104,14 +104,14 @@ std::pair<uint, uint> Hero::getPos() {
   return pos;
 }
 
-void Hero::attack(Person* npc, Room** world) {
+bool Hero::attack(Person* npc, Room** world) {
   int npcHealth = npc->getHealth();
   damageValue = 1 + weaponOfChoice->getItemValue();
   if (npc->getID() / 100 == 32) {
     std::cout << "The villagers take you off to jail for attacking one of them"
               << std::endl;
     this->lose(jail, world);
-    exit(0);
+    return true;
   }
   if (npc->getID() / 100 == 33) {
     if (npcHealth <= 0) {
@@ -122,6 +122,7 @@ void Hero::attack(Person* npc, Room** world) {
       npc->setHealth(npcHealth);
     }
   }
+  return false;
 }
 
 std::vector<std::pair<int, int>> Hero::invSave() {
@@ -133,7 +134,7 @@ std::vector<std::pair<int, int>> Hero::invSave() {
   return l;
 }
 
-void Hero::command(std::string s, Room** world) {
+bool Hero::command(std::string s, Room** world) {
   std::transform(s.begin(), s.end(), s.begin(), ::tolower);
   std::string cmd = "", op = "";
   int i = this->getPos().first;
@@ -290,7 +291,8 @@ void Hero::command(std::string s, Room** world) {
         if (it->second/1000 == 3 && it != refs.end()
             && world[i][j].checkForNPC(it->second)) {
           Person* const eny = world[i][j].getNPC(it->second);
-          this->attack(eny, world);
+          if(this->attack(eny, world))
+            return true;
         } else if (it->second/1000 == 1 || it->second /1000 == 2 || it->second == 4) {
           std::cout << "your " << weaponOfChoice->getName() <<
                     " bounces off the object and hits you in the face.\n";
@@ -329,7 +331,8 @@ void Hero::command(std::string s, Room** world) {
             this->setHealth(MAX_HERO_HP);
             std::cout << "You now have full health." << std::endl;
           }
-          this->talk(v, world);
+          if(this->talk(v, world))
+            return true;
 
         } else if (it->second/100 == 31 || it->second/100 == 33) {
           std::cout << "you can't talk to this person" << std::endl;
@@ -394,6 +397,7 @@ void Hero::command(std::string s, Room** world) {
                 << std::endl;
     }
   }
+  return false;
 }
 
 void Hero::getInventory() {
@@ -478,7 +482,7 @@ void Hero::useKey(Item* a, Lock* l) {
   l->unlock(a->getID());
 }
 
-void Hero::talk(Villager* v, Room** world) {
+bool Hero::talk(Villager* v, Room** world) {
   if (v->getID() == 3208 && inventory.find(4303) == inventory.end()) {
     if (v->riddle()) {
       std::cout <<
@@ -490,11 +494,12 @@ void Hero::talk(Villager* v, Room** world) {
       std::cout << v->getName() <<
                 " looks at you with great disappointment. A wave of his hands opens the ground beneath your flippers and you die!\n";
       this->lose(riddle, world);
-      exit(0);
+      return true;
     }
   } else {
     v->response();
   }
+  return false;
 }
 
 void Hero::help() {
@@ -579,7 +584,7 @@ void Hero::lose(GitGud l, Room** world) {
   }
   for (int i = 0; i < 5; i++)
     delete [] world[i];
-  delete world;
+  delete [] world;
   world = nullptr;
 }
 
@@ -595,7 +600,7 @@ void Hero::win(Room** world) {
 			  << "You Win. Congratulations!!\n";
   for (int i = 0; i < 5; i++)
     delete [] world[i];
-  delete world;
+  delete []world;
   world = nullptr;
 }
 

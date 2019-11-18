@@ -13,7 +13,7 @@ Villager::Villager(int idnty)
 
 Villager::~Villager() {}
 
-void Villager::attack(Person* npc, Room** world) {}
+bool Villager::attack(Person* npc, Room** world) {return false;}
 
 void Villager::response() {
   switch (id) {

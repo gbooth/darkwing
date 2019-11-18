@@ -38,7 +38,7 @@ class Hero : public Person {
   /**
    *This function define the npc by the hero.
    */
-  void attack(Person*, Room**);
+  bool attack(Person*, Room**);
 
   /**
    *This function give the description of the object selected by the hero.
@@ -102,13 +102,13 @@ class Hero : public Person {
   /**
    *This function let you know to talk with the Villager whe you are in the room.
    */
-  void talk(Villager*, Room**);
+  bool talk(Villager*, Room**);
 
   /**
    *This function gives all the commands that you can use during the game and messages related with
    *messages that the hero will received every when asked for.
    */
-  void command(std::string, Room**);
+  bool command(std::string, Room**);
 
 
   /**

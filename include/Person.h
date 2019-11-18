@@ -33,7 +33,7 @@ class Person : public Object {
   *@param npc gives the identification of the npc.
   *@param world gives the room position for the npc.
   */
-  virtual void attack (Person* npc, Room** world) = 0;
+  virtual bool attack (Person* npc, Room** world) = 0;
 
   /**
   *set health of the person.
