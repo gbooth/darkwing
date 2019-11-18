@@ -254,6 +254,7 @@ TEST(TestHero, commandTest) {
   h.addInventory(key1, true);
   h.addInventory(key2, true);
   h.addInventory(key3, true);
+  h.addInventory(hpPot, true);
   h.command("inventory", world);
   h.setPosition(std::make_pair(0, 2));
   h.command("use orange key", world);
