@@ -195,7 +195,6 @@ TEST(TestHero, commandTest) {
   }
   Item* key1 = new Item(4301);
   Item* key2 = new Item(4302);
-  Item* key3 = new Item(4303);
   Item* hpPot = new Item(4101);
   h.command("go north", world);
   h.command("go east", world);
@@ -254,7 +253,6 @@ TEST(TestHero, commandTest) {
   h.command("use orange key", world);
   h.addInventory(key1, true);
   h.addInventory(key2, true);
-  h.addInventory(key3, true);
   h.addInventory(hpPot, true);
   h.command("inventory", world);
   h.setPosition(std::make_pair(0, 2));

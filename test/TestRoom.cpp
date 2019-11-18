@@ -95,7 +95,7 @@ TEST(TestRoom, getDir) {
   EXPECT_EQ(std::make_pair(-1, -1), world[2][3].getDirection(dir));
   for (int i = 0; i < 5; i++)
     delete[] world[i];
-  delete world;
+  delete [] world;
   world = nullptr;
 }
 

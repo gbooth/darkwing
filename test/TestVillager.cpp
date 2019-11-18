@@ -56,6 +56,6 @@ TEST(TestVillager, attackTest) {
   for (int i = 0; i < 5; i++) {
     delete [] world[i];
   }
-  delete world;
+  delete [] world;
   world = nullptr;
 }
