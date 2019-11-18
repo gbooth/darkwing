@@ -59,7 +59,6 @@ class Room : public Object {
 
   /**
    *Checks the directions for adjacent room to move.
-   * @param Direction gives you  if the adjacent direction is valid.
    */
   std::pair<int, int> getDirection(Direction);
 
@@ -89,8 +88,6 @@ class Room : public Object {
 
   /**
    * Gives the direction of the door and the state.
-   * @param Direction gives the position of the door.
-   * @param DoorMood which give you the doo state.
    * @throw file_error"door depend file is missing"
    */
   void upDoorMood(Direction, DoorMood);
