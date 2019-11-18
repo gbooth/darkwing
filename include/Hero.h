@@ -77,7 +77,7 @@ class Hero : public Person {
   /**
    *This function gives the inventory saved.
    */
-  std::list<std::pair<int, int>> invSave();
+  std::vector<std::pair<int, int>> invSave();
 
   /**
    *This function gives the current inventory any time during the game.
@@ -87,7 +87,7 @@ class Hero : public Person {
   /**
    *This function tell you what object has been added to your inventory.
    */
-  void addInventory(Item*);
+  void addInventory(Item*, bool);
 
   /**
    * This function give you the health when using potions.
@@ -125,7 +125,7 @@ class Hero : public Person {
    *This function gives message when the Hero wins the game.
    */
   void win(Room**);
-
+  void reset();
   /**
    *This function contains the file to help he player from any room.
    */
@@ -143,7 +143,7 @@ class Hero : public Person {
  private:
   void setRef();
   void setCommand();
-  std::map<int, std::pair<Item*, int>>  inventory;
+  std::map<int, std::pair<Item*, int>> inventory;
   Item* weaponOfChoice;
   std::pair<uint, uint> pos;
   std::map<std::string, int> refs;

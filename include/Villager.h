@@ -3,22 +3,21 @@
  *@date 2019-11
  */
 
-
-
 #ifndef VILLAGER_H
 #define VILLAGER_H
 
 #include "Person.h"
 
 /**
- *This function gives the idntification for the Villagers.
+ *This function gives the identification for the Villagers.
  */
 
 class Villager : public Person {
  public:
   /**
-  * @param idnty the id of the villager
-  * @throw invalid_id error if idnty is not villager type
+  *Default Constructor
+  * @param idnty the identifier of the villager
+  * @throw invalid_id error "ERROR:not a villager"
   */
   Villager(int idnty);
 
@@ -28,17 +27,18 @@ class Villager : public Person {
   virtual ~Villager();
 
   /**
-  * does nothing; implemented in Hero and enemy
+  * It does nothing; implemented in Hero and enemy
+  *
   */
   void attack(Person* npc, Room**);
 
   /**
-  * the talking aspect of a villager
+  * Related with the talking aspect of a villager
   */
   void response();
 
   /**
-   *gives a riddle
+   *it will give a riddle
    *
    */
   bool riddle();

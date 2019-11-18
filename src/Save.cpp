@@ -16,15 +16,14 @@ Save::Save(Hero* h, Room** r) {
         break;
     std::cout << "no characters not in the alphabet.\n";
  }
- 
-    fileName = fname + ".txt";
 
+    fileName = fname + ".txt";
     std::string posit = std::to_string(h->getPos().first)+std::to_string(h->getPos().second);
     std::string invStr = "";
     std::list<std::pair<int, int>> invS = h->invSave();
     for(auto it = invS.begin(); it != invS.end(); ++it, invStr += ",")
         invStr += it->first + it->second;
-    
+
 
  //all the attributes of a hero
  heroSaveMap[HP] = std::to_string(h->getHealth());
