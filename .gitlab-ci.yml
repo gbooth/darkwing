@@ -1,0 +1,29 @@
+build:
+   stage: build
+   script:
+      - make testGame
+   artifacts:
+      paths:
+         - testGame
+
+test:
+   stage: test
+   script:
+      - testGame
+
+
+pages:
+   stage: deploy
+   dependencies:
+      - test
+   script:
+      - make memory
+      - make coverage
+      - make static
+      - make style
+      - make docs
+   artifacts:
+      paths:
+         - coverage
+         - docs
+      expire_in: 14 days
