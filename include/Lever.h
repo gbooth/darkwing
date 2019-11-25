@@ -27,7 +27,6 @@ class Lever : public RoomObject {
   ~Lever();
   /**
    * sets the depLever vector
-   * @param a pair of lever* and bool
    */
   void setDepLever(std::pair<Lever*, bool>);
 
