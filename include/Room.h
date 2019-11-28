@@ -97,7 +97,8 @@ class Room : public Object {
   void upDoorMood(Direction, DoorMood);
 
   /**
-   *Detects if there is an NPC in the roomGG
+   *Detects if there is an NPC in the room.
+   *@param int that is the id to build
    *@return constant person pointer
    */
   Person* const getNPC(int);
