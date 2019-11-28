@@ -1,18 +1,17 @@
 #include "Save.h"
 #include "Exceptions.h"
-#include <vector>
-#include <utility>
-#include <string>
-#include <list>
+#include<list>
+#include<utility>
+#include<string>
+#include<vector>
 
 Save::Save(Hero* h, Room** r) {
   std::string fname;
   std::string out;
   bool goodFileName = true;
   while (true) {
-    std::cout << "Enter file name you wish to save as"
-              << "\n(no need for extension & no characters"
-              << " other than the good old alphabet): ";
+    std::cout << "Enter file name you wish to save as\n(no need for extension "
+              << "& no characters other than the good old alphabet): ";
     getline(std::cin, fname);
     for (int i = 0; i < fname.size(); i++)
       if (!((fname[i] >= 65 && fname[i] <= 90) || (fname[i] >= 97
@@ -24,12 +23,15 @@ Save::Save(Hero* h, Room** r) {
   }
 
   fileName = fname + ".txt";
+
   std::string posit = std::to_string(h->getPos().first)+std::to_string(
                         h->getPos().second);
   std::string invStr = "";
   std::vector<std::pair<int, int>> invS = h->invSave();
-  for (auto it = invS.begin(); it != invS.end(); ++it, invStr += ",")
-    invStr += it->first + it->second;
+  for (uint i = 0; i < invS.size(); i++) {
+    invStr += std::to_string(invS[i].first) + std::to_string(invS[i].second);
+    invStr += ",";
+  }
 
 
 //all the attributes of a hero
@@ -47,18 +49,20 @@ Save::Save(Hero* h, Room** r) {
       std::list<int> objSave = r[i][j].objToSave();
       for (auto it : objSave) {
         if (it/1000 == 2) {
-          out += it;
+          out += std::to_string(it);
           if (r[i][j].getObj(it)->getState())
             out += "1,";
           else
             out += "0,";
         }
       }
-      if (rID == 1004 || rID == 1005
-          || rID == 1011 || rID == 1012 || rID == 1015)
-        if (!r[i][j].checkForEnemy())
-          out += "f";
-      roomObj[rID] = out;
+      if (!r[i][j].checkForEnemy())
+        out += "f";
+      if (out != "f" && out != "")
+        roomObj[rID] = out;
+      else if ((rID == 1004 || rID == 1005 || rID == 1011 || rID == 1012
+                || rID == 1015) && out != "")
+        roomObj[rID] = out;
     }
   }
 }
@@ -66,7 +70,7 @@ Save::Save(Hero* h, Room** r) {
 Save::~Save() {}
 
 void Save::saveGame() {
-  saveFile.open(fileName, std::ios_base::app);
+  saveFile.open(fileName, std::ios_base::trunc);
   if (saveFile.is_open()) {
     saveHero();
     saveRoom();
