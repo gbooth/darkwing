@@ -29,6 +29,7 @@ class Villager : public Person {
   /**
   *It does nothing; implemented in Hero and enemy
   *@param npc the pointer to the person to attack
+  *@param room** the world that the person's are in
   *@return false.
   */
   bool attack(Person* npc, Room**);
