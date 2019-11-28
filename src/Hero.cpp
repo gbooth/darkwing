@@ -305,7 +305,8 @@ bool Hero::command(std::string s, Room** world) {
                     " bounces off the object and hits you in the face.\n";
           if (getHealth() -1 <= 0) {
             std::cout << "The great duck god quackri saves you and tells you "
-                      "\nthat you have more important things to be doing" << std::endl;
+                      "\nthat you have more important "
+                      "\nthings to be doing" << std::endl;
           } else {
             this->setHealth(this->getHealth() - 1);
             std::cout << "You take 1 point of damage.\n";
