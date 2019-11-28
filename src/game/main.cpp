@@ -13,7 +13,7 @@
 
 int titleScreen();
 Room** newGame(Room**);
-void loadGame(Hero&, Room**);
+bool loadGame(Hero&, Room**);
 bool combat(Hero&, Room**);
 
 int main() {
@@ -51,14 +51,23 @@ int main() {
       std::cin.ignore(1000, '\n');
     } else if (title == 2) {
       world = newGame(world);
-      loadGame(h, world);
-      std::cout << "Game loaded\n";
+      if (loadGame(h, world)) {
+        std::cout << "Game loaded\n";
+      } else {
+        for (int i = 0; i < 5; i++) {
+          delete [] world[i];
+        }
+        delete []world;
+        world = nullptr;
+        h.reset();
+        continue;
+      }
     } else {
       return 0;
     }
     while (true) {
       if (world[h.getPos().first][h.getPos().second].checkForEnemy()) {
-        if(combat(h, world))
+        if (combat(h, world))
           return 0;
         else
           continue;
@@ -75,7 +84,7 @@ int main() {
         h.reset();
         break;
       }
-      if(h.command(inStr, world))
+      if (h.command(inStr, world))
         return 0;
     }
   }
@@ -126,9 +135,28 @@ Room** newGame(Room** world) {
   return world;
 }
 
-void loadGame(Hero& h, Room** world) {
-  Load l;
+bool loadGame(Hero& h, Room** world) {
+  std::string filename;
+  std::ifstream loadFile;
+  std::cin.ignore(1000, '\n');
+  while (true) {
+    std::cout << "Enter the save file name(without filetype)." << std::endl
+              << "Enter \"exit\" to exit file loading -- ";
+    getline(std::cin, filename);
+    if (filename == "exit")
+      return false;
+    filename += ".txt";
+    loadFile.open(filename);
+    if (loadFile.is_open()){
+      loadFile.close();
+      break;
+    } else {
+      std::cout << "\nInvalid file\n" << std::endl;
+    }
+  }
+  Load l(filename);
   l.loadGame(h, world);
+  return true;
 }
 
 bool combat(Hero& h, Room** world) {
@@ -274,7 +302,7 @@ bool combat(Hero& h, Room** world) {
         e->setHealth(eOrigHP);
         break;
       } else {
-        if(h.command(line, world))
+        if (h.command(line, world))
           return true;
       }
     }
