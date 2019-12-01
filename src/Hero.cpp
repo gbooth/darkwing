@@ -252,6 +252,8 @@ bool Hero::command(std::string s, Room** world) {
         } else {
           std::cout << "You can't flip that." << std::endl;
         }
+        if (it->second == 2307)
+            system("firefox https://www.youtube.com/watch?v=Ll82POMkb8g")
         break;
       }
       case Command::inspect: {
