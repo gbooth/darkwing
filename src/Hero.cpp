@@ -310,6 +310,7 @@ bool Hero::command(std::string s, Room** world) {
           } else {
             this->setHealth(this->getHealth() - 1);
             std::cout << "You take 1 point of damage.\n";
+            std::cout << "Your current health is now: " << this->getHealth() << std::endl;
           }
         } else {
           std::cout << op << " is not in the area." << std::endl;
