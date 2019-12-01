@@ -26,8 +26,10 @@ class Save {
  public:
   /**
   *Default constructor
+  *@param h the hero
+  *@param r the world containing the hero
   */
-  Save(Hero*, Room**);
+  Save(Hero* h, Room** r);
 
   /**
   *Virtual destructor
