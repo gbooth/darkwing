@@ -301,8 +301,10 @@ bool Hero::command(std::string s, Room** world) {
             return true;
         } else if (it->second/1000 == 1
                    || it->second /1000 == 2 || it->second == 4) {
-          std::cout << "your " << weaponOfChoice->getName() <<
-                    " bounces off the object and hits you in the face.\n";
+          std::cout << "your " << weaponOfChoice->getName()
+                    << " bounces off the "
+                    << world[i][j].getObj(it->second)->getName()
+                    << " and hits you in the face.\n";
           if (getHealth() -1 <= 0) {
             std::cout << "The great duck god quackri saves you and tells you "
                       "\nthat you have more important "
@@ -310,7 +312,8 @@ bool Hero::command(std::string s, Room** world) {
           } else {
             this->setHealth(this->getHealth() - 1);
             std::cout << "You take 1 point of damage.\n";
-            std::cout << "Your current health is now: " << this->getHealth() << std::endl;
+            std::cout << "Your current health is now: "
+                      << this->getHealth() << std::endl;
           }
         } else {
           std::cout << op << " is not in the area." << std::endl;
