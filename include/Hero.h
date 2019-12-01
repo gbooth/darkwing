@@ -22,7 +22,7 @@
 #include <vector>
 
 /**
- *This class will provide to the Hero or player, all the conditions that he is involve with ,during the whole game as: Weapons,Enemy identifier,position,
+ *The player and his/her assorted characteristics: Weapons,Enemy identifier,position,
  *Directions,inventory.
  */
 class Hero : public Person {
@@ -38,99 +38,115 @@ class Hero : public Person {
   virtual ~Hero();
 
   /**
-   *This function define the npc by the hero.
+   *This function defines the npc by the hero.
    *@return true
    */
   bool attack(Person*, Room**);
 
   /**
-   *This function give the description of the object selected by the hero.
+   * @param a the object to inspect
    * @return the description of the object.
    */
-  std::string inspect(Object*);
+  std::string inspect(Object* a);
 
-  /**
-   *This function gives the weapon identifier.
-   * @return weaponOfChoice .the identifier of the chosen weapon.
+  /**getter method for weapon
+   * @return weaponOfChoice.
    */
   Item* getWeapon();
 
   /**
-   *This function let you set the identifier of the weapon of choice.
+   * @param a the item to set as weapon of choice
    * @return the weapon of choice.
    */
-  void setWeapon(Item*);
+  void setWeapon(Item* a);
 
   /**
   *This function will gives the direction and the position of the hero.
+  * @param d the direction to move
+  * @param w the world which you moving in
   */
-  void mv(Direction, Room**);
+  void mv(Direction d, Room** w);
 
   /**
    *This function gives you the position of the hero.
-   *@return pos  position
-   * @throw "ERROR: position out of bounds" if the firs and second position is > 4.
+   * @param x the x-coordinate
+   * @param y the y-coordinate
+   * @param c the location of the hero in the world
+   * @throw "ERROR: position out of bounds" if x or y is > 4.
    */
-  void setPosition(std::pair<unsigned int, unsigned int>);
+  void setPosition(std::pair<unsigned int x, unsigned int y> c);
 
   /**
-   *this function access the position of the player.
+   * gets the position of the player.
+   * @return pos
    */
   std::pair<unsigned int, unsigned int> getPos();
 
   /**
-   *This function gives the inventory saved.
+   *used by save to save the inventory
    */
   std::vector<std::pair<int, int>> invSave();
 
   /**
-   *This function gives the current inventory any time during the game.
+   *prints inventory to screen.
    */
   void getInventory();
 
   /**
-   *This function tell you what object has been added to your inventory.
+   *adds an item to inventory
+   * @param a the item* to add
+   * @param b flag to ensure you add item to inv.
    */
-  void addInventory(Item*, bool);
+  void addInventory(Item* a, bool b);
 
   /**
    * This function give you the health when using potions.
+   * @param i the potion that you use
    */
-  void usePotion(Item*);
+  void usePotion(Item* i);
 
   /**
    *This function unlock when using the right key.
+   * @param i the key to use
+   * @param l the lock to use the key on
    */
-  void useKey(Item*, Lock*);
+  void useKey(Item* i, Lock* l);
 
   /**
    *This function let you know to talk with the Villager whe you are in the room.
-   *return true.
-   */
-  bool talk(Villager*, Room**);
-
-  /**
-   *This function gives all the commands that you can use during the game and messages related with
-   *messages that the hero will received every when asked for.
+   *@param v the villager pointer to talk to
+   *@param r the world which the villager is in
    *@return true.
    */
-  bool command(std::string, Room**);
+  bool talk(Villager* v, Room** r);
+
+  /**
+   *parses the player commands during gameplay
+   *@param s the string to interpret as commands for the hero
+   *@param r the world containing the hero
+   *@return true.
+   */
+  bool command(std::string s, Room** r);
 
   /**
    * This function interact giving the state of the objects in the rooms.
+   *@param r the immutable RoomObject* to interact with
    *@return true.
    */
-  bool interact(RoomObject* const);
+  bool interact(RoomObject* const r);
 
   /**
    *This function gives the conditions in which the game will be over.
+   *@param g the condition for losing
+   *@param r the world containing the hero
    */
-  void lose(GitGud, Room**);
+  void lose(GitGud g, Room** r);
 
   /**
    *This function gives message when the Hero wins the game.
+   *@param r the world containing the hero
    */
-  void win(Room**);
+  void win(Room** r);
 
   /**
    *resets all of the data attributes of the hero to default state
@@ -138,7 +154,7 @@ class Hero : public Person {
   void reset();
 
   /**
-   *This function contains the file to help he player from any room.
+   *Outputs the help menu to the terminal
    */
   void help();
 
