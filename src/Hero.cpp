@@ -564,7 +564,7 @@ bool Hero::interact(RoomObject* const r) {
     }
   } else {
     Lever* lev = static_cast<Lever*>(r);
-    if (lev->getState()){
+    if (lev->getState()) {
       std::cout << "You put all your strength into the lever but "
                 << "it wont budge.\n";
       return false;
