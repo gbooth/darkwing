@@ -397,7 +397,7 @@ bool Hero::command(std::string s, Room** world) {
                           << std::endl;
               }
             }
-          } else{
+          } else {
             std::cout << op << " isn't an equipable item" << std::endl;
           }
           break;
