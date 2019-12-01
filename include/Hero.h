@@ -71,10 +71,9 @@ class Hero : public Person {
    *This function gives you the position of the hero.
    * @param x the x-coordinate
    * @param y the y-coordinate
-   * @param c the location of the hero in the world
    * @throw "ERROR: position out of bounds" if x or y is > 4.
    */
-  void setPosition(std::pair<unsigned int x, unsigned int y> c);
+  void setPosition(std::pair<unsigned int x, unsigned int y>);
 
   /**
    * gets the position of the player.
