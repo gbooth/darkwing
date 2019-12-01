@@ -7,17 +7,24 @@
 #define ITEM_H_INCLUDED
 #include <Object.h>
 
-/**
- * This class will provide the item value using the Object class.
- */
 class Item : public Object {
  public:
-  Item(int);
-  ~Item() {}
-  int getItemValue();
   /**
-   *@param itemValue will give the status of the value for the item
+   *constructor
+   *@param a the id to assign to the item
    */
+  Item(int a);
+
+  /**
+   * destructor
+   */
+  ~Item() {}
+
+  /**
+   *@return itemValue
+   */
+  int getItemValue();
+
  private:
   int itemValue;
 };
