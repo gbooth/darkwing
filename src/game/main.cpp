@@ -224,7 +224,7 @@ bool combat(Hero& h, Room** world) {
     std::transform(line.begin(), line.end(), line.begin(), ::tolower);
     comd = line.substr(0, line.find(' '));
     oper = line.substr(line.find(' ') + 1);
-    if (comd  != "attack" && comd != "run" && comd != "use") {
+    if (comd  != "attack" && comd != "run" && comd != "use" && comd != "inventory") {
       if (stupidUser) {
         std::cout << e->getName() << " has managed to get his dagger to your n"
                   << "eck while you've been standing there. \"All too easy Duc"
