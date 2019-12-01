@@ -16,7 +16,7 @@
 class Chest: public RoomObject {
  public:
   /**
-   * Default constructor ,that identify the objects inside the chest.
+   * Default constructor that identifies the objects inside the chest.
    */
   Chest(int);
 
@@ -26,7 +26,7 @@ class Chest: public RoomObject {
   virtual~Chest();
 
   /**
-   *This function is in charge to access the contents in the Chests.
+   *Access the contents in the Chests.
    *@return the contents of the objects inside the chest.
    */
   Item* getContents();

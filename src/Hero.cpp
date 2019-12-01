@@ -417,6 +417,8 @@ bool Hero::command(std::string s, Room** world) {
 }
 
 void Hero::getInventory() {
+  std::cout << "HP: " << getHealth() << std::endl;
+  std::cout << "Equipped Weapon: " << getWeapon()->getName() << std::endl;
   std::cout << "Items" << std::setw(30)
             << std::setfill(' ') << "Amount" << "\n";
   std::cout << std::setw(36) << std::setfill('*') << "\n";
