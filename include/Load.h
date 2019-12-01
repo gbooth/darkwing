@@ -22,7 +22,7 @@ class Load {
    *In the Constructor will be asked the player for the save filename without the typefilename.
    *providing the options for health,position,inventory and weapon.
    */
-  Load();
+  Load(std::string);
 
   /**
    *Default Destructor

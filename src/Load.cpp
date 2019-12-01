@@ -8,25 +8,12 @@
 #include <string>
 #include <map>
 #include <utility>
-Load::Load() {
+Load::Load(std::string fName) {
   std::string readIn, objData;
   int roomID, objID;
   bool objState, roomEn;
-
-  while (true) {
-    std::cin.ignore(1000, '\n');
-    std::cout << "Enter the save file name(without filetype)." << std::endl
-              << "Enter \"exit\" to exit file loading -- ";
-    getline(std::cin, filename);
-    if (filename == "exit")
-      goto endLoad;
-    filename += ".txt";
-    loadFile.open(filename);
-    if (loadFile.is_open())
-      break;
-    else
-      std::cout << "Invalid file" << std::endl;
-  }
+  filename = fName;
+  loadFile.open(fName);
 
   for (int i = 0; i < 4; i++) {
     getline(loadFile, readIn, ':');
@@ -80,7 +67,6 @@ Load::Load() {
     }
     getline(loadFile, readIn, ':');
   }
-endLoad: {}
 }
 
 Load::~Load() {}
