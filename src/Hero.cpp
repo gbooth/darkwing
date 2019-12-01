@@ -523,7 +523,7 @@ bool Hero::talk(Villager* v, Room** world) {
       std::cout << v->getName()
                 << " looks at you with great disappointment. "
                 << "A wave of his hands opens the ground"
-                << "beneath your flippers and you die!\n";
+                << "beneath your feet and you die!\n";
       this->lose(riddle, world);
       return true;
     }
