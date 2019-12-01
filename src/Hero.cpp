@@ -316,7 +316,10 @@ bool Hero::command(std::string s, Room** world) {
                       << this->getHealth() << std::endl;
           }
         } else {
-          std::cout << op << " is not in the area." << std::endl;
+          if (op == "attack")
+            std::cout << "Attack what?\n";
+          else
+            std::cout << op << " is not in the area." << std::endl;
         }
         break;
       }
@@ -520,7 +523,7 @@ bool Hero::talk(Villager* v, Room** world) {
       std::cout << v->getName()
                 << " looks at you with great disappointment. "
                 << "A wave of his hands opens the ground"
-                << "beneath your flippers and you die!\n";
+                << "beneath your feet and you die!\n";
       this->lose(riddle, world);
       return true;
     }
