@@ -19,10 +19,9 @@ class Load {
  public:
   /**
    *Default Constructor
-   *In the Constructor will be asked the player for the save filename without the typefilename.
-   *providing the options for health,position,inventory and weapon.
+   *@param s is the filename
    */
-  Load(std::string);
+  Load(std::string s);
 
   /**
    *Default Destructor
@@ -31,8 +30,10 @@ class Load {
 
   /**
    *Function that load the game.
+   *@param the hero
+   *@param r the world containing the hero
    */
-  void loadGame(Hero&, Room**);
+  void loadGame(Hero&, Room** r);
 
  private:
   std::ifstream loadFile;
