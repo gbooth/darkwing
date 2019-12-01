@@ -29,10 +29,10 @@ class Villager : public Person {
   /**
   *It does nothing; implemented in Hero and enemy
   *@param npc the pointer to the person to attack
-  *@param room** the world that the person's are in
+  *@param r the world that the person's are in
   *@return false.
   */
-  bool attack(Person* npc, Room**);
+  bool attack(Person* npc, Room** r);
 
   /**
   * Related with the talking aspect of a villager
