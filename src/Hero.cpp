@@ -385,16 +385,20 @@ bool Hero::command(std::string s, Room** world) {
           break;
         } else {
           auto it = refs.find(op);
-          if (it != refs.end()) {
-            auto ptr = inventory.find(it->second);
-            if (this->getWeapon()->getName() == op) {
-              this->setWeapon(ptr->second.first);
-            } else {
-              this->setWeapon(ptr->second.first);
-              std::cout << "your weapon of choice is: "
-                        << this->getWeapon()->getName()
-                        << std::endl;
+          if (it->second / 100 == 42) {
+            if (it != refs.end()) {
+              auto ptr = inventory.find(it->second);
+              if (this->getWeapon()->getName() == op) {
+                this->setWeapon(ptr->second.first);
+              } else {
+                this->setWeapon(ptr->second.first);
+                std::cout << "your weapon of choice is: "
+                          << this->getWeapon()->getName()
+                          << std::endl;
+              }
             }
+          } else{
+            std::cout << op << " isn't an equipable item" << std::endl;
           }
           break;
         }
