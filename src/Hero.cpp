@@ -542,7 +542,11 @@ bool Hero::interact(RoomObject* const r) {
   if (r->getID() != 2301) {
     if (r->getID() / 100 % 10 == 3 && r->getID() / 1000 == 2) {
       r->setState(!r->getState());
-      std::cout << "The Lever has been flipped" << std::endl;
+      std::cout << "The Lever has been flipped";
+      if (r->getState())
+        std::cout << " down." << std::endl;
+      else
+        std::cout << " up." << std::endl;
       return true;
     } else if (r->getID() / 100 % 10 == 1 && r->getID() / 1000 == 2) {
       if (!r->getState()) {
@@ -556,6 +560,11 @@ bool Hero::interact(RoomObject* const r) {
     }
   } else {
     Lever* lev = static_cast<Lever*>(r);
+    if (lev->getState()){
+      std::cout << "You put all your strength into the lever but "
+                << "it wont budge.\n";
+      return false;
+    }
     std::vector<std::pair<Lever*, bool>> depLever = lev->getDepLever();
     if ((!depLever[0].first->getState() && !depLever[0].second)
         && (depLever[1].first->getState() && depLever[1].second)
