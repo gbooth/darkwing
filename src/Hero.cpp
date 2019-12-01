@@ -68,7 +68,7 @@ void Hero::mv(Direction a, Room** world) {
   switch (iPos) {
   case -1:
     if (pos.first == 4 && pos.second == 0) {
-      std::cout << "The drawbridge is raised, you cant pass it". << std::endl;
+      std::cout << "The drawbridge is raised, you cant pass it." << std::endl;
       break;
     } else if (pos.first == 3 && pos.second == 2) {
       std::cout << "A waterfall blocks your path." << std::endl;
@@ -561,7 +561,7 @@ bool Hero::interact(RoomObject* const r) {
         return true;
       }
     } else {
-      std::cout << "This is not a Chest, nor is it a Lever" << std::endl;
+      std::cout << "This is not a Chest, nor is it a Lever." << std::endl;
       return false;
     }
   } else {
