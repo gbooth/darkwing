@@ -17,7 +17,7 @@ class Room;
 class Person : public Object {
  public:
   /**
-  * Default Constructor
+  *Constructor
   *@param id gives the identifier for a person.
   */
   Person(int id);
@@ -28,7 +28,7 @@ class Person : public Object {
   virtual ~Person();
 
   /**
-  *  Attack is a pure virtual method to be used for the Enemies and the Hero.
+  *Attack is a pure virtual method to be used for the Enemies and the Hero.
   *@param npc gives the identification of the npc.
   *@param world gives the room position for the npc.
   */
@@ -36,8 +36,9 @@ class Person : public Object {
 
   /**
   *set health of the person.
+  *@param h the number to set player health to
   */
-  void setHealth(int);
+  void setHealth(int h);
 
   /**
   *@return health of the person.
@@ -46,8 +47,9 @@ class Person : public Object {
 
   /**
   *set the damage value of the person.
+  *@param a the value to change damage to.
   */
-  void setDamage(int);
+  void setDamage(int a);
 
   /**
   *@return damageValue of the person.
