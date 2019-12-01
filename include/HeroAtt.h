@@ -7,7 +7,7 @@
 #define HEROATT_H_INCLUDED
 
 /**
- *This class will give the conditions for the player during the game.
+ *The attributes of the the hero to save/load
  */
 enum HeroAtt {HP, pos, invnty, equipWep};
 

@@ -8,9 +8,7 @@
 #include "RoomObject.h"
 #include <vector>
 #include <utility>
-/**
- *This class gives the identifier for the levers
- */
+
 class Lever : public RoomObject {
  public:
   /**
@@ -25,16 +23,16 @@ class Lever : public RoomObject {
   *destructor
   */
   ~Lever();
+
   /**
    * sets the depLever vector
-   * @param a pair of lever* and bool
+   * @param l the pair of lever* and a bool
    */
-  void setDepLever(std::pair<Lever*, bool>);
+  void setDepLever(std::pair<Lever*, bool> l);
 
   /**
-   * @returns depLever vector
+   * @returns depLever
    */
-
   std::vector<std::pair<Lever*, bool>> getDepLever();
 
  private:
