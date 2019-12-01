@@ -24,7 +24,7 @@ TEST(TestObject, getNameTest) {
 
 TEST(TestObject, getDescTest) {
   Object a(1001);
-  std::string s = "the home of the renowned wizard whom you serve loyally.";
+  std::string s = "The home of the renowned wizard whom you serve loyally.";
   std::string r = " A spikey chest lies in the corner.";
   std::string x = " You can go north, east or south.";
   std::string p = s + r + x;

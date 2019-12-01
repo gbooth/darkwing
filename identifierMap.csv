@@ -1,49 +1,49 @@
-1001:wizard room:the home of the renowned wizard whom you serve loyally. A spikey chest lies in the corner. You can go north, east or south.
+1001:wizard room:The home of the renowned wizard whom you serve loyally. A spikey chest lies in the corner. You can go north, east or south.
 1002:throne:King Eider is on the throne. Beside him stand Quackie Chan and James Pond. You notice a small chest off to the side. You can go west or south.
 1003:lake:A large lake is before with Sirius Quack standing on the shore. You can go south.
-1004:cavernEntrance:a dark and ravaged entrance to a cavern deep inside of the mountain with skeletons spewd about the ways. You can go east or west.
-1005:undergoundLake:a teal blue lake is comes into sight. You see a drawbridge and stone lever. You can go in every direction.
-1006:market:a busy market inside the castle with the hustle of many villagers. You see Gizmoduck, Sir Ducksalot, and MacDuck huddled around a stall. You can go north or east.
-1007:common:the great and wonderful common area for all to gather inside of the castle. You spot Duck Rogers and Duke of Duckworth in the crowd. You can go north, east, or west.
-1008:field:its a big wide open field...really open. You can go in all directions.
-1009:forest:a large forest with many trees and shrubs and mountains in the distance. You can go in any direction.
+1004:cavernEntrance:A dark and ravaged entrance to a cavern deep inside of the mountain with skeletons spewd about the ways. You can go east or west.
+1005:undergoundLake:A teal blue lake is comes into sight. You see a drawbridge and stone lever. You can go in any direction.
+1006:market:A busy market inside the castle with the hustle of many villagers. You see Gizmoduck, Sir Ducksalot, and MacDuck huddled around a stall. You can go north or east.
+1007:common:The great and wonderful common area for all to gather inside of the castle. You spot Duck Rogers and Duke of Duckworth in the crowd. You can go north, east, or west.
+1008:field:It's a big wide open field...really open. You can go in all directions.
+1009:forest:A large forest with many trees and shrubs and mountains in the distance. You can go in any direction.
 1010:hidden water:A hidden alcove that is very damp and cold. You see a blue chest. You can go east.
-1011:duckAnteChamber:the hall that leads to the ducks layer perhaps. As you look around you see a family tree for a duck that never had a family...how strange. You can go east or west.Before leaving Look around and  you will see an Orange Lock at he east part of the room.
-1012:duckThrone:finally the lair of the duck. You can go west.
-1013:desert:a really dry and sunny desert. As you were walking you notice a sandy chest and the famous hermit Waddles. You can move north.
-1014:waterfall:a large cavern with a high water fall splashing on to the ground. There is jade chest just beside the waterfall. You can go north, east, or west. 
-1015:stalactite:wide cave with stalactites hanging from the ceiling (they sure look sharp). You can go east, south or west.
-1016:quartzRoom:a giant crystal cave filled with quartz. An orange chest can be spotted amongst the gigantic crystals. A flimsy lever stands just beside it. You can go west.
-1017:livingQuarters:looks like the duck's minions live here but all of them are missing. A gold lever is postioned just beside the door. You can move north.
-1018:undergroundRiver:a small stream capable of drowning a mouse and perhaps a person. Ignoring the water lapping at you feet you notice a bone lever,also wait!!there is Blue Lock at the north wall of the room in this place  . You can go north or south.
-1019:stalagmite:holy stalgmites batman, spikes on the ground! You see a cram lever on the wall. You can go east, south, or west.
+1011:duckAnteChamber:The hall that leads to the ducks layer perhaps. As you look around you see a family tree for a duck that never had a family...how strange. You can go east or west, however, the door to the east has an orange lock on it.
+1012:duckThrone:Finally the lair of the duck. You can go west.
+1013:desert:A really dry and sunny desert. As you were walking you notice a sandy chest and the famous hermit Waddles. You can move north.
+1014:waterfall:A large cavern with a high water fall splashing on to the ground. There is jade chest just beside the waterfall. You can go north, east, or west. 
+1015:stalactite:Aide cave with stalactites hanging from the ceiling (they sure look sharp). You can go east, south or west.
+1016:quartzRoom:A giant crystal cave filled with quartz. An orange chest can be spotted amongst the gigantic crystals. A flimsy lever stands just beside it. You can go west.
+1017:livingQuarters:Looks like the duck's minions live here but all of them are missing. A gold lever is postioned just beside the door. You can move north.
+1018:undergroundRiver:A small stream capable of drowning a mouse and perhaps a person. Ignoring the water lapping at you feet you notice a bone lever. You can go north or south. The door to the north has a blue lock on it.
+1019:stalagmite:Holy stalgmites batman, spikes on the ground! You see a cram lever on the wall. You can go east, south, or west.
 1020:jail:A square prison with many cells and the filth of it's occupants. The filth has not touched the mossy lever beside the jail cell. There is a broken chest against the wall. You can go west.
-1021:columnRoom:many columns supporting the nearly invisibile ceiling, akin to the mines of Moria, minus the goblins. There is a golden chest against one wall and wooden lever on the other. You can go east.
-1022:bridge:a drawbridge is raised in front of you. You can go east or west.
-1023:cram room:a red velvet room with a plinth in the middle holding a major chest. You can move south.
+1021:columnRoom:Many columns supporting the nearly invisibile ceiling, akin to the mines of Moria, minus the goblins. There is a golden chest against one wall and wooden lever on the other. You can go east.
+1022:bridge:You're on the bridge above the lake. You can go east or west.
+1023:cram room:A red velvet room with a plinth in the middle holding a major chest. You can move south.
 1024:void:void
 1025:void:void
-2101:golden chest:a large chest with golden filigry about the handle.
-2102:jade chest:a boring old chest but perhaps there's treasure inside.
-2103:blue chest:a chest as blue as the sea?
-2104:orange chest:a chest as orange an...orange.
-2105:spikey chest:a super spikey chest...like a porcupine.
-2106:sandy chest:a very sandy and dirty chest.
-2107:small chest: a really tiny chest.
-2108:major chest:massive chest the size of your...house.
-2109:broken chest:a really rusty chest probably from all the water around.
-2201:orange lock:its an orange lock kind of like other orange locks you've seen.
-2202:blue lock:a blue lock so pretty and blue.
-2203:brown lock:the way is barred you shall not pass.
-2301:stone lever:its a lever.
-2302:gold lever:a lever are you sure it is the right lever?
-2303:bone lever:a long and boney arm quite dead that looks like a lever.
-2304:mossy lever:wow another lever.
-2305:wooden lever:you pull this like a tree branch except it doesn't break...and its not a tree.
-2306:flimsy lever:its sword hilt sticking out of a wall...maybe you should pull it?
-2307:cram lever:a lever made of cram, yuck.
-3101:Duck Norris:legends have it, he has a second beak under his beard.
-3201:Quackie Chan:a very athletic small man.
+2101:golden chest:A large chest with golden filigry about the handle.
+2102:jade chest:A boring old chest but perhaps there's treasure inside.
+2103:blue chest:A chest as blue as the sea?
+2104:orange chest:A chest as orange an...orange.
+2105:spikey chest:A super spikey chest...like a porcupine.
+2106:sandy chest:A very sandy and dirty chest.
+2107:small chest:A really tiny chest.
+2108:major chest:Massive chest the size of Joe Mama.
+2109:broken chest:A really rusty chest probably from all the water around.
+2201:orange lock:It's an orange lock kind of like other orange locks you've seen.
+2202:blue lock:A blue lock so pretty and blue.
+2203:brown lock:The way is barred. You shall not pass.
+2301:stone lever:An ordinary looking lever. As you look closer though you notice an inscription engraved in the base of the lever. "A combination you must find before my mechanism will fly. My friends who are wooden, golden, and flimsy will show you the way."
+2302:golden lever:A lever made of gold. Are you sure it is the right lever? Looking closly you notice an inscription. "Don't trust the one made of wood. He lies."
+2303:bone lever:A long and boney arm quite dead that looks like a lever.
+2304:mossy lever:A lever covered with moss. It's been here a while.
+2305:wooden lever:It's a lever made of wood. Burned into the base there's an inscription "Don't listen to the one made of gold. He's a pompous jerk and make sure you flip me or the bridge will never drop."
+2306:flimsy lever:It's sword hilt sticking out of a wall...maybe you should pull it?
+2307:cram lever:A lever made of cram. Should you lick it?
+3101:Duck Norris:Legends have it, he has a second beak under his beard.
+3201:Quackie Chan:A very athletic small man.
 3202:King Eider:A man with an orange face and mole on his nose.
 3203:James Pond:A man who could very well not have worked a day in his life.
 3204:Gizmoduck:Part man, part machine, part duck?
@@ -53,19 +53,19 @@
 3208:Sirius Quack:A tall brooding man in rags. Though quite likeable once you get to know him.
 3209:Duck Rogers:A stud if ever you saw one.
 3210:Waddles:A hermit well renound for living in the Quacksand Desert.
-3301:Quacker Jack:he's dead.
-3302:Muddlefoot:he's dead.
-3303:Macawbre:dead duck.
-3304:Quackmire:he's dead.
-3305:Firequacker:he's dead.
-4101:major health potion:a pretty nice potion capable of healing 20 HP.
-4102:minor health potion:an ok health potion capable of healing 10 HP.
-4201:sword:its a sword...kinda sharp..the pointy end goes away from you. Deals 6 damage points.
-4202:golden sword:its super duper nice sword with gold all around it. Deals 8 damage points.
-4203:dagger:meh...its a dagger what more can you ask for? Deals 3 damage points.
-4204:golden dagger:a super duper nice dagger...kinda like a super duper nice sword. Deals 5 damage points.
-4205:fists:A rather nice pair of fists if you do say so yourself. Deals 1 damage point.
-4206:cram sword:a sword made of cram, left out in the sun for a fortnight. It's harder than steel. Deals 10 damage points.
-4301:orange key:a key that might go with the orange lock.
-4302:blue key:similar to the orange key but its blue.
-4303:Forest Map:you know the way.
+3301:Quacker Jack:He's dead.
+3302:Muddlefoot:He's dead.
+3303:Macawbre:Dead duck.
+3304:Quackmire:He's dead.
+3305:Firequacker:He's dead.
+4101:potion:A decent sized potion capable of healing 20 HP.
+4102:small potion:A small potion capable of healing 10 HP.
+4201:sword:It's a sword...kinda sharp...the pointy end goes away from you. Deals 7 damage points.
+4202:golden sword:Its super duper nice sword with gold all around it. Deals 9 damage points.
+4203:dagger:Meh...Its a dagger what more can you ask for? Deals 4 damage points.
+4204:golden dagger:A super duper nice dagger...kinda like a super duper nice sword. Deals 6 damage points.
+4205:fists:A rather nice pair of fists if you do say so yourself. Deals 2 damage point.
+4206:cram sword:A sword made of cram. Left out in the sun for a fortnight. It's harder than steel. A lick tells you it's made of VERY berry Cram. Deals 11 damage points.
+4301:orange key:It's a key... and its orange...
+4302:blue key:It's a key... and it's blue...
+4303:Forest Map:A map of the forest.
