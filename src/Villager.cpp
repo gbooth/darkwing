@@ -29,7 +29,7 @@ void Villager::response() {
     std::cout << "Pond, " << name << ". Care for a vodka martini?\n";
     break;
   case 3204:
-    std::cout << "I am " << name << ". How do you like my upgrades?";
+    std::cout << "I am " << name << ". How do you like my upgrades?\n";
     break;
   case 3205:
     std::cout << "I am " << name <<
