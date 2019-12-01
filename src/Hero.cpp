@@ -318,7 +318,10 @@ bool Hero::command(std::string s, Room** world) {
                       << this->getHealth() << std::endl;
           }
         } else {
-          std::cout << op << " is not in the area." << std::endl;
+          if (op == "attack")
+            std::cout << "Attack what?\n";
+          else
+            std::cout << op << " is not in the area." << std::endl;
         }
         break;
       }
