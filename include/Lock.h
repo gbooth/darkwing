@@ -11,16 +11,13 @@
 #include"Item.h"
 #include<iostream>
 
-/**
-*This class is implemented as a derived class of Room Objects and the purpouse is
-* to give access to different objects to access during the game.
-*/
 class Lock : public RoomObject {
  public:
   /**
-  * Default constructor
+  *constructor
+  *@param a the id of the lock
   */
-  Lock(int);
+  Lock(int a);
 
   /**
    *Default Destructor
@@ -29,14 +26,14 @@ class Lock : public RoomObject {
 
   /**
    *This function will give the option to continue if the key identifier is the right one .
-   * @param key will take to the identifier ,which will access to continue.
+   * @param key to check if it will unlock the lock.
    */
   void unlock(Item key);
 
  private:
   int lockValue;
   /** This function verify if the player is using the right key.
-  *@return true is the key and lock matches.
+  *@return true if the key and lock matches.
   */
   bool checkKey(Item key);
 };
